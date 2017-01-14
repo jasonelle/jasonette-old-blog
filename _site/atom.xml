@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
  <title>jasonette</title>
- <link href="http://localhost:4000/atom.xml" rel="self"/>
- <link href="http://localhost:4000/"/>
- <updated>2017-01-14T06:16:59-05:00</updated>
- <id>http://localhost:4000</id>
+ <link href="https://www.jasonette.com/atom.xml" rel="self"/>
+ <link href="https://www.jasonette.com/"/>
+ <updated>2017-01-14T06:23:44-05:00</updated>
+ <id>https://www.jasonette.com</id>
  <author>
    <name>JASON</name>
    <email></email>
@@ -14,9 +14,9 @@
  
  <entry>
    <title>How Jasonette Went from an Esoteric App to a Radical New Way to Build Native Apps</title>
-   <link href="http://localhost:4000/2016/01/12/Jasonette-2016-in-review/"/>
+   <link href="https://www.jasonette.com/2016/01/12/Jasonette-2016-in-review/"/>
    <updated>2016-01-12T00:00:00-05:00</updated>
-   <id>http://localhost:4000/2016/01/12/Jasonette-2016-in-review</id>
+   <id>https://www.jasonette.com/2016/01/12/Jasonette-2016-in-review</id>
    <content type="html">&lt;p&gt;How are apps built?&lt;/p&gt;
 
 &lt;p&gt;You write a program and put it on the phone.&lt;/p&gt;

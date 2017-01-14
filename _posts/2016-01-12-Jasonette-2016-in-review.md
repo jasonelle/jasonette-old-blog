@@ -5,7 +5,7 @@ title: How Jasonette Went from an Esoteric App to a Radical New Way to Build Nat
 
 How are apps built?
 
-You write a program and put it on the phone.
+You write a program and put it on the phone!
 
 But what if you could represent an entire native app as JSON and **load it on demand from the cloud over HTTP**, just like a web page?
 
