@@ -4,7 +4,7 @@
  <title>jasonette</title>
  <link href="https://www.jasonette.com/atom.xml" rel="self"/>
  <link href="https://www.jasonette.com/"/>
- <updated>2017-01-14T06:23:44-05:00</updated>
+ <updated>2017-01-14T06:54:35-05:00</updated>
  <id>https://www.jasonette.com</id>
  <author>
    <name>JASON</name>
@@ -19,7 +19,7 @@
    <id>https://www.jasonette.com/2016/01/12/Jasonette-2016-in-review</id>
    <content type="html">&lt;p&gt;How are apps built?&lt;/p&gt;
 
-&lt;p&gt;You write a program and put it on the phone.&lt;/p&gt;
+&lt;p&gt;You write a program and put it on the phone!&lt;/p&gt;
 
 &lt;p&gt;But what if you could represent an entire native app as JSON and &lt;strong&gt;load it on demand from the cloud over HTTP&lt;/strong&gt;, just like a web page?&lt;/p&gt;
 
