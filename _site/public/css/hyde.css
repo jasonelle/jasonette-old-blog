@@ -307,10 +307,10 @@ a.sidebar-nav-item:focus {
   width: 50%;
   display: inline-block;
 }
-.post-title{
+h1.post-title{
   font-family: "Crimson Text", "Hoefler Text", "Georgia", serif;
-  font-size: 50px;
-  line-height: 50px;
+  font-size: 50px !important;
+  line-height: 50px !important;
   font-style: italic;
 }
 h2{
