@@ -3,6 +3,8 @@ layout: post
 title: Remote-control your Slack bots with JSON
 ---
 
+**Update:** As a mistake I timestamped this as 2016, but this post was just freshly published on January 17th of 2017. Sorry for the confusion! :D 
+
 A couple of days ago, [@shaunymca](https://github.com/shaunymca) shared a really cool project on [our slack channel](https://jasonette.now.sh/).
 
 

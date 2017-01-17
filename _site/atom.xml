@@ -4,7 +4,7 @@
  <title>jasonette</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <link href="http://localhost:4000/"/>
- <updated>2017-01-17T08:39:14-05:00</updated>
+ <updated>2017-01-17T09:35:44-05:00</updated>
  <id>http://localhost:4000</id>
  <author>
    <name>JASON</name>
@@ -14,10 +14,12 @@
  
  <entry>
    <title>Remote-control your Slack bots with JSON</title>
-   <link href="http://localhost:4000/2016/01/16/build-a-slackbot-with-jasonette/"/>
-   <updated>2016-01-16T00:00:00-05:00</updated>
-   <id>http://localhost:4000/2016/01/16/build-a-slackbot-with-jasonette</id>
-   <content type="html">&lt;p&gt;A couple of days ago, &lt;a href=&quot;https://github.com/shaunymca&quot;&gt;@shaunymca&lt;/a&gt; shared a really cool project on &lt;a href=&quot;https://jasonette.now.sh/&quot;&gt;our slack channel&lt;/a&gt;.&lt;/p&gt;
+   <link href="http://localhost:4000/2016/01/17/build-a-slackbot-with-jasonette/"/>
+   <updated>2016-01-17T00:00:00-05:00</updated>
+   <id>http://localhost:4000/2016/01/17/build-a-slackbot-with-jasonette</id>
+   <content type="html">&lt;p&gt;&lt;strong&gt;Update:&lt;/strong&gt; As a mistake I timestamped this as 2016, but this post was just freshly published on January 17th of 2017. Sorry for the confusion! :D &lt;/p&gt;
+
+&lt;p&gt;A couple of days ago, &lt;a href=&quot;https://github.com/shaunymca&quot;&gt;@shaunymca&lt;/a&gt; shared a really cool project on &lt;a href=&quot;https://jasonette.now.sh/&quot;&gt;our slack channel&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src='/assets/coffeebot.png' class='bordered'&gt;&lt;/p&gt;
 
