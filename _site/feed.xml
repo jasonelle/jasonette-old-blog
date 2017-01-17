@@ -3,8 +3,20 @@
 	<channel>
 		<title></title>
 		<description>⚡️ Native App over HTTP</description>		
-		<link>https://www.jasonette.com</link>
-		<atom:link href="https://www.jasonette.com/feed.xml" rel="self" type="application/rss+xml" />
+		<link>http://localhost:4000</link>
+		<atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
+		
+			<item>
+				<title>Remote-control your Slack bots with JSON</title>
+				        
+				
+					<description>&lt;p&gt;A couple of days ago, &lt;a href=&quot;https://github.com/shaunymca&quot;&gt;@shaunymca&lt;/a&gt; shared a really cool project on &lt;a href=&quot;https://jasonette.now.sh/&quot;&gt;our slack channel&lt;/a&gt;.&lt;/p&gt;
+</description>
+				
+				<pubDate>Sat, 16 Jan 2016 00:00:00 -0500</pubDate>
+				<link>http://localhost:4000/2016/01/16/build-a-slackbot-with-jasonette/</link>
+				<guid isPermaLink="true">http://localhost:4000/2016/01/16/build-a-slackbot-with-jasonette/</guid>
+			</item>
 		
 			<item>
 				<title>How Jasonette Went from an Esoteric App to a Radical New Way to Build Native Apps</title>
@@ -14,8 +26,8 @@
 </description>
 				
 				<pubDate>Tue, 12 Jan 2016 00:00:00 -0500</pubDate>
-				<link>https://www.jasonette.com/2016/01/12/Jasonette-2016-in-review/</link>
-				<guid isPermaLink="true">https://www.jasonette.com/2016/01/12/Jasonette-2016-in-review/</guid>
+				<link>http://localhost:4000/2016/01/12/Jasonette-2016-in-review/</link>
+				<guid isPermaLink="true">http://localhost:4000/2016/01/12/Jasonette-2016-in-review/</guid>
 			</item>
 		
 	</channel>

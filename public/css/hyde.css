@@ -304,8 +304,19 @@ a.sidebar-nav-item:focus {
   margin:0 auto;
 }
 .col-6{
-  width: 50%;
+  width: 49%;
   display: inline-block;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  padding: 5px;
+}
+.col-6 *{
+  width: 100%;
+  display: inline-block;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
 }
 h1.post-title{
   font-family: "Crimson Text", "Hoefler Text", "Georgia", serif;
@@ -381,6 +392,14 @@ li{
 }
 img{
   display: inline;
+  max-width: 700px;
+}
+img.medium{
+  max-width: 400px;
+}
+img.bordered{
+  border: 1px solid #ebebeb;
+  padding: 20px;
 }
 li code{
   white-space: pre-wrap !important;

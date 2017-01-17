@@ -99,7 +99,7 @@
 			<a class="sidebar-nav-item inline" href="https://github.com/Jasonette/JASONETTE-Android">Jasonette-Android</a>
 			<a class="sidebar-nav-item inline" href="https://github.com/Jasonette/JASONETTE-iOS">Jasonette-iOS</a>
       <div class='sidebar-nav-item bold'>RSS</div>
-			<a class="sidebar-nav-item icon" href='atom.xml'><img src='/assets/feed.png'></a>
+			<a class="sidebar-nav-item icon" href='/atom.xml'><img src='/assets/feed.png'></a>
     </nav>
   </div>
 </div>
@@ -107,6 +107,103 @@
 
     <div class="content container">
       <div class="posts">
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/2016/01/16/build-a-slackbot-with-jasonette/">
+        Remote-control your Slack bots with JSON
+      </a>
+    </h1>
+
+    <span class="post-date">16 Jan 2016</span>
+
+    <p>A couple of days ago, <a href="https://github.com/shaunymca">@shaunymca</a> shared a really cool project on <a href="https://jasonette.now.sh/">our slack channel</a>.</p>
+
+<p><img src='/assets/coffeebot.png' class='bordered'></p>
+
+<p>If you think about it, this is a pretty refreshing idea. Basically, it&#39;s <strong>a mobile app for remote-controlling a Slack bot.</strong> </p>
+
+<p>To declare that you&#39;ve started brewing coffee, open the app, and simply touch the button from the cell with your name</p>
+
+<p><img src='/assets/coffeebot_original.png' class='medium bordered'></p>
+
+<p>And in 12 minutes, </p>
+
+<p><img src='/assets/coffee_bot_slack.png' class='bordered'></p>
+
+<p>And the cool part is, this was built with Jasonette, so <strong>he didn&#39;t need to write any native code.</strong></p>
+
+<p>First, he wrote an express.js server which returns a JSON markup.</p>
+
+<p>Then he connected it to <a href="https://www.jasonette.com">Jasonette</a>, which turned that JSON markup into a native app which drew the UI as well as sent requests to the server upon user input.</p>
+
+<p>And voila! We have a remote control app for Slack bots.</p>
+
+<p>Check out the repo here: <a href="https://github.com/shaunymca/coffeeapp">https://github.com/shaunymca/coffeeapp</a></p>
+
+<p><br></p>
+
+<h2>Demo</h2>
+
+<p>I thought it was really cool so just decided to fork and try it out on our own slack channel. Here&#39;s how it works:</p>
+
+<p>When the <a href="https://jasonette.com">Jasonette app</a> hits the home url, the server returns a JSON markup that looks like this:</p>
+
+<p><img src="/assets/coffee_json.png" alt="Coffee json"></p>
+
+<p>Then, Jasonette turns it into a native app that looks like this:</p>
+
+<p><span class='col-6'>
+    <span>iOS</span>
+    <img src='/assets/coffee_app_ios.png' class='medium bordered'>
+</span>
+<span class='col-6'>
+    <span>Android</span>
+    <img src='/assets/coffee_app_android.png' class='medium bordered'>
+</span></p>
+
+<p>So how does it work behind the scenes? Each cell item is represented by a JSON object in the markup, which has an <code>action</code> attribute that looks like this:</p>
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$network.request"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://evening-inlet-32428.herokuapp.com/submit.json"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"user_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{name}}"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{id}}"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>When you tap on a cell, it makes a <code>POST</code> request to the <a href="https://github.com/shaunymca/coffeeapp/blob/master/server.js#L61">submit.json</a> endpoint, which <a href="https://github.com/shaunymca/coffeeapp/blob/master/modules/slackPosting.js#L17">triggers the Slack API</a>.</p>
+
+<p><strong>And in 12 minutes, your Slack channel will get a notification from the Coffee bot!.</strong></p>
+
+<p><img src='/assets/coffee_bot_slack.png' class='bordered'></p>
+
+<h2>TLDR</h2>
+
+<ol>
+<li>The express server returns a <a href="https://github.com/shaunymca/coffeeapp/blob/master/modules/jsonette.js#L61">JSON markup</a>, which becomes a native app when you connect it with Jasonette.</li>
+<li>When you tap an item from the app, it triggers a <a href="http://docs.jasonette.com/actions/#networkrequest">POST request</a> to the server.</li>
+<li>The server waits 12 minutes, and then triggers the Slack API with credentials to post to the Slack channel.</li>
+</ol>
+
+<p><br></p>
+
+<h2>Conclusion</h2>
+
+<p>This reminded me of the <a href="https://www.justyo.co/">Yo app</a>, since it&#39;s meant to only serve a single purpose.</p>
+
+<p>It&#39;s like a bot version of Yo. But for multiplayer. And powered by Slack!</p>
+
+<p>It&#39;s awesome to see these creative projects being built with Jasonette. Feel free to <a href="https://twitter.com/jasonclient">reach out</a> if you built something cool using Jasonette. I will try to showcase them on the blog.</p>
+
+<p><strong>Lastly, make sure to try out <a href="https://github.com/shaunymca">@shaunymca</a>&#39;s coffeebot app for your own slack channel! It&#39;s so cool! <a href="https://github.com/shaunymca/coffeeapp">https://github.com/shaunymca/coffeeapp</a>.</strong></p>
+
+<hr>
+
+  </div>
   
   <div class="post">
     <h1 class="post-title">

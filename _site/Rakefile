@@ -19,8 +19,8 @@ namespace :blog do
   task :publish do
 
     # pushing source to master
-    system "git add . && git commit -am 'Site source updated at #{Time.now.utc}'" # Add and commit all the files.
-    system "git push origin master:refs/heads/master --force"
+#    system "git add . && git commit -am 'Site source updated at #{Time.now.utc}'" # Add and commit all the files.
+#    system "git push origin master:refs/heads/master --force"
 
     # Dealing with building and pushing the actual site
     system "bundle exec jekyll build"

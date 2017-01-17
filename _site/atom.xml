@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
  <title>jasonette</title>
- <link href="https://www.jasonette.com/atom.xml" rel="self"/>
- <link href="https://www.jasonette.com/"/>
- <updated>2017-01-14T06:56:03-05:00</updated>
- <id>https://www.jasonette.com</id>
+ <link href="http://localhost:4000/atom.xml" rel="self"/>
+ <link href="http://localhost:4000/"/>
+ <updated>2017-01-17T08:39:14-05:00</updated>
+ <id>http://localhost:4000</id>
  <author>
    <name>JASON</name>
    <email></email>
@@ -13,10 +13,103 @@
 
  
  <entry>
+   <title>Remote-control your Slack bots with JSON</title>
+   <link href="http://localhost:4000/2016/01/16/build-a-slackbot-with-jasonette/"/>
+   <updated>2016-01-16T00:00:00-05:00</updated>
+   <id>http://localhost:4000/2016/01/16/build-a-slackbot-with-jasonette</id>
+   <content type="html">&lt;p&gt;A couple of days ago, &lt;a href=&quot;https://github.com/shaunymca&quot;&gt;@shaunymca&lt;/a&gt; shared a really cool project on &lt;a href=&quot;https://jasonette.now.sh/&quot;&gt;our slack channel&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src='/assets/coffeebot.png' class='bordered'&gt;&lt;/p&gt;
+
+&lt;p&gt;If you think about it, this is a pretty refreshing idea. Basically, it&amp;#39;s &lt;strong&gt;a mobile app for remote-controlling a Slack bot.&lt;/strong&gt; &lt;/p&gt;
+
+&lt;p&gt;To declare that you&amp;#39;ve started brewing coffee, open the app, and simply touch the button from the cell with your name&lt;/p&gt;
+
+&lt;p&gt;&lt;img src='/assets/coffeebot_original.png' class='medium bordered'&gt;&lt;/p&gt;
+
+&lt;p&gt;And in 12 minutes, &lt;/p&gt;
+
+&lt;p&gt;&lt;img src='/assets/coffee_bot_slack.png' class='bordered'&gt;&lt;/p&gt;
+
+&lt;p&gt;And the cool part is, this was built with Jasonette, so &lt;strong&gt;he didn&amp;#39;t need to write any native code.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;First, he wrote an express.js server which returns a JSON markup.&lt;/p&gt;
+
+&lt;p&gt;Then he connected it to &lt;a href=&quot;https://www.jasonette.com&quot;&gt;Jasonette&lt;/a&gt;, which turned that JSON markup into a native app which drew the UI as well as sent requests to the server upon user input.&lt;/p&gt;
+
+&lt;p&gt;And voila! We have a remote control app for Slack bots.&lt;/p&gt;
+
+&lt;p&gt;Check out the repo here: &lt;a href=&quot;https://github.com/shaunymca/coffeeapp&quot;&gt;https://github.com/shaunymca/coffeeapp&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;h2&gt;Demo&lt;/h2&gt;
+
+&lt;p&gt;I thought it was really cool so just decided to fork and try it out on our own slack channel. Here&amp;#39;s how it works:&lt;/p&gt;
+
+&lt;p&gt;When the &lt;a href=&quot;https://jasonette.com&quot;&gt;Jasonette app&lt;/a&gt; hits the home url, the server returns a JSON markup that looks like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/coffee_json.png&quot; alt=&quot;Coffee json&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;Then, Jasonette turns it into a native app that looks like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;span class='col-6'&gt;
+    &lt;span&gt;iOS&lt;/span&gt;
+    &lt;img src='/assets/coffee_app_ios.png' class='medium bordered'&gt;
+&lt;/span&gt;
+&lt;span class='col-6'&gt;
+    &lt;span&gt;Android&lt;/span&gt;
+    &lt;img src='/assets/coffee_app_android.png' class='medium bordered'&gt;
+&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;So how does it work behind the scenes? Each cell item is represented by a JSON object in the markup, which has an &lt;code&gt;action&lt;/code&gt; attribute that looks like this:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-json&quot; data-lang=&quot;json&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;$network.request&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;options&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;url&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://evening-inlet-32428.herokuapp.com/submit.json&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;method&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;POST&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;data&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;user_name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;{{name}}&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;user_id&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;{{id}}&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;When you tap on a cell, it makes a &lt;code&gt;POST&lt;/code&gt; request to the &lt;a href=&quot;https://github.com/shaunymca/coffeeapp/blob/master/server.js#L61&quot;&gt;submit.json&lt;/a&gt; endpoint, which &lt;a href=&quot;https://github.com/shaunymca/coffeeapp/blob/master/modules/slackPosting.js#L17&quot;&gt;triggers the Slack API&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;And in 12 minutes, your Slack channel will get a notification from the Coffee bot!.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src='/assets/coffee_bot_slack.png' class='bordered'&gt;&lt;/p&gt;
+
+&lt;h2&gt;TLDR&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;The express server returns a &lt;a href=&quot;https://github.com/shaunymca/coffeeapp/blob/master/modules/jsonette.js#L61&quot;&gt;JSON markup&lt;/a&gt;, which becomes a native app when you connect it with Jasonette.&lt;/li&gt;
+&lt;li&gt;When you tap an item from the app, it triggers a &lt;a href=&quot;http://docs.jasonette.com/actions/#networkrequest&quot;&gt;POST request&lt;/a&gt; to the server.&lt;/li&gt;
+&lt;li&gt;The server waits 12 minutes, and then triggers the Slack API with credentials to post to the Slack channel.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;This reminded me of the &lt;a href=&quot;https://www.justyo.co/&quot;&gt;Yo app&lt;/a&gt;, since it&amp;#39;s meant to only serve a single purpose.&lt;/p&gt;
+
+&lt;p&gt;It&amp;#39;s like a bot version of Yo. But for multiplayer. And powered by Slack!&lt;/p&gt;
+
+&lt;p&gt;It&amp;#39;s awesome to see these creative projects being built with Jasonette. Feel free to &lt;a href=&quot;https://twitter.com/jasonclient&quot;&gt;reach out&lt;/a&gt; if you built something cool using Jasonette. I will try to showcase them on the blog.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Lastly, make sure to try out &lt;a href=&quot;https://github.com/shaunymca&quot;&gt;@shaunymca&lt;/a&gt;&amp;#39;s coffeebot app for your own slack channel! It&amp;#39;s so cool! &lt;a href=&quot;https://github.com/shaunymca/coffeeapp&quot;&gt;https://github.com/shaunymca/coffeeapp&lt;/a&gt;.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;hr&gt;
+</content>
+ </entry>
+ 
+ <entry>
    <title>How Jasonette Went from an Esoteric App to a Radical New Way to Build Native Apps</title>
-   <link href="https://www.jasonette.com/2016/01/12/Jasonette-2016-in-review/"/>
+   <link href="http://localhost:4000/2016/01/12/Jasonette-2016-in-review/"/>
    <updated>2016-01-12T00:00:00-05:00</updated>
-   <id>https://www.jasonette.com/2016/01/12/Jasonette-2016-in-review</id>
+   <id>http://localhost:4000/2016/01/12/Jasonette-2016-in-review</id>
    <content type="html">&lt;p&gt;How are apps built?&lt;/p&gt;
 
 &lt;p&gt;You write a program and put it on the phone!&lt;/p&gt;
