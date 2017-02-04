@@ -4,13 +4,663 @@
  <title>jasonette</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <link href="http://localhost:4000/"/>
- <updated>2017-01-17T09:35:44-05:00</updated>
+ <updated>2017-02-03T20:16:00-05:00</updated>
  <id>http://localhost:4000</id>
  <author>
    <name>JASON</name>
    <email></email>
  </author>
 
+ 
+ <entry>
+   <title>Functional Programming in JSON.</title>
+   <link href="http://localhost:4000/2017/02/05/functional-programming-in-json/"/>
+   <updated>2017-02-05T00:00:00-05:00</updated>
+   <id>http://localhost:4000/2017/02/05/functional-programming-in-json</id>
+   <content type="html">&lt;p&gt;You may know how to do functional programming in Javascript. Maybe LISP. Or maybe even Haskell!&lt;/p&gt;
+
+&lt;p&gt;But today, let me show you something you&amp;#39;ve never seen: &lt;strong&gt;Functional programming in pure JSON&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Here&amp;#39;s the structure of this article:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Explain why it makes sense to use JSON, using the LISP analogy&lt;/li&gt;
+&lt;li&gt;Explain how to do procedural programming in JSON&lt;/li&gt;
+&lt;li&gt;Finally, explain how to do functional programming in JSON&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;If this is your first time hearing about Jasonette, even the &lt;strong&gt;&amp;quot;procedural programming in JSON&amp;quot;&lt;/strong&gt; part should be completely new to you.&lt;/p&gt;
+
+&lt;p&gt;So &lt;a href=&quot;https://www.jasonette.com&quot;&gt;check out Jasonette&lt;/a&gt; first if you haven&amp;#39;t yet.&lt;/p&gt;
+
+&lt;h1&gt;LISP.&lt;/h1&gt;
+
+&lt;p&gt;It&amp;#39;s short for &lt;strong&gt;LIS&lt;/strong&gt;t &lt;strong&gt;P&lt;/strong&gt;rocesing. It&amp;#39;s a programming language 100% based on lists. For example here is a list:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;(0 1 2 3)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;But this is also a list:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;(+ 2 3)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;So is this:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;(defun duplicate (N) (+ N N))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;And finally, so is this:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;(defun factorial (N)
+  &quot;Compute the factorial of N.&quot;
+    (if (= N 1)
+          1
+              (* N (factorial (- N 1)))))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;LISP was created in the 1950s when the &lt;strong&gt;list&lt;/strong&gt; was the most popular form of data structure. Everything is stored sequentially as a list on the memory.&lt;/p&gt;
+
+&lt;p&gt;Now, almost 60 years later, what is the most popular form of data structure?&lt;/p&gt;
+
+&lt;h1&gt;JSON.&lt;/h1&gt;
+
+&lt;p&gt;Back in the 1950s everything was stored locally, everything was a &amp;quot;list&amp;quot;, at least metaphorically. The memory was a &amp;quot;list&amp;quot; you can access. The list was the perfect format.&lt;/p&gt;
+
+&lt;p&gt;Fast forward to 2017, data and information mostly lives on the cloud, so it&amp;#39;s no longer about how you store data locally. It&amp;#39;s all about how to store and transmit data remotely. And in 2017, the most popular format to exchange data over the Internet is the JSON format.&lt;/p&gt;
+
+&lt;p&gt;Here&amp;#39;s a JSON:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;items&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;a&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;b&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;c&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Remember how LISP used a list to express a program? For example adding two numbers:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;(+ 2 3)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;What if you could do what LISP did, but for JSON? What if it&amp;#39;s possible to build a completely functional, production app simply using JSON?&lt;/p&gt;
+
+&lt;h1&gt;Procedural Programming in JSON.&lt;/h1&gt;
+
+&lt;p&gt;OK, so that&amp;#39;s basically what &lt;a href=&quot;https://www.jasonette.com&quot;&gt;Jasonette&lt;/a&gt; does. There are many other things it does, such as describing a view layout using JSON, but here we will only focus on &lt;strong&gt;actions&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Each &amp;quot;action&amp;quot; consists of up to four attributes:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;type&lt;/code&gt;: name of a native function to run&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;options&lt;/code&gt;: arguments to pass to the function&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;success&lt;/code&gt;: success callback to run when the function returns success&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;error&lt;/code&gt;: error callback to run when the function returns error&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Using just these four attributes, you can build a fully functional, production app. Let&amp;#39;s take a look how:&lt;/p&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;h2&gt;arguments&lt;/h2&gt;
+
+&lt;p&gt;Functions are not so meaningful without arguments. We want a function to perform different actions based on the arguments we pass to it.&lt;/p&gt;
+
+&lt;p&gt;Here we pass &lt;code&gt;title&lt;/code&gt; and &lt;code&gt;description&lt;/code&gt; attributes to &lt;code&gt;$util.alert&lt;/code&gt; action to create a custom alert.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;$util.alert&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;options&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;title&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Alert&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;description&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Hello world&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;It displays an alert that looks like this:&lt;/p&gt;
+
+&lt;p&gt;If we were to express this in Javascript it would have looked something like this&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;nx&quot;&gt;$util&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;alert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Alert&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;description&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Hello world&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;NOTE: Jasonette is not implemented with Javascript, I&amp;#39;m just drawing an analogy here just to make a point&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;callbacks&lt;/h2&gt;
+
+&lt;p&gt;Here&amp;#39;s another JSON:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;fetch&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;$network.request&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;options&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;url&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://jsonplaceholder.typicode.com/posts&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;success&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;$render&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This chain of actions makes a network request to the jsonplaceholder server and renders the result using whichever template you define (also in JSON).&lt;/p&gt;
+
+&lt;p&gt;If we were to express this in Javascript it would look something like this&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fetch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;$network&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;https://jsonplaceholder.typicode.com/posts&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;$render&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;NOTE: Again, this is not how it&amp;#39;s implemented, I&amp;#39;m using this as an analogy to make a point&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;inline javascript&lt;/h2&gt;
+
+&lt;p&gt;We must go deeper. Let&amp;#39;s try some crazy stuff using Jasonette&amp;#39;s inline Javascript feature.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;fetch&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;$network.request&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;options&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;url&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://.....&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;data&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;guid&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;{{var str=$cache.guid; var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/='; for ( var block, charCode, idx = 0, map = chars, output = ''; str.charAt(idx | 0) || (map = '=', idx % 1); output += map.charAt(63 &amp;amp; block &amp;gt;&amp;gt; 8 - idx % 1 * 8)) { charCode = str.charCodeAt(idx += 3/4); if (charCode &amp;gt; 0xFF) { throw new InvalidCharacterError('btoa failed'); } block = block &amp;lt;&amp;lt; 8 | charCode; } return output;}}&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;success&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;$render&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Here&amp;#39;s what&amp;#39;s going on:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;We make a network request using the data specified inside &lt;code&gt;options.data&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;In this case the value of &lt;code&gt;guid&lt;/code&gt; is a template expression, which means it will be evaluated when the action is executed.&lt;/li&gt;
+&lt;li&gt;The template expression takes &lt;code&gt;$cache.guid&lt;/code&gt; (assuming that there&amp;#39;s a &lt;code&gt;guid&lt;/code&gt; value stored in the cache) and generates a hash.&lt;/li&gt;
+&lt;li&gt;Then it makes the network request, after which it calls &lt;code&gt;$render&lt;/code&gt; via its &lt;code&gt;success&lt;/code&gt; callback.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1&gt;Problem with Procedural Programming.&lt;/h1&gt;
+
+&lt;p&gt;A lot of functional programming related arguments tend to be too theoretical so I will use this concrete example to explain why we need functional programming in this case.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;The &lt;code&gt;fetch&lt;/code&gt; action produces different result depending on what value is stored on the cache at the point of execution (because it uses &lt;code&gt;$cache.guid&lt;/code&gt;) therefore not reusable.&lt;/li&gt;
+&lt;li&gt;The &lt;code&gt;fetch&lt;/code&gt; action does a lot of different things, from a network call to hash generation to rendering. This means this code is not reusable in other contexts.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;For example, we have this nifty &lt;code&gt;guid&lt;/code&gt; function which generates a hash value, but it&amp;#39;s not exactly reusable since it&amp;#39;s built into this particular action call chain.&lt;/p&gt;
+
+&lt;p&gt;How can we extract this out as a standalone function somehow so we can reuse it without any side-effects?&lt;/p&gt;
+
+&lt;h1&gt;$lambda.&lt;/h1&gt;
+
+&lt;p&gt;This is where &lt;code&gt;$lambda&lt;/code&gt; comes in.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;$lambda&lt;/code&gt; is the latest new addition to Jasonette. It&amp;#39;s a special purpose action whose sole purpose is to trigger another action. Unlike other actions which actually do something on their own, $lambda only functions as a mediator that&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Executes another action&lt;/li&gt;
+&lt;li&gt;Waits for it to return&lt;/li&gt;
+&lt;li&gt;Continue executing with the return value&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Before we get into &lt;code&gt;$lambda&lt;/code&gt;, let&amp;#39;s take a look at how we can define a self-contained function.&lt;/p&gt;
+
+&lt;h2&gt;Defining a function&lt;/h2&gt;
+
+&lt;p&gt;Here&amp;#39;s what it looks like when we extract the &lt;code&gt;btoa&lt;/code&gt; action out into a standalone function. All it does is compute the hash and return.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;btoa&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;$return.success&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;options&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;hashed&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;{{var str=$jason.guid; var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/='; for ( var block, charCode, idx = 0, map = chars, output = ''; str.charAt(idx | 0) || (map = '=', idx % 1); output += map.charAt(63 &amp;amp; block &amp;gt;&amp;gt; 8 - idx % 1 * 8)) { charCode = str.charCodeAt(idx += 3/4); if (charCode &amp;gt; 0xFF) { throw new InvalidCharacterError('btoa failed'); } block = block &amp;lt;&amp;lt; 8 | charCode; } return output;}}&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Notice that:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;the function uses &lt;code&gt;var str=$jason.guid;&lt;/code&gt; instead of &lt;code&gt;var str=$cache.guid;&lt;/code&gt;. &lt;code&gt;$jason&lt;/code&gt; is a special variable reserved for accessing the parameters passed in from the triggering action.&lt;/li&gt;
+&lt;li&gt;the action type is &lt;code&gt;$return.success&lt;/code&gt;. This is a special purpose action designed for returning the control back to the action that triggered the current action, which means this action can ONLY be used by being triggered by another action.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;For example, when you trigger a function called &lt;code&gt;fun&lt;/code&gt; with the following JSON: &lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;trigger&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;fun&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;options&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;key&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;abc&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;you can access the &lt;code&gt;{&amp;quot;key&amp;quot;: &amp;quot;abc&amp;quot;}&lt;/code&gt; from inside the &lt;code&gt;fun&lt;/code&gt; action using:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;fun&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;$util.banner&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;options&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;title&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Display key&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;description&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;{{$jason.key}}&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Calling the function&lt;/h2&gt;
+
+&lt;p&gt;Now that we have defined a function, let&amp;#39;s call it using &lt;code&gt;$lambda&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;$lambda&lt;/code&gt; action takes two arguments as its &lt;code&gt;options&lt;/code&gt;:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;name&lt;/code&gt;: The name of the function to trigger&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;options&lt;/code&gt;: An options object to pass to the triggering action.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;fetch&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;$lambda&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;options&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;btoa&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;options&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;guid&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;{{$cache.guid}}&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;success&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;$network.request&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;options&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;url&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://.....&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;data&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+          &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;guid&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;{{$jason.hashed}}&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;success&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;$render&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Notice that:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;We trigger the &lt;code&gt;btoa&lt;/code&gt; function we created above and pass arguments using the &lt;code&gt;options&lt;/code&gt; attribute. The &lt;code&gt;$cache.guid&lt;/code&gt; stays outside of the btoa function this time.&lt;/li&gt;
+&lt;li&gt;We also have a &lt;code&gt;success&lt;/code&gt; callback for &lt;code&gt;trigger: btoa&lt;/code&gt;. Which means &lt;code&gt;fetch&lt;/code&gt; will wait until &lt;code&gt;btoa&lt;/code&gt; returns, and then use its return value to move forward when it returns. You can see how the &lt;code&gt;$network.request&lt;/code&gt; call now uses the &lt;code&gt;$jason.hashed&lt;/code&gt; value&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2&gt;Simplifying $lambda with &amp;#39;trigger&amp;#39;&lt;/h2&gt;
+
+&lt;p&gt;This &lt;code&gt;$lambda&lt;/code&gt; action will be one of the most frequently used actions going forward. This is why there&amp;#39;s a syntactic sugar for it.&lt;/p&gt;
+
+&lt;p&gt;Instead of using the &lt;code&gt;$lambda&lt;/code&gt; action directly, you can use the &lt;code&gt;trigger&lt;/code&gt; keyword. For example instead of this:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;$lambda&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;options&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;some_action&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;options&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;key1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;value1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;key2&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;value2&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;success&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;$render&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;error&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;$util.toast&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;options&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;text&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Error&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;You can use: &lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;trigger&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;some_action&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;options&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;key1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;value1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;key2&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;value2&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;success&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;$render&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;error&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;$util.toast&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;options&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;text&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Error&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;Conclusion&lt;/h1&gt;
+
+&lt;p&gt;There are so many cool things about this, but it may not be very clear what benefit this brings in the grand scheme of things. &lt;/p&gt;
+
+&lt;p&gt;Here&amp;#39;s why I think this is really cool:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Each function is a self-contained entity which when composed with other functions can do all kinds of powerful things.&lt;/li&gt;
+&lt;li&gt;With JASON (the JSON-based language that powers Jasonette), we can express any function in JSON.&lt;/li&gt;
+&lt;li&gt;JSON is the new &amp;quot;List&amp;quot;. JSON is ubiquitous.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;I will stop here and leave the rest to your imagination. But I am sure some of you are as excited as I am. Please join the community and contribute if so!&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/network.png&quot; alt=&quot;Network&quot;&gt;&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Remote-control your Slack bots with JSON</title>
+   <link href="http://localhost:4000/2017/01/17/build-a-slackbot-with-jasonette/"/>
+   <updated>2017-01-17T00:00:00-05:00</updated>
+   <id>http://localhost:4000/2017/01/17/build-a-slackbot-with-jasonette</id>
+   <content type="html">&lt;p&gt;A couple of days ago, &lt;a href=&quot;https://github.com/shaunymca&quot;&gt;@shaunymca&lt;/a&gt; shared a really cool project on &lt;a href=&quot;https://jasonette.now.sh/&quot;&gt;our slack channel&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src='/assets/coffeebot.png' class='bordered'&gt;&lt;/p&gt;
+
+&lt;p&gt;If you think about it, this is a pretty refreshing idea. Basically, it&amp;#39;s &lt;strong&gt;a mobile app for remote-controlling a Slack bot.&lt;/strong&gt; &lt;/p&gt;
+
+&lt;p&gt;To declare that you&amp;#39;ve started brewing coffee, open the app, and simply touch the button from the cell with your name&lt;/p&gt;
+
+&lt;p&gt;&lt;img src='/assets/coffeebot_original.png' class='medium bordered'&gt;&lt;/p&gt;
+
+&lt;p&gt;And in 12 minutes, &lt;/p&gt;
+
+&lt;p&gt;&lt;img src='/assets/coffee_bot_slack.png' class='bordered'&gt;&lt;/p&gt;
+
+&lt;p&gt;And the cool part is, this was built with Jasonette, so &lt;strong&gt;he didn&amp;#39;t need to write any native code.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;First, he wrote an express.js server which returns a JSON markup.&lt;/p&gt;
+
+&lt;p&gt;Then he connected it to &lt;a href=&quot;https://www.jasonette.com&quot;&gt;Jasonette&lt;/a&gt;, which turned that JSON markup into a native app which drew the UI as well as sent requests to the server upon user input.&lt;/p&gt;
+
+&lt;p&gt;And voila! We have a remote control app for Slack bots.&lt;/p&gt;
+
+&lt;p&gt;Check out the repo here: &lt;a href=&quot;https://github.com/shaunymca/coffeeapp&quot;&gt;https://github.com/shaunymca/coffeeapp&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;h2&gt;Demo&lt;/h2&gt;
+
+&lt;p&gt;I thought it was really cool so just decided to fork and try it out on our own slack channel. Here&amp;#39;s how it works:&lt;/p&gt;
+
+&lt;p&gt;When the &lt;a href=&quot;https://jasonette.com&quot;&gt;Jasonette app&lt;/a&gt; hits the home url, the server returns a JSON markup that looks like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/coffee_json.png&quot; alt=&quot;Coffee json&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;Then, Jasonette turns it into a native app that looks like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;span class='col-6'&gt;
+    &lt;span&gt;iOS&lt;/span&gt;
+    &lt;img src='/assets/coffee_app_ios.png' class='medium bordered'&gt;
+&lt;/span&gt;
+&lt;span class='col-6'&gt;
+    &lt;span&gt;Android&lt;/span&gt;
+    &lt;img src='/assets/coffee_app_android.png' class='medium bordered'&gt;
+&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;So how does it work behind the scenes? Each cell item is represented by a JSON object in the markup, which has an &lt;code&gt;action&lt;/code&gt; attribute that looks like this:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-json&quot; data-lang=&quot;json&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;$network.request&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;options&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;url&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://evening-inlet-32428.herokuapp.com/submit.json&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;method&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;POST&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;data&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;user_name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;{{name}}&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;user_id&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;{{id}}&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;When you tap on a cell, it makes a &lt;code&gt;POST&lt;/code&gt; request to the &lt;a href=&quot;https://github.com/shaunymca/coffeeapp/blob/master/server.js#L61&quot;&gt;submit.json&lt;/a&gt; endpoint, which &lt;a href=&quot;https://github.com/shaunymca/coffeeapp/blob/master/modules/slackPosting.js#L17&quot;&gt;triggers the Slack API&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;And in 12 minutes, your Slack channel will get a notification from the Coffee bot!.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src='/assets/coffee_bot_slack.png' class='bordered'&gt;&lt;/p&gt;
+
+&lt;h2&gt;TLDR&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;The express server returns a &lt;a href=&quot;https://github.com/shaunymca/coffeeapp/blob/master/modules/jsonette.js#L61&quot;&gt;JSON markup&lt;/a&gt;, which becomes a native app when you connect it with Jasonette.&lt;/li&gt;
+&lt;li&gt;When you tap an item from the app, it triggers a &lt;a href=&quot;http://docs.jasonette.com/actions/#networkrequest&quot;&gt;POST request&lt;/a&gt; to the server.&lt;/li&gt;
+&lt;li&gt;The server waits 12 minutes, and then triggers the Slack API with credentials to post to the Slack channel.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;This reminded me of the &lt;a href=&quot;https://www.justyo.co/&quot;&gt;Yo app&lt;/a&gt;, since it&amp;#39;s meant to only serve a single purpose.&lt;/p&gt;
+
+&lt;p&gt;It&amp;#39;s like a bot version of Yo. But for multiplayer. And powered by Slack!&lt;/p&gt;
+
+&lt;p&gt;It&amp;#39;s awesome to see these creative projects being built with Jasonette. Feel free to &lt;a href=&quot;https://twitter.com/jasonclient&quot;&gt;reach out&lt;/a&gt; if you built something cool using Jasonette. I will try to showcase them on the blog.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Lastly, make sure to try out &lt;a href=&quot;https://github.com/shaunymca&quot;&gt;@shaunymca&lt;/a&gt;&amp;#39;s coffeebot app for your own slack channel! It&amp;#39;s so cool! &lt;a href=&quot;https://github.com/shaunymca/coffeeapp&quot;&gt;https://github.com/shaunymca/coffeeapp&lt;/a&gt;.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;hr&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>How Jasonette Went from an Esoteric App to a Radical New Way to Build Native Apps</title>
+   <link href="http://localhost:4000/2017/01/12/Jasonette-2016-in-review/"/>
+   <updated>2017-01-12T00:00:00-05:00</updated>
+   <id>http://localhost:4000/2017/01/12/Jasonette-2016-in-review</id>
+   <content type="html">&lt;p&gt;How are apps built?&lt;/p&gt;
+
+&lt;p&gt;You write a program and put it on the phone!&lt;/p&gt;
+
+&lt;p&gt;But what if you could represent an entire native app as JSON and &lt;strong&gt;load it on demand from the cloud over HTTP&lt;/strong&gt;, just like a web page?&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://jasonette.com/images/j.png&quot; alt=&quot;image&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;p&gt;This little idea consumed the entirety of my life in 2016.&lt;/p&gt;
+
+&lt;p&gt;And the result is &lt;a href=&quot;https://www.jasonette.com&quot;&gt;Jasonette&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Jasonette lets you &lt;strong&gt;build 100% native apps on Android and iOS simply by writing a single JSON markup.&lt;/strong&gt; Watch the video below if you haven&amp;#39;t yet. Your life will never be the same.&lt;/p&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;style&gt;.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }&lt;/style&gt;&lt;div class='embed-container'&gt;    &lt;iframe title=&quot;YouTube video player&quot; width=&quot;640&quot; height=&quot;390&quot; src=&quot;//www.youtube.com/embed/hfevBAAfCMQ&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;&lt;/div&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;p&gt;When I look back at 2016, it really feels like ages because so many things happened.&lt;/p&gt;
+
+&lt;p&gt;But it&amp;#39;s crazy to think that it&amp;#39;s only been 2 months since I open sourced Jasonette!&lt;/p&gt;
+
+&lt;p&gt;Let me share my 2016 with you today.&lt;/p&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;h2&gt;Season 1 Pilot: Jason&lt;/h2&gt;
+
+&lt;p&gt;Exactly 8 months ago from today, &lt;a href=&quot;https://www.producthunt.com/posts/jason&quot;&gt;I released an app called Jason&lt;/a&gt;. This was a standalone app that was a precursor to Jasonette. You would enter a JSON URL into Jason app&amp;#39;s address bar, and it would instantly turn into your own custom app.&lt;/p&gt;
+
+&lt;p&gt;&lt;img class='center' src='https://s3-us-west-2.amazonaws.com/www.jasonclient.org/intro.gif'&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;p&gt;A lot of minds were blown:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://pbs.twimg.com/media/CirgXxKXAAEoOXt.jpg:large&quot; alt=&quot;twitter&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;But at the same time, this was one of the most esoteric apps one could build—an app within an app, &lt;a href=&quot;https://en.wikipedia.org/wiki/Matryoshka_doll&quot;&gt;a russian doll&lt;/a&gt; of sorts—as pointed out below:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/ph.png&quot; alt=&quot;ph&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;p&gt;I didn&amp;#39;t even have a specific set of target users in mind when I built this. I just built it because I could.™&lt;/p&gt;
+
+&lt;p&gt;But I looked at all these reactions and thought about it:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Other people were amazed that an app can be built this way, and wanted to build their own apps this way too.&lt;/li&gt;
+&lt;li&gt;I wasn&amp;#39;t interested in just another way of building apps. I was more interested in lowering the barrier so significantly that it changes the meaning of the term &amp;quot;app&amp;quot;.&lt;/li&gt;
+&lt;li&gt;Charging for usage would beat the purpose since that would fail at lowering the barrier.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;I knew exactly what I had to do: Jason needed to be open sourced and completely set free.&lt;/p&gt;
+
+&lt;p&gt;Well it shouldn&amp;#39;t be that hard to open source. After all, I already have a functional code base, right?&lt;/p&gt;
+
+&lt;p&gt;Hahaha. &lt;/p&gt;
+
+&lt;p&gt;It took me 6 months.&lt;/p&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;h2&gt;Intermission: Lessons learned from documentation&lt;/h2&gt;
+
+&lt;p&gt;Once I dived in, I soon realized open sourcing is not just about putting the code out there, but making sure people can understand it easily.&lt;/p&gt;
+
+&lt;p&gt;This was especially the case for Jasonette, because without a documented API, no one would be able to know what they can do with it. It would be like releasing a web browser without an HTML spec. Basically, the documentation itself was the product.&lt;/p&gt;
+
+&lt;p&gt;And turns out, documentation is not easy. &lt;/p&gt;
+
+&lt;div class='jekyll-twitter-plugin'&gt;&lt;blockquote class=&quot;twitter-tweet&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;Open source project is 1 percent inspiration, 99 percent documentation.&lt;/p&gt;&amp;mdash; ethan (@gliechtenstein) &lt;a href=&quot;https://twitter.com/gliechtenstein/status/786284865733877764&quot;&gt;October 12, 2016&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;p&gt;For the next 6 months, I did nothing but documentation and code cleanup.&lt;/p&gt;
+
+&lt;p&gt;These were my darkest days. I did nothing but work on the documentation, I wasn&amp;#39;t creating something new, I was simply documenting something that already existed and I hated it. But what other options did I have? So I kept at it.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;However, I soon realized that&lt;/strong&gt; while frustrating, the process of documenting the project was extremely helpful:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;I got to understand my own code better.&lt;/li&gt;
+&lt;li&gt;I found a lot of inconsistencies in the API while documenting, which needed to be refactored.&lt;/li&gt;
+&lt;li&gt;I gained a birds-eye point of view of the project, which was crucial when I started working on the Android version later.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;But the thing is, the more I documented, the more I had to refactor, and the more I refactored, the more I had to document to reflect the update. By working more, I was creating even more work. At some point I started feeling like a &lt;a href=&quot;https://en.wikipedia.org/wiki/Zeno&amp;#x27;s_paradoxes#Achilles_and_the_tortoise&quot;&gt;tortoise chasing after achilles&lt;/a&gt;. Would I ever finish this?&lt;/p&gt;
+
+&lt;p&gt;In the meantime, I had set up a landing page and kept adding new materials as soon as they were ready, even though I hadn&amp;#39;t launched it yet. And somehow people were discovering it and sharing it.&lt;/p&gt;
+
+&lt;p&gt;One day when I was begrudgingly working on documenting an &lt;a href=&quot;https://github.com/Jasonette/s3-upload-example&quot;&gt;express.js demo app&lt;/a&gt; for Jasonette, I saw this tweet.&lt;/p&gt;
+
+&lt;div class='jekyll-twitter-plugin'&gt;&lt;blockquote class=&quot;twitter-tweet&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;kind of interesting, 100% declarative apps with JSON &lt;a href=&quot;https://t.co/hzjyhZKsmU&quot;&gt;https://t.co/hzjyhZKsmU&lt;/a&gt;, probably hella leaky abstraction in some cases but neat&lt;/p&gt;&amp;mdash; TJ Holowaychuk (@tjholowaychuk) &lt;a href=&quot;https://twitter.com/tjholowaychuk/status/779092360487546880&quot;&gt;September 22, 2016&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;&lt;/div&gt;
+
+&lt;p&gt;What a nice timing! I was very excited, and this encouraging tweet gave me all the strength I needed to finish up the docs and prepare for the launch... which wouldn&amp;#39;t happen for another month and a half.&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;h2&gt;Season 1 Episode 01. Jasonette-iOS&lt;/h2&gt;
+
+&lt;p&gt;On the morning of 11/4 &lt;a href=&quot;https://news.ycombinator.com/item?id=12879179&quot;&gt;I posted on Hacker News&lt;/a&gt;. It shot up to #1 and stayed #1 the entire day.&lt;/p&gt;
+
+&lt;p&gt;Then it went on to become the &lt;strong&gt;#1 Github trending project&lt;/strong&gt;. Not too bad for my first ever open source contribution!&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/github_trending.png&quot; alt=&quot;github&quot;&gt;&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;h2&gt;Season 1 Episode 02. Jasonette-Android&lt;/h2&gt;
+
+&lt;p&gt;Upon releasing the iOS version, the most frequently asked question was &amp;quot;Android?&amp;quot;. I wasn&amp;#39;t surprised, since I knew that was the most obvious next step.&lt;/p&gt;
+
+&lt;p&gt;However what I didn&amp;#39;t know was how long it would take me to come up with one.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Or if it would be even possible at all.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;I only knew that Android had a layout system called &lt;code&gt;LinearLayout&lt;/code&gt; which works similar to &lt;code&gt;UIStackView&lt;/code&gt; which I used for the iOS version. So I just assumed that it would be possible, but it was really not straightforward.&lt;/p&gt;
+
+&lt;p&gt;This time, I decided not to torture myself with 6 months of agony. Instead of trying to make a perfect release, I decided to pick only the most crucial features and commit to releasing version 0 as soon as possible, and go from there.&lt;/p&gt;
+
+&lt;p&gt;I set the goal: &lt;strong&gt;Implement the core engine and get it out there, in 1 month.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;And surprisingly, I managed to succeed.&lt;/p&gt;
+
+&lt;p&gt;Watch the android version and the ios version side by side. These are loading from exactly the same JSON you can find &lt;a href=&quot;https://github.com/Jasonette/Instagram-UI-example/blob/master/home.json&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span class='col-6'&gt;&lt;img src='https://cdn-images-1.medium.com/max/1200/1*yHXxTeQFdyWjxPSP2f7ZkA.gif'&gt;&lt;/span&gt;&lt;span class='col-6'&gt;&lt;img src='https://cdn-images-1.medium.com/max/1200/1*v9RxUZ-8XzLfDTfI3gmx6A.gif'&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;h2&gt;Season 1 Finale: Current state of Jasonette community&lt;/h2&gt;
+
+&lt;p&gt;What excites me the most is that the project has managed to find a great community of people who share the same vision and all contributing to the project in many different ways.&lt;/p&gt;
+
+&lt;h3&gt;Open source is magic&lt;/h3&gt;
+
+&lt;p&gt;I&amp;#39;ve never worked on open source before so all these contributions from people I&amp;#39;ve never met still feel surreal to me.&lt;/p&gt;
+
+&lt;p&gt;It&amp;#39;s really amazing how people from all around the world can come together and collaborate to build something together this easily.&lt;/p&gt;
+
+&lt;h3&gt;New features and projects&lt;/h3&gt;
+
+&lt;p&gt;I went back and took a look at what our community has accomplished during the two months Jasonette has been out, and looks like we did a lot.&lt;/p&gt;
+
+&lt;p&gt;Here are some of the &lt;strong&gt;new major features and projects&lt;/strong&gt; we&amp;#39;ve added since the launch (Not including bugfixes or iOS-to-Android feature port because that would make the list huuuge):&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/Jasonette/JASONETTE-Android&quot;&gt; 🔥 Jasonette-Android&lt;/a&gt; - The name says it all. The Android implementation of Jasonette, which makes Jasonette fully cross platform.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/Jasonette/JASONETTE-Android/issues/13&quot;&gt;Android binary size reduction&lt;/a&gt; - Initially the Android binary size was huge, at over 40MB. We&amp;#39;ve made some optimizations which dropped it down to around 9MB, all the while supporting 100% of the parsers (json, csv, rss, xml, html), thanks for the contribution &lt;a href=&quot;https://github.com/brad&quot;&gt;@brad&lt;/a&gt;!&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/Jasonette/JASONETTE-iOS/issues/7&quot;&gt;Push notifications&lt;/a&gt; - Push notifications on iOS purely powered by JSON. We will soon release this officially once we document the API and implement the Android version.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/Jasonette/JASONETTE-iOS/pull/42&quot;&gt;Local JSON&lt;/a&gt; - This was one of the &lt;a href=&quot;https://github.com/Jasonette/JASONETTE-iOS/issues/48&quot;&gt;most higly requested&lt;/a&gt; features. Some people wanted to embed a JSON file in their project locally instead of fetching from a remote server. I initially was hesitant but soon became convinced that it can be useful in many cases. Thanks to &lt;a href=&quot;https://github.com/copongcopong&quot;&gt;@copongcopong&lt;/a&gt; for the implementation!&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/Jasonette/JASONETTE-iOS/issues/34&quot;&gt;CocoaPods based extension management&lt;/a&gt; - We had a long discussion thread about this on Github, and in the end, &lt;a href=&quot;https://github.com/seletz&quot;&gt;@seletz&lt;/a&gt; implemented a solution which worked beautifully. We are currently working on the second iteration of extension management based on the insights we gained from this.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/Jasonette/JASONETTE-iOS/pull/92&quot;&gt;Ad integration&lt;/a&gt; - This was also one of the &lt;a href=&quot;https://github.com/Jasonette/JASONETTE-iOS/issues/79&quot;&gt;most highly requested&lt;/a&gt; features as well. Thanks to &lt;a href=&quot;https://github.com/wajahatch888&quot;&gt;@wajahatch888&lt;/a&gt;, now we have AdMob support on iOS. &lt;a href=&quot;https://github.com/Jasonette/JASONETTE-Android/issues/22&quot;&gt;Android support&lt;/a&gt; to come soon :)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/Jasonette/JASONETTE-iOS/commit/b359ab6d44f88d54ca9a5240f0e62e4ec0ca6852&quot;&gt;Deep linking&lt;/a&gt; - Ability to open Jasonette apps using URL scheme (Example: &lt;code&gt;jasonette://href?url=https://www.jasonbase.com/things/dh3.json&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/Jasonette/JASONETTE-iOS/pull/20&quot;&gt;Log action&lt;/a&gt; - An action that lets you log anything during execution. Built by &lt;a href=&quot;https://github.com/seletz&quot;&gt;@seletz&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/Jasonette/JASONETTE-iOS/pull/27&quot;&gt;$background event&lt;/a&gt; - An event to detect when the app goes into background mode. Thanks &lt;a href=&quot;https://github.com/fretn&quot;&gt;@fretz&lt;/a&gt;!&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/Jasonette/JASONETTE-iOS/pull/30&quot;&gt;components border&lt;/a&gt; - Add &amp;quot;border&amp;quot; attribute to component styles. Now, any component can have a border surrounding them, thanks to &lt;a href=&quot;https://github.com/WenchaoD&quot;&gt;@WenchaoD&lt;/a&gt;!&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/Jasonette/JASONETTE-iOS/pull/87&quot;&gt;Loading indicator&lt;/a&gt; - Another great feature addition by &lt;a href=&quot;https://github.com/wajahatch888&quot;&gt;@wajahatch888&lt;/a&gt;. Displays a loading indicator when the content is loading.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/Jasonette/JASONETTE-Android/issues/30&quot;&gt;HTML component for Android&lt;/a&gt; - I had actually left out this feature on Android initially because I wasn&amp;#39;t sure how performant it would be to have WebViews as components. &lt;a href=&quot;https://github.com/brad&quot;&gt;@brad&lt;/a&gt; went on and just built it himself, and turns out that it works super smooth! Now works cross-platform both on iOS and Android.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/Jasonette/JASONETTE-iOS/pull/94&quot;&gt;Image button&lt;/a&gt; - Initially the buttons could only display text. Now it&amp;#39;s possible to use image buttons. Both on iOS and Android.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;Other Important Contributions&lt;/h3&gt;
+
+&lt;p&gt;New features are exciting, but I think what&amp;#39;s really important are things that we do to make the project itself much more maintainable and comprehensible so it&amp;#39;s easier to work with. This includes:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Documentation&lt;/li&gt;
+&lt;li&gt;Adding automation to reduce repetitive tasks&lt;/li&gt;
+&lt;li&gt;Making it easier to work with Jasonette itself&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;It&amp;#39;s still very early days for Jasonette so we lack a lot of these things. And the community is coming up with various solutions. &lt;strong&gt;I especially welcome these contributions with open arms&lt;/strong&gt;. Here are some of the highlights we&amp;#39;ve achieved:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/Jasonette/documentation/commit/eb5734484d07b49ec81a70c5eb8c017eaa342412&quot;&gt;Auto-generate documentation using Travis CI&lt;/a&gt; - As an open source newbie I had no idea you could just automatically generate a documentation, so have been manually doing it. Now it&amp;#39;s all automated via &lt;a href=&quot;https://travis-ci.org/&quot;&gt;Travis CI&lt;/a&gt;, thanks to &lt;a href=&quot;https://github.com/gtramontina&quot;&gt;@gtramontina&lt;/a&gt;!&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/Jasonette/JASONETTE-iOS/commit/0962d3bd2a7ccec7c091cb42a643055be7a03c6a&quot;&gt;Integration with Code Climate&lt;/a&gt; - I am learning about all kinds of great tools for maintaining and visualizing open source projects from contributions. &lt;a href=&quot;https://codeclimate.com&quot;&gt;Code Climate&lt;/a&gt; is really nifty and lets you see problems with the code at a glance. Thanks to &lt;a href=&quot;https://github.com/lukeramsden&quot;&gt;@lukeramsden&lt;/a&gt; for the integration!&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/Jasonette/JASONETTE-iOS/commit/81cf25c9b26fad1e066027e28daa9f13cdaabe3a&quot;&gt;Make it easy to use multiple targets in XCode&lt;/a&gt; - I honestly had never thought about this idea. &lt;a href=&quot;https://github.com/golopupinsky&quot;&gt;@golopupinsky&lt;/a&gt; found that it becomes tedious to use one Jasonette project to build multiple apps, and just came up with a solution, and I think it will be super useful for people who want to juggle between building multiple apps using a single Jasonette project file.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr&gt;
+
+&lt;h2&gt;What next in 2017? - Season 2 Preview&lt;/h2&gt;
+
+&lt;p&gt;2016 was just the beginning. Our community is working on a lot of exciting things, and we plan to release tons of mind-blowing things in 2017. Here are some examples:&lt;/p&gt;
+
+&lt;h3&gt;Oauth&lt;/h3&gt;
+
+&lt;p&gt;This will be amazing once we roll out officially. It will be one of the most powerful features of Jasonette. Stay tuned :)&lt;/p&gt;
+
+&lt;h3&gt;Package Manager&lt;/h3&gt;
+
+&lt;p&gt;Jasonette was &lt;a href=&quot;http://docs.jasonette.com/advanced/#extension&quot;&gt;designed to be extensible&lt;/a&gt;. However, while writing an extension for personal usage has been easy, it has always been difficult to share and distribute because of all the dependency management we had to deal with.&lt;/p&gt;
+
+&lt;p&gt;After having tried multiple approaches to managing extensions, we&amp;#39;ve finally found the best way to make writing extensions dead simple. We are still working on it and plan to release it soon.&lt;/p&gt;
+
+&lt;p&gt;Expect to see a lot of cool additional features powered by JSON in 2017. &lt;/p&gt;
+
+&lt;h3&gt;Lambda&lt;/h3&gt;
+
+&lt;p&gt;I&amp;#39;ll leave this up to your imagination :)&lt;/p&gt;
+
+&lt;p&gt;All I have to say is that this will take jasonette to the next level.&lt;/p&gt;
+
+&lt;h3&gt;Much more&lt;/h3&gt;
+
+&lt;p&gt;Of course, there are a lot of other cool projects which are still work in progress but I won&amp;#39;t mention them here just to keep the mystery 😁 &lt;/p&gt;
+
+&lt;p&gt;Follow our project to stay updated!&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;h2&gt;Join us.&lt;/h2&gt;
+
+&lt;p&gt;Sound exciting? join us on &lt;a href=&quot;https://jasonette.now.sh/&quot;&gt;slack&lt;/a&gt;, &lt;a href=&quot;https://forum.jasonette.com/&quot;&gt;forum&lt;/a&gt;, &lt;a href=&quot;https://twitter.com/jasonclient&quot;&gt;twitter&lt;/a&gt;!&lt;/p&gt;
+
+&lt;p&gt;Also, follow and contribute to the project on Github: &lt;a href=&quot;https://github.com/Jasonette/JASONETTE-Android&quot;&gt;Jasonette-Android&lt;/a&gt;, &lt;a href=&quot;https://github.com/Jasonette/JASONETTE-iOS&quot;&gt;Jasonette-iOS&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;And most importantly, &lt;a href=&quot;https://www.jasonette.com&quot;&gt;Go build awesome things with it!&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/join.png&quot; alt=&quot;Join us&quot;&gt;&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>Remote-control your Slack bots with JSON</title>

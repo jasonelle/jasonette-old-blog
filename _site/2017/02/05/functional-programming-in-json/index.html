@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Functional Programming in JSON. &middot; jasonette
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Crimson+Text:400,400italic,700,700italic" rel='stylesheet' type='text/css' />
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://jekyll.gtat.me/assets/css/entypo.css" media="all">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body class="layout-reverse">
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          <img class='logo' src='/assets/jasonette.png'>
+          <br>
+          jasonette
+        </a>
+      </h1>
+      <p class="lead">⚡️ Native App over HTTP</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <!--
+      
+
+      
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/about/">About</a>
+          
+        
+      
+        
+      
+        
+      
+        
+          
+        
+      
+      -->
+      <a class="sidebar-nav-item inline nopadding" href="https://jasonette.com">About</a>
+      <a class="sidebar-nav-item inline nopadding" href="https://blog.jasonette.com">Blog</a>
+      <a class="sidebar-nav-item inline nopadding" href="https://docs.jasonette.com">Docs</a>
+      <div class='sidebar-nav-item bold'>Subscribe to Newsletter</div>
+			<div class='sidebar-nav-item nopadding'>
+				<form action="//textethan.us8.list-manage.com/subscribe/post?u=54e23b3fe61843c19c384fc05&amp;id=76d5746d7b" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate="novalidate">
+					<p>Important updates, milestones, new projects, and useful tips from the community.</p>
+					<input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL" placeholder="enter email" aria-required="true">
+					<button type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button">Subscribe</button>
+					<div id="mce-responses" class="clear">
+							<div class="response" id="mce-error-response" style="display:none"></div>
+							<div class="response" id="mce-success-response" style="display:none"></div>
+					</div>
+					<div style="position: absolute; left: -5000px;" aria-hidden="true">
+							<input type="text" name="b_54e23b3fe61843c19c384fc05_76d5746d7b" tabindex="-1" value="">
+					</div>
+				</form>
+			</div>
+      <div class='sidebar-nav-item bold'>Community</div>
+      <a class="sidebar-nav-item inline" href="https://jasonette.now.sh/">Slack</a>
+			<a class="sidebar-nav-item inline" href="https://forum.jasonette.com/">Forum</a>
+			<a class="sidebar-nav-item inline" href="https://www.twitter.com/jasonclient">Twitter</a>
+      <div class='sidebar-nav-item bold'>Github</div>
+			<a class="sidebar-nav-item inline" href="https://github.com/Jasonette/JASONETTE-Android">Jasonette-Android</a>
+			<a class="sidebar-nav-item inline" href="https://github.com/Jasonette/JASONETTE-iOS">Jasonette-iOS</a>
+      <div class='sidebar-nav-item bold'>RSS</div>
+			<a class="sidebar-nav-item icon" href='/atom.xml'><img src='/assets/feed.png'></a>
+    </nav>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">Functional Programming in JSON.</h1>
+  <span class="post-date">05 Feb 2017</span>
+  <p>You may know how to do functional programming in Javascript. Maybe LISP. Or maybe even Haskell!</p>
+
+<p>But today, let me show you something you&#39;ve never seen: <strong>Functional programming in pure JSON</strong>.</p>
+
+<p>Here&#39;s the structure of this article:</p>
+
+<ol>
+<li>Explain why it makes sense to use JSON, using the LISP analogy</li>
+<li>Explain how to do procedural programming in JSON</li>
+<li>Finally, explain how to do functional programming in JSON</li>
+</ol>
+
+<p>If this is your first time hearing about Jasonette, even the <strong>&quot;procedural programming in JSON&quot;</strong> part should be completely new to you.</p>
+
+<p>So <a href="https://www.jasonette.com">check out Jasonette</a> first if you haven&#39;t yet.</p>
+
+<h1>LISP.</h1>
+
+<p>It&#39;s short for <strong>LIS</strong>t <strong>P</strong>rocesing. It&#39;s a programming language 100% based on lists. For example here is a list:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">(0 1 2 3)
+</code></pre></div>
+<p>But this is also a list:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">(+ 2 3)
+</code></pre></div>
+<p>So is this:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">(defun duplicate (N) (+ N N))
+</code></pre></div>
+<p>And finally, so is this:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">(defun factorial (N)
+  "Compute the factorial of N."
+    (if (= N 1)
+          1
+              (* N (factorial (- N 1)))))
+</code></pre></div>
+<p>LISP was created in the 1950s when the <strong>list</strong> was the most popular form of data structure. Everything is stored sequentially as a list on the memory.</p>
+
+<p>Now, almost 60 years later, what is the most popular form of data structure?</p>
+
+<h1>JSON.</h1>
+
+<p>Back in the 1950s everything was stored locally, everything was a &quot;list&quot;, at least metaphorically. The memory was a &quot;list&quot; you can access. The list was the perfect format.</p>
+
+<p>Fast forward to 2017, data and information mostly lives on the cloud, so it&#39;s no longer about how you store data locally. It&#39;s all about how to store and transmit data remotely. And in 2017, the most popular format to exchange data over the Internet is the JSON format.</p>
+
+<p>Here&#39;s a JSON:</p>
+<div class="highlight"><pre><code class="language-" data-lang=""><span class="p">{</span><span class="w">
+  </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"a"</span><span class="p">,</span><span class="w"> </span><span class="s2">"b"</span><span class="p">,</span><span class="w"> </span><span class="s2">"c"</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Remember how LISP used a list to express a program? For example adding two numbers:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">(+ 2 3)
+</code></pre></div>
+<p>What if you could do what LISP did, but for JSON? What if it&#39;s possible to build a completely functional, production app simply using JSON?</p>
+
+<h1>Procedural Programming in JSON.</h1>
+
+<p>OK, so that&#39;s basically what <a href="https://www.jasonette.com">Jasonette</a> does. There are many other things it does, such as describing a view layout using JSON, but here we will only focus on <strong>actions</strong>.</p>
+
+<p>Each &quot;action&quot; consists of up to four attributes:</p>
+
+<ol>
+<li><code>type</code>: name of a native function to run</li>
+<li><code>options</code>: arguments to pass to the function</li>
+<li><code>success</code>: success callback to run when the function returns success</li>
+<li><code>error</code>: error callback to run when the function returns error</li>
+</ol>
+
+<p>Using just these four attributes, you can build a fully functional, production app. Let&#39;s take a look how:</p>
+
+<p><br></p>
+
+<h2>arguments</h2>
+
+<p>Functions are not so meaningful without arguments. We want a function to perform different actions based on the arguments we pass to it.</p>
+
+<p>Here we pass <code>title</code> and <code>description</code> attributes to <code>$util.alert</code> action to create a custom alert.</p>
+<div class="highlight"><pre><code class="language-" data-lang=""><span class="p">{</span><span class="w">
+  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$util.alert"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Alert"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hello world"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>It displays an alert that looks like this:</p>
+
+<p>If we were to express this in Javascript it would have looked something like this</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">$util</span><span class="p">.</span><span class="nx">alert</span><span class="p">({</span><span class="na">title</span><span class="p">:</span> <span class="s2">"Alert"</span><span class="p">,</span> <span class="na">description</span><span class="p">:</span> <span class="s2">"Hello world"</span><span class="p">});</span>
+</code></pre></div>
+<ul>
+<li>NOTE: Jasonette is not implemented with Javascript, I&#39;m just drawing an analogy here just to make a point</li>
+</ul>
+
+<h2>callbacks</h2>
+
+<p>Here&#39;s another JSON:</p>
+<div class="highlight"><pre><code class="language-" data-lang=""><span class="p">{</span><span class="w">
+  </span><span class="nt">"fetch"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$network.request"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://jsonplaceholder.typicode.com/posts"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$render"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>This chain of actions makes a network request to the jsonplaceholder server and renders the result using whichever template you define (also in JSON).</p>
+
+<p>If we were to express this in Javascript it would look something like this</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">fetch</span><span class="p">(){</span>
+  <span class="nx">$network</span><span class="p">.</span><span class="nx">request</span><span class="p">({</span><span class="na">url</span><span class="p">:</span> <span class="s2">"https://jsonplaceholder.typicode.com/posts"</span><span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">){</span>
+    <span class="nx">$render</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">}</span>
+</code></pre></div>
+<ul>
+<li>NOTE: Again, this is not how it&#39;s implemented, I&#39;m using this as an analogy to make a point</li>
+</ul>
+
+<h2>inline javascript</h2>
+
+<p>We must go deeper. Let&#39;s try some crazy stuff using Jasonette&#39;s inline Javascript feature.</p>
+<div class="highlight"><pre><code class="language-" data-lang=""><span class="p">{</span><span class="w">
+  </span><span class="nt">"fetch"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$network.request"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://....."</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"guid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{var str=$cache.guid; var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/='; for ( var block, charCode, idx = 0, map = chars, output = ''; str.charAt(idx | 0) || (map = '=', idx % 1); output += map.charAt(63 &amp; block &gt;&gt; 8 - idx % 1 * 8)) { charCode = str.charCodeAt(idx += 3/4); if (charCode &gt; 0xFF) { throw new InvalidCharacterError('btoa failed'); } block = block &lt;&lt; 8 | charCode; } return output;}}"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$render"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Here&#39;s what&#39;s going on:</p>
+
+<ol>
+<li>We make a network request using the data specified inside <code>options.data</code>.</li>
+<li>In this case the value of <code>guid</code> is a template expression, which means it will be evaluated when the action is executed.</li>
+<li>The template expression takes <code>$cache.guid</code> (assuming that there&#39;s a <code>guid</code> value stored in the cache) and generates a hash.</li>
+<li>Then it makes the network request, after which it calls <code>$render</code> via its <code>success</code> callback.</li>
+</ol>
+
+<h1>Problem with Procedural Programming.</h1>
+
+<p>A lot of functional programming related arguments tend to be too theoretical so I will use this concrete example to explain why we need functional programming in this case.</p>
+
+<ol>
+<li>The <code>fetch</code> action produces different result depending on what value is stored on the cache at the point of execution (because it uses <code>$cache.guid</code>) therefore not reusable.</li>
+<li>The <code>fetch</code> action does a lot of different things, from a network call to hash generation to rendering. This means this code is not reusable in other contexts.</li>
+</ol>
+
+<p>For example, we have this nifty <code>guid</code> function which generates a hash value, but it&#39;s not exactly reusable since it&#39;s built into this particular action call chain.</p>
+
+<p>How can we extract this out as a standalone function somehow so we can reuse it without any side-effects?</p>
+
+<h1>$lambda.</h1>
+
+<p>This is where <code>$lambda</code> comes in.</p>
+
+<p><code>$lambda</code> is the latest new addition to Jasonette. It&#39;s a special purpose action whose sole purpose is to trigger another action. Unlike other actions which actually do something on their own, $lambda only functions as a mediator that</p>
+
+<ol>
+<li>Executes another action</li>
+<li>Waits for it to return</li>
+<li>Continue executing with the return value</li>
+</ol>
+
+<p>Before we get into <code>$lambda</code>, let&#39;s take a look at how we can define a self-contained function.</p>
+
+<h2>Defining a function</h2>
+
+<p>Here&#39;s what it looks like when we extract the <code>btoa</code> action out into a standalone function. All it does is compute the hash and return.</p>
+<div class="highlight"><pre><code class="language-" data-lang=""><span class="p">{</span><span class="w">
+  </span><span class="nt">"btoa"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$return.success"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"hashed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{var str=$jason.guid; var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/='; for ( var block, charCode, idx = 0, map = chars, output = ''; str.charAt(idx | 0) || (map = '=', idx % 1); output += map.charAt(63 &amp; block &gt;&gt; 8 - idx % 1 * 8)) { charCode = str.charCodeAt(idx += 3/4); if (charCode &gt; 0xFF) { throw new InvalidCharacterError('btoa failed'); } block = block &lt;&lt; 8 | charCode; } return output;}}"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Notice that:</p>
+
+<ol>
+<li>the function uses <code>var str=$jason.guid;</code> instead of <code>var str=$cache.guid;</code>. <code>$jason</code> is a special variable reserved for accessing the parameters passed in from the triggering action.</li>
+<li>the action type is <code>$return.success</code>. This is a special purpose action designed for returning the control back to the action that triggered the current action, which means this action can ONLY be used by being triggered by another action.</li>
+</ol>
+
+<p>For example, when you trigger a function called <code>fun</code> with the following JSON: </p>
+<div class="highlight"><pre><code class="language-" data-lang=""><span class="p">{</span><span class="w">
+  </span><span class="nt">"trigger"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fun"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>you can access the <code>{&quot;key&quot;: &quot;abc&quot;}</code> from inside the <code>fun</code> action using:</p>
+<div class="highlight"><pre><code class="language-" data-lang=""><span class="p">{</span><span class="w">
+  </span><span class="nt">"fun"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$util.banner"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Display key"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{$jason.key}}"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<h2>Calling the function</h2>
+
+<p>Now that we have defined a function, let&#39;s call it using <code>$lambda</code>.</p>
+
+<p>The <code>$lambda</code> action takes two arguments as its <code>options</code>:</p>
+
+<ol>
+<li><code>name</code>: The name of the function to trigger</li>
+<li><code>options</code>: An options object to pass to the triggering action.</li>
+</ol>
+<div class="highlight"><pre><code class="language-" data-lang=""><span class="p">{</span><span class="w">
+  </span><span class="nt">"fetch"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$lambda"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btoa"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"guid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{$cache.guid}}"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$network.request"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://....."</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"guid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{$jason.hashed}}"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$render"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Notice that:</p>
+
+<ol>
+<li>We trigger the <code>btoa</code> function we created above and pass arguments using the <code>options</code> attribute. The <code>$cache.guid</code> stays outside of the btoa function this time.</li>
+<li>We also have a <code>success</code> callback for <code>trigger: btoa</code>. Which means <code>fetch</code> will wait until <code>btoa</code> returns, and then use its return value to move forward when it returns. You can see how the <code>$network.request</code> call now uses the <code>$jason.hashed</code> value</li>
+</ol>
+
+<h2>Simplifying $lambda with &#39;trigger&#39;</h2>
+
+<p>This <code>$lambda</code> action will be one of the most frequently used actions going forward. This is why there&#39;s a syntactic sugar for it.</p>
+
+<p>Instead of using the <code>$lambda</code> action directly, you can use the <code>trigger</code> keyword. For example instead of this:</p>
+<div class="highlight"><pre><code class="language-" data-lang=""><span class="p">{</span><span class="w">
+  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$lambda"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some_action"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"key1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"value1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"key2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"value2"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$render"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"error"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$util.toast"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Error"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>You can use: </p>
+<div class="highlight"><pre><code class="language-" data-lang=""><span class="p">{</span><span class="w">
+  </span><span class="nt">"trigger"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some_action"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"key1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"value1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"key2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"value2"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$render"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"error"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$util.toast"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Error"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<h1>Conclusion</h1>
+
+<p>There are so many cool things about this, but it may not be very clear what benefit this brings in the grand scheme of things. </p>
+
+<p>Here&#39;s why I think this is really cool:</p>
+
+<ol>
+<li>Each function is a self-contained entity which when composed with other functions can do all kinds of powerful things.</li>
+<li>With JASON (the JSON-based language that powers Jasonette), we can express any function in JSON.</li>
+<li>JSON is the new &quot;List&quot;. JSON is ubiquitous.</li>
+</ol>
+
+<p>I will stop here and leave the rest to your imagination. But I am sure some of you are as excited as I am. Please join the community and contribute if so!</p>
+
+<p><img src="/assets/network.png" alt="Network"></p>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/2017/01/17/build-a-slackbot-with-jasonette/">
+            Remote-control your Slack bots with JSON
+            <small>17 Jan 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2017/01/12/Jasonette-2016-in-review/">
+            How Jasonette Went from an Esoteric App to a Radical New Way to Build Native Apps
+            <small>12 Jan 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2016/01/17/build-a-slackbot-with-jasonette/">
+            Remote-control your Slack bots with JSON
+            <small>17 Jan 2016</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+</html>
