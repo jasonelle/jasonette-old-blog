@@ -12,15 +12,19 @@ description:          '⚡️ Native App over HTTP'
 url:              https://www.jasonette.com
 baseurl:         "/"
 
-author:
-  name:           JASON
-  url:            https://twitter.com/jasonclient
+#author:
+#  name:           JASON
+#  url:            https://twitter.com/jasonclient
 
 # Custom vars
 version:          0.0.1
 
+
 github:
   repo:           https://github.com/Jasonette
+
+twitter:
+  username:       jasonclient
 
 future: true
 
