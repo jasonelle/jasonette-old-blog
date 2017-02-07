@@ -10,7 +10,7 @@
 				<title>Supercharged tab bar!</title>
 				        
 				
-					<description>&lt;p&gt;The &lt;a href=&quot;http://docs.jasonette.com/document/#tabs&quot;&gt;bottom tab bar&lt;/a&gt; is useful for switching between multiple views.&lt;/p&gt;
+					<description>&lt;p&gt;With the latest version, Jasonette now supports &lt;a href=&quot;https://docs.jasonette.com/href&quot;&gt;href&lt;/a&gt; and &lt;a href=&quot;https://docs.jasonette.com/action&quot;&gt;action&lt;/a&gt; attributes for the bottom tab bar, which lets you do cool things like open a view in a modal, or execute any actions when you tap a tab item.&lt;/p&gt;
 </description>
 				
 				<pubDate>Tue, 07 Feb 2017 00:00:00 -0500</pubDate>
@@ -31,7 +31,7 @@
 			</item>
 		
 			<item>
-				<title>How Jasonette Went from an Esoteric App to a Radical New Way to Build Native Apps</title>
+				<title>Jasonette, 2016 in Review</title>
 				        
 				
 					<description>&lt;p&gt;How are apps built?&lt;/p&gt;
@@ -55,7 +55,7 @@
 			</item>
 		
 			<item>
-				<title>How Jasonette Went from an Esoteric App to a Radical New Way to Build Native Apps</title>
+				<title>Jasonette, 2016 in Review</title>
 				        
 				
 					<description>&lt;p&gt;How are apps built?&lt;/p&gt;

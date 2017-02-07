@@ -1,6 +1,7 @@
 ---
 layout: post
-title: How Jasonette Went from an Esoteric App to a Radical New Way to Build Native Apps
+title: Jasonette, 2016 in Review
+image: assets/j.png
 ---
 
 How are apps built?

@@ -24,5 +24,5 @@ github:
 
 future: true
 
-gems: [jekyll-paginate, jekyll-twitter-plugin, jekyll-youtube]
+gems: [jekyll-paginate, jekyll-twitter-plugin, jekyll-youtube, jekyll-seo-tag, jekyll-redirect-from]
 paginate:         5

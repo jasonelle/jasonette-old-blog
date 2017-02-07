@@ -4,7 +4,7 @@
  <title>jasonette</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <link href="http://localhost:4000/"/>
- <updated>2017-02-07T02:37:05-05:00</updated>
+ <updated>2017-02-07T13:06:58-05:00</updated>
  <id>http://localhost:4000</id>
  <author>
    <name>JASON</name>
@@ -17,11 +17,17 @@
    <link href="http://localhost:4000/2017/02/07/supercharged-tabbar/"/>
    <updated>2017-02-07T00:00:00-05:00</updated>
    <id>http://localhost:4000/2017/02/07/supercharged-tabbar</id>
-   <content type="html">&lt;p&gt;The &lt;a href=&quot;http://docs.jasonette.com/document/#tabs&quot;&gt;bottom tab bar&lt;/a&gt; is useful for switching between multiple views.&lt;/p&gt;
+   <content type="html">&lt;p&gt;With the latest version, Jasonette now supports &lt;a href=&quot;https://docs.jasonette.com/href&quot;&gt;href&lt;/a&gt; and &lt;a href=&quot;https://docs.jasonette.com/action&quot;&gt;action&lt;/a&gt; attributes for the bottom tab bar, which lets you do cool things like open a view in a modal, or execute any actions when you tap a tab item.&lt;/p&gt;
+
+&lt;p&gt;Let me explain what this means.&lt;/p&gt;
+
+&lt;h2&gt;How it currently works&lt;/h2&gt;
+
+&lt;p&gt;The &lt;a href=&quot;https://docs.jasonette.com/document/#tabs&quot;&gt;bottom tab bar&lt;/a&gt; is useful for switching between multiple views.&lt;/p&gt;
 
 &lt;p&gt;&lt;img class='bordered medium' src='http://docs.jasonette.com/images/footer_tabs.jpeg'&gt;&lt;/p&gt;
 
-&lt;p&gt;To make this work you would simply specify the &lt;code&gt;url&lt;/code&gt; attribute for each tab, like this:&lt;/p&gt;
+&lt;p&gt;Normally to make sure the each tab loads a separate view when tapped, you would simply specify the &lt;code&gt;url&lt;/code&gt; attribute like this:&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-json&quot; data-lang=&quot;json&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
   &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;$jason&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
     &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;body&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
@@ -43,25 +49,27 @@
   &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;This is sufficient for most use cases, but sometimes you may want more. For example you may want to:&lt;/p&gt;
+&lt;p&gt;This is sufficient for most use cases, but sometimes you want more. For example you may want to:&lt;/p&gt;
 
 &lt;ol&gt;
-&lt;li&gt;Open a new view in a modal when you tap a tab item.&lt;/li&gt;
+&lt;li&gt;Open a new view as a modal instead of as a tab view.&lt;/li&gt;
 &lt;li&gt;Open a browser when you tap a tab item.&lt;/li&gt;
 &lt;li&gt;Exectue an action (Such as open a camera) when you tap.&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;Until today these haven&amp;#39;t been possible, since the only supported attribute was &lt;code&gt;url&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;These things weren&amp;#39;t possible since the only supported attribute was &lt;code&gt;url&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;However, this changes today. You can attach not only &lt;code&gt;url&lt;/code&gt; but also &lt;code&gt;href&lt;/code&gt; as well as &lt;code&gt;action&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;img class='bordered medium' src='/assets/supertab.gif'&gt;&lt;/p&gt;
+&lt;p&gt;However, this changes today. You can attach not only &lt;code&gt;url&lt;/code&gt; but also &lt;a href=&quot;https://docs.jasonette.com/href/&quot;&gt;href&lt;/a&gt; as well as &lt;a href=&quot;https://docs.jasonette.com/actions/&quot;&gt;action&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Go download the &lt;code&gt;develop&lt;/code&gt; branch (&lt;a href=&quot;https://github.com/Jasonette/JASONETTE-iOS&quot;&gt;iOS&lt;/a&gt; and &lt;a href=&quot;https://github.com/Jasonette/JASONETTE-Android&quot;&gt;Android&lt;/a&gt;) and try it out. Here&amp;#39;s what has changed:&lt;/p&gt;
 
 &lt;h2&gt;href&lt;/h2&gt;
 
-&lt;p&gt;You can now set &lt;code&gt;href&lt;/code&gt; as well as &lt;code&gt;url&lt;/code&gt;. &lt;code&gt;href&lt;/code&gt; is obviously more powerful since you can specify not just the url but also the &lt;code&gt;view&lt;/code&gt; or the type of &lt;code&gt;transition&lt;/code&gt;. See below example:&lt;/p&gt;
+&lt;p&gt;You can now set &lt;code&gt;href&lt;/code&gt; as well as &lt;code&gt;url&lt;/code&gt;. &lt;a href=&quot;https://docs.jasonette.com/href/&quot;&gt;href&lt;/a&gt; is obviously more powerful since you can specify not just the url but also the &lt;code&gt;view&lt;/code&gt; or the type of &lt;code&gt;transition&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img class='bordered medium' src='/assets/tab_href.gif'&gt;&lt;/p&gt;
+
+&lt;p&gt;See below example:&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-json&quot; data-lang=&quot;json&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
   &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;$jason&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
     &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;body&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
@@ -90,13 +98,18 @@
 &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;ol&gt;
+&lt;li&gt;&lt;code&gt;tab 1&lt;/code&gt; uses the original &lt;code&gt;url&lt;/code&gt; approach. It&amp;#39;s simpler and usually works for most cases.&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;tab 2&lt;/code&gt; now opens in a modal view when you tap, instead of opening within the current view.&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;tab 3&lt;/code&gt; now opens a browser since it&amp;#39;s a &lt;code&gt;&amp;quot;view&amp;quot;: &amp;quot;web&amp;quot;&lt;/code&gt; type href.&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;h2&gt;action&lt;/h2&gt;
 
-&lt;p&gt;You can even set an &lt;code&gt;action&lt;/code&gt; attribute for a tab. You may see something like this in photo apps like Instagram--you tap one of the tab bar items and it opens a camera. Here&amp;#39;s an example:&lt;/p&gt;
+&lt;p&gt;You can even set an &lt;code&gt;action&lt;/code&gt; attribute for a tab. You may see something like this in photo apps like Instagram--you tap one of the tab bar items and it opens a camera.&lt;/p&gt;
+
+&lt;p&gt;&lt;img class='bordered medium' src='/assets/tab_action.gif'&gt;&lt;/p&gt;
+
+&lt;p&gt;Here&amp;#39;s an example:&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-json&quot; data-lang=&quot;json&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
   &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;$jason&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
     &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;body&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
@@ -123,13 +136,13 @@
   &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;code&gt;Tab 2&lt;/code&gt; now runs the &lt;a href=&quot;http://docs.jasonette.com/actions/#mediacamera&quot;&gt;$media.camera action&lt;/a&gt; when you tap.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Tab 2&lt;/code&gt; now runs the &lt;a href=&quot;https://docs.jasonette.com/actions/#mediacamera&quot;&gt;$media.camera action&lt;/a&gt; when you tap.&lt;/p&gt;
 
 &lt;p&gt;Note that you can attach &lt;strong&gt;any&lt;/strong&gt; kind of actions here, not just camera.&lt;/p&gt;
 
 &lt;h2&gt;Tip&lt;/h2&gt;
 
-&lt;p&gt;Sometimes people are confused about how the tabs work. Here&amp;#39;s the rule of thumb:&lt;/p&gt;
+&lt;p&gt;Sometimes people are confused about how the tabs work. Here&amp;#39;s a rule of thumb:&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;You MUST specify the tabs for every view.&lt;/strong&gt;&lt;/p&gt;
 
@@ -235,7 +248,7 @@
  </entry>
  
  <entry>
-   <title>How Jasonette Went from an Esoteric App to a Radical New Way to Build Native Apps</title>
+   <title>Jasonette, 2016 in Review</title>
    <link href="http://localhost:4000/2017/01/12/Jasonette-2016-in-review/"/>
    <updated>2017-01-12T00:00:00-05:00</updated>
    <id>http://localhost:4000/2017/01/12/Jasonette-2016-in-review</id>
@@ -567,7 +580,7 @@
  </entry>
  
  <entry>
-   <title>How Jasonette Went from an Esoteric App to a Radical New Way to Build Native Apps</title>
+   <title>Jasonette, 2016 in Review</title>
    <link href="http://localhost:4000/2016/01/12/Jasonette-2016-in-review/"/>
    <updated>2016-01-12T00:00:00-05:00</updated>
    <id>http://localhost:4000/2016/01/12/Jasonette-2016-in-review</id>
