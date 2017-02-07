@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Remote-control your Slack bots with JSON
-image: /assets/coffee_bot_slack.png
+image: assets/coffee_bot_slack.png
 ---
 
 A couple of days ago, [@shaunymca](https://github.com/shaunymca) shared a really cool project on [our slack channel](https://jasonette.now.sh/).

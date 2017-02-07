@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Jasonette, 2016 in Review
-image: /assets/j.png
+image: assets/j.png
 ---
 
 How are apps built?
