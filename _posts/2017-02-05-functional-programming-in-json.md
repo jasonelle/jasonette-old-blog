@@ -5,17 +5,13 @@ title: Functional Programming in JSON.
 
 You may know how to do functional programming in Javascript. Maybe LISP. Or maybe even Haskell!
 
-But today, let me show you something you've never seen: **Functional programming in pure JSON**.
+But today let me show you something you've never seen: **Functional programming in pure JSON**.
 
-Here's the structure of this article:
+I will talk about:
 
-1. Explain why it makes sense to use JSON, using the LISP analogy
-2. Explain how to do procedural programming in JSON
-3. Finally, explain how to do functional programming in JSON
-
-If this is your first time hearing about Jasonette, even the **"procedural programming in JSON"** part should be completely new to you.
-
-So [check out Jasonette](https://www.jasonette.com) first if you haven't yet.
+1. How LISP creates a program out of lists, and Why JSON is the new "list"
+2. How you can actually write a program in JSON
+3. How to do functional programming in JSON
 
 #LISP.
 It's short for **LIS**t **P**rocesing. It's a programming language 100% based on lists. For example here is a list:
@@ -29,8 +25,9 @@ But this is also a list:
 ```
 (+ 2 3)
 ```
+In this case, the first token in the list is interpeted as the operator and the rest argument. So here it means "add 2 and 3".
 
-So is this:
+You can also define functions using the built in command:
 {% raw %}
 ```
 (defun duplicate (N) (+ N N))
@@ -38,7 +35,7 @@ So is this:
 {% endraw %}
 
 
-And finally, so is this:
+And finally, this:
 {% raw %}
 ```
 (defun factorial (N)
@@ -49,17 +46,15 @@ And finally, so is this:
 ```
 {% endraw %}
 
-LISP was created in the 1950s when the **list** was the most popular form of data structure. Everything is stored sequentially as a list on the memory.
+LISP was created in the 1950s when the **list** was the most popular form of data structure. Arrays, linked lists, these were all "lists".
 
 Now, almost 60 years later, what is the most popular form of data structure?
 
 # JSON.
 
-Back in the 1950s everything was stored locally, everything was a "list", at least metaphorically. The memory was a "list" you can access. The list was the perfect format.
+Fast forward to 2017, our data mostly lives on the cloud, and the focus is no longer about how you store data locally. More important question is how to store and transmit data remotely. And in 2017, the most popular format to exchange data over the Internet is JSON.
 
-Fast forward to 2017, data and information mostly lives on the cloud, so it's no longer about how you store data locally. It's all about how to store and transmit data remotely. And in 2017, the most popular format to exchange data over the Internet is the JSON format.
-
-Here's a JSON:
+Here's a JSON object:
 
 {% raw %}
 ```
@@ -69,19 +64,15 @@ Here's a JSON:
 ```
 {% endraw %}
 
-Remember how LISP used a list to express a program? For example adding two numbers:
+Even though JSON started its life as an offspring of Javascript (JSON is short for JavaScript Object Notation), it became de facto standard when it comes to data exchange.
 
-{% raw %}
-```
-(+ 2 3)
-```
-{% endraw %}
-
-What if you could do what LISP did, but for JSON? What if it's possible to build a completely functional, production app simply using JSON?
+So, what if you could do what LISP did, but for JSON? What if it's possible to build a completely functional, production application simply using JSON?
 
 # Procedural Programming in JSON.
 
-OK, so that's basically what [Jasonette](https://www.jasonette.com) does. There are many other things it does, such as describing a view layout using JSON, but here we will only focus on **actions**.
+That's a part of what [Jasonette](https://www.jasonette.com) does. Along with the ability to express an entire mobile app interface using JSON (Declarative Programming), another important feature is a way to express a sequence of actions using JSON (Procedural Programming). So how does it work?
+
+We start with something called an `action`. An action is a JSON object that represents a single task, such as accessing the camera, playing audio, making network requests, rendering, etc. 
 
 Each "action" consists of up to four attributes:
 
@@ -90,11 +81,11 @@ Each "action" consists of up to four attributes:
 3. `success`: success callback to run when the function returns success
 3. `error`: error callback to run when the function returns error
 
-Using just these four attributes, you can build a fully functional, production app. Let's take a look how:
+Using just these four attributes, you can build a fully functional, production app. Here are the building blocks:
 
 <br>
 
-## arguments
+## Arguments
 
 Functions are not so meaningful without arguments. We want a function to perform different actions based on the arguments we pass to it.
 
@@ -121,9 +112,11 @@ $util.alert({title: "Alert", description: "Hello world"});
 ```
 * NOTE: Jasonette is not implemented with Javascript, I'm just drawing an analogy here just to make a point
 
-## callbacks
+## Callbacks
 
-Here's another JSON:
+When it comes to mobile app development, most actions run asynchronously, which means we need some way to represent **callbacks** if we want to execute one action after another.
+
+Let's take another example:
 
 {% raw %}
 ```
@@ -143,6 +136,8 @@ Here's another JSON:
 
 This chain of actions makes a network request to the jsonplaceholder server and renders the result using whichever template you define (also in JSON).
 
+Here, the `success` object is the callback. It waits until the `$network.request` completes successfully and then runs.
+
 If we were to express this in Javascript it would look something like this
 
 ```js
@@ -152,9 +147,9 @@ function fetch(){
   });
 }
 ```
-* NOTE: Again, this is not how it's implemented, I'm using this as an analogy to make a point
+* NOTE: Again, I'm using this as an analogy to make a point. This is not how Jasonette is implemented internally.
 
-## inline javascript
+## Inline javascript
 
 We must go deeper. Let's try some crazy stuff using Jasonette's inline Javascript feature.
 
@@ -187,12 +182,14 @@ Here's what's going on:
 
 # Problem with Procedural Programming.
 
-A lot of functional programming related arguments tend to be too theoretical so I will use this concrete example to explain why we need functional programming in this case.
+Above code works just fine, so why do we need to worry about "functional programming" at all?
 
-1. The `fetch` action produces different result depending on what value is stored on the cache at the point of execution (because it uses `$cache.guid`) therefore not reusable.
-2. The `fetch` action does a lot of different things, from a network call to hash generation to rendering. This means this code is not reusable in other contexts.
+Well here are some problems with the `fetch` action:
 
-For example, we have this nifty `guid` function which generates a hash value, but it's not exactly reusable since it's built into this particular action call chain.
+1. It uses `$cache.guid`, which means it will produce different results depending on what value is stored on the cache at the point of execution.
+2. It does a lot of different things, from a network call to hash generation to rendering. This means this code is not reusable in other contexts.
+
+For example, we have this nifty `guid` function which generates a hash value, but we can't reuse it since it's built into this particular action call chain.
 
 How can we extract this out as a standalone function somehow so we can reuse it without any side-effects?
 
@@ -200,7 +197,7 @@ How can we extract this out as a standalone function somehow so we can reuse it 
 
 This is where `$lambda` comes in.
 
-`$lambda` is the latest new addition to Jasonette. It's a special purpose action whose sole purpose is to trigger another action. Unlike other actions which actually do something on their own, $lambda only functions as a mediator that
+`$lambda` is the latest new addition to Jasonette. It's an action whose sole purpose is to trigger another action. Unlike other actions which actually do something on their own, $lambda only functions as a mediator that
 
 1. Executes another action
 2. Waits for it to return
@@ -227,8 +224,8 @@ Here's what it looks like when we extract the `btoa` action out into a standalon
 
 Notice that:
 
-1. the function uses `var str=$jason.guid;` instead of `var str=$cache.guid;`. `$jason` is a special variable reserved for accessing the parameters passed in from the triggering action.
-2. the action type is `$return.success`. This is a special purpose action designed for returning the control back to the action that triggered the current action, which means this action can ONLY be used by being triggered by another action.
+1. We have a new action type called `$return.success`. This is a special purpose action designed for returning the control back to the action that triggered the current action via `$lambda`.
+2. the function uses `var str=$jason.guid;` instead of `var str=$cache.guid;`. `$jason` is a special variable reserved for accessing the parameters passed in from the triggering action.
 
 For example, when you trigger a function called `fun` with the following JSON: 
 
@@ -244,7 +241,7 @@ For example, when you trigger a function called `fun` with the following JSON:
 ```
 {% endraw %}
 
-you can access the `{"key": "abc"}` from inside the `fun` action using:
+you can access the `{"key": "abc"}` from inside the `fun` action using `$jason.key`:
 
 {% raw %}
 ```
@@ -301,8 +298,8 @@ The `$lambda` action takes two arguments as its `options`:
 
 Notice that:
 
-1. We trigger the `btoa` function we created above and pass arguments using the `options` attribute. The `$cache.guid` stays outside of the btoa function this time.
-2. We also have a `success` callback for `trigger: btoa`. Which means `fetch` will wait until `btoa` returns, and then use its return value to move forward when it returns. You can see how the `$network.request` call now uses the `$jason.hashed` value
+1. We trigger the `btoa` function we created above and pass arguments using the `options` attribute. The `$cache.guid` stays outside of the **btoa** function this time.
+2. Notice how the `$lambda` has a `success` callback. Which means it will wait until `btoa` returns, and then use its return value to move forward. You can see how the `$network.request` call now uses the `$jason.hashed` value.
 
 ## Simplifying $lambda with 'trigger'
 This `$lambda` action will be one of the most frequently used actions going forward. This is why there's a syntactic sugar for it.

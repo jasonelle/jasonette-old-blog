@@ -72,6 +72,10 @@
           
         
       
+        
+          
+        
+      
       -->
       <a class="sidebar-nav-item inline nopadding" href="https://jasonette.com">About</a>
       <a class="sidebar-nav-item inline nopadding" href="https://blog.jasonette.com">Blog</a>
@@ -96,8 +100,8 @@
 			<a class="sidebar-nav-item inline" href="https://forum.jasonette.com/">Forum</a>
 			<a class="sidebar-nav-item inline" href="https://www.twitter.com/jasonclient">Twitter</a>
       <div class='sidebar-nav-item bold'>Github</div>
-			<a class="sidebar-nav-item inline" href="https://github.com/Jasonette/JASONETTE-Android">Jasonette-Android</a>
-			<a class="sidebar-nav-item inline" href="https://github.com/Jasonette/JASONETTE-iOS">Jasonette-iOS</a>
+			<a class="sidebar-nav-item icon" href="https://github.com/Jasonette/JASONETTE-Android">Android <img src='/assets/android.png'></a>
+			<a class="sidebar-nav-item icon" href="https://github.com/Jasonette/JASONETTE-iOS">iOS <img src='/assets/apple.png'></a>
       <div class='sidebar-nav-item bold'>RSS</div>
 			<a class="sidebar-nav-item icon" href='/atom.xml'><img src='/assets/feed.png'></a>
     </nav>
@@ -110,6 +114,139 @@
   
   <div class="post">
     <h1 class="post-title">
+      <a href="/2017/02/07/more-powerful-tabbar/">
+        Supercharged tab bar!
+      </a>
+    </h1>
+
+    <span class="post-date">07 Feb 2017</span>
+
+    <p>The <a href="http://docs.jasonette.com/document/#tabs">bottom tab bar</a> is useful for switching between multiple views.</p>
+
+<p><img class='bordered medium' src='http://docs.jasonette.com/images/footer_tabs.jpeg'></p>
+
+<p>To make this work you would simply specify the <code>url</code> attribute for each tab, like this:</p>
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+  </span><span class="nt">"$jason"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"body"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"footer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"tabs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+            </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tab 1"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://jasonbase.com/things/3fn.json"</span><span class="w">
+          </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tab 2"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://jasonbase.com/things/2fn.json"</span><span class="w">
+          </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tab 3"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://jasonbase.com/things/9fn.json"</span><span class="w">
+          </span><span class="p">}]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>This is sufficient for most use cases, but sometimes you may want more. For example you may want to:</p>
+
+<ol>
+<li>Open a new view in a modal when you tap a tab item.</li>
+<li>Open a browser when you tap a tab item.</li>
+<li>Exectue an action (Such as open a camera) when you tap.</li>
+</ol>
+
+<p>Until today these haven&#39;t been possible, since the only supported attribute was <code>url</code>.</p>
+
+<p>However, this changes today. You can attach not only <code>url</code> but also <code>href</code> as well as <code>action</code>.</p>
+
+<p><img class='bordered medium' src='/assets/supertab.gif'></p>
+
+<p>Go download the <code>develop</code> branch (<a href="https://github.com/Jasonette/JASONETTE-iOS">iOS</a> and <a href="https://github.com/Jasonette/JASONETTE-Android">Android</a>) and try it out. Here&#39;s what has changed:</p>
+
+<h2>href</h2>
+
+<p>You can now set <code>href</code> as well as <code>url</code>. <code>href</code> is obviously more powerful since you can specify not just the url but also the <code>view</code> or the type of <code>transition</code>. See below example:</p>
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+  </span><span class="nt">"$jason"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"body"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"footer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"tabs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+            </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tab 1"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://jasonbase.com/things/3fn.json"</span><span class="w">
+          </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tab 2"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"href"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://jasonbase.com/things/2fn.json"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"transition"</span><span class="p">:</span><span class="w"> </span><span class="s2">"modal"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tab 3"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"href"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.google.com"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"view"</span><span class="p">:</span><span class="w"> </span><span class="s2">"web"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">}]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<ol>
+<li><code>tab 2</code> now opens in a modal view when you tap, instead of opening within the current view.</li>
+<li><code>tab 3</code> now opens a browser since it&#39;s a <code>&quot;view&quot;: &quot;web&quot;</code> type href.</li>
+</ol>
+
+<h2>action</h2>
+
+<p>You can even set an <code>action</code> attribute for a tab. You may see something like this in photo apps like Instagram--you tap one of the tab bar items and it opens a camera. Here&#39;s an example:</p>
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+  </span><span class="nt">"$jason"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"body"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"footer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"tabs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+            </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tab 1"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://jasonbase.com/things/3fn.json"</span><span class="w">
+          </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tab 2"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"action"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$media.camera"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tab 3"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"href"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.google.com"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"view"</span><span class="p">:</span><span class="w"> </span><span class="s2">"web"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">}]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p><code>Tab 2</code> now runs the <a href="http://docs.jasonette.com/actions/#mediacamera">$media.camera action</a> when you tap.</p>
+
+<p>Note that you can attach <strong>any</strong> kind of actions here, not just camera.</p>
+
+<h2>Tip</h2>
+
+<p>Sometimes people are confused about how the tabs work. Here&#39;s the rule of thumb:</p>
+
+<p><strong>You MUST specify the tabs for every view.</strong></p>
+
+<p>Let&#39;s say you have tab1, tab2, and tab3. All of those views MUST contain the <strong>same</strong> <code>tabs</code> object. If you only have the <code>tabs</code> object on <code>tab1</code>&#39;s markup, the tab bar will go away when you navigate away to tab2 or tab3.</p>
+
+<h2>Try it out!</h2>
+
+<p>As of today this works on both <a href="https://github.com/Jasonette/JASONETTE-Android">Android</a> and <a href="https://github.com/Jasonette/JASONETTE-iOS">iOS</a></p>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
       <a href="/2017/02/05/functional-programming-in-json/">
         Functional Programming in JSON.
       </a>
@@ -119,19 +256,15 @@
 
     <p>You may know how to do functional programming in Javascript. Maybe LISP. Or maybe even Haskell!</p>
 
-<p>But today, let me show you something you&#39;ve never seen: <strong>Functional programming in pure JSON</strong>.</p>
+<p>But today let me show you something you&#39;ve never seen: <strong>Functional programming in pure JSON</strong>.</p>
 
-<p>Here&#39;s the structure of this article:</p>
+<p>I will talk about:</p>
 
 <ol>
-<li>Explain why it makes sense to use JSON, using the LISP analogy</li>
-<li>Explain how to do procedural programming in JSON</li>
-<li>Finally, explain how to do functional programming in JSON</li>
+<li>How LISP creates a program out of lists, and Why JSON is the new &quot;list&quot;</li>
+<li>How you can actually write a program in JSON</li>
+<li>How to do functional programming in JSON</li>
 </ol>
-
-<p>If this is your first time hearing about Jasonette, even the <strong>&quot;procedural programming in JSON&quot;</strong> part should be completely new to you.</p>
-
-<p>So <a href="https://www.jasonette.com">check out Jasonette</a> first if you haven&#39;t yet.</p>
 
 <h1>LISP.</h1>
 
@@ -141,39 +274,40 @@
 <p>But this is also a list:</p>
 <div class="highlight"><pre><code class="language-" data-lang="">(+ 2 3)
 </code></pre></div>
-<p>So is this:</p>
+<p>In this case, the first token in the list is interpeted as the operator and the rest argument. So here it means &quot;add 2 and 3&quot;.</p>
+
+<p>You can also define functions using the built in command:</p>
 <div class="highlight"><pre><code class="language-" data-lang="">(defun duplicate (N) (+ N N))
 </code></pre></div>
-<p>And finally, so is this:</p>
+<p>And finally, this:</p>
 <div class="highlight"><pre><code class="language-" data-lang="">(defun factorial (N)
   "Compute the factorial of N."
     (if (= N 1)
           1
               (* N (factorial (- N 1)))))
 </code></pre></div>
-<p>LISP was created in the 1950s when the <strong>list</strong> was the most popular form of data structure. Everything is stored sequentially as a list on the memory.</p>
+<p>LISP was created in the 1950s when the <strong>list</strong> was the most popular form of data structure. Arrays, linked lists, these were all &quot;lists&quot;.</p>
 
 <p>Now, almost 60 years later, what is the most popular form of data structure?</p>
 
 <h1>JSON.</h1>
 
-<p>Back in the 1950s everything was stored locally, everything was a &quot;list&quot;, at least metaphorically. The memory was a &quot;list&quot; you can access. The list was the perfect format.</p>
+<p>Fast forward to 2017, our data mostly lives on the cloud, and the focus is no longer about how you store data locally. More important question is how to store and transmit data remotely. And in 2017, the most popular format to exchange data over the Internet is JSON.</p>
 
-<p>Fast forward to 2017, data and information mostly lives on the cloud, so it&#39;s no longer about how you store data locally. It&#39;s all about how to store and transmit data remotely. And in 2017, the most popular format to exchange data over the Internet is the JSON format.</p>
-
-<p>Here&#39;s a JSON:</p>
+<p>Here&#39;s a JSON object:</p>
 <div class="highlight"><pre><code class="language-" data-lang=""><span class="p">{</span><span class="w">
   </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"a"</span><span class="p">,</span><span class="w"> </span><span class="s2">"b"</span><span class="p">,</span><span class="w"> </span><span class="s2">"c"</span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>Remember how LISP used a list to express a program? For example adding two numbers:</p>
-<div class="highlight"><pre><code class="language-" data-lang="">(+ 2 3)
-</code></pre></div>
-<p>What if you could do what LISP did, but for JSON? What if it&#39;s possible to build a completely functional, production app simply using JSON?</p>
+<p>Even though JSON started its life as an offspring of Javascript (JSON is short for JavaScript Object Notation), it became de facto standard when it comes to data exchange.</p>
+
+<p>So, what if you could do what LISP did, but for JSON? What if it&#39;s possible to build a completely functional, production application simply using JSON?</p>
 
 <h1>Procedural Programming in JSON.</h1>
 
-<p>OK, so that&#39;s basically what <a href="https://www.jasonette.com">Jasonette</a> does. There are many other things it does, such as describing a view layout using JSON, but here we will only focus on <strong>actions</strong>.</p>
+<p>That&#39;s a part of what <a href="https://www.jasonette.com">Jasonette</a> does. Along with the ability to express an entire mobile app interface using JSON (Declarative Programming), another important feature is a way to express a sequence of actions using JSON (Procedural Programming). So how does it work?</p>
+
+<p>We start with something called an <code>action</code>. An action is a JSON object that represents a single task, such as accessing the camera, playing audio, making network requests, rendering, etc. </p>
 
 <p>Each &quot;action&quot; consists of up to four attributes:</p>
 
@@ -184,11 +318,11 @@
 <li><code>error</code>: error callback to run when the function returns error</li>
 </ol>
 
-<p>Using just these four attributes, you can build a fully functional, production app. Let&#39;s take a look how:</p>
+<p>Using just these four attributes, you can build a fully functional, production app. Here are the building blocks:</p>
 
 <p><br></p>
 
-<h2>arguments</h2>
+<h2>Arguments</h2>
 
 <p>Functions are not so meaningful without arguments. We want a function to perform different actions based on the arguments we pass to it.</p>
 
@@ -210,9 +344,11 @@
 <li>NOTE: Jasonette is not implemented with Javascript, I&#39;m just drawing an analogy here just to make a point</li>
 </ul>
 
-<h2>callbacks</h2>
+<h2>Callbacks</h2>
 
-<p>Here&#39;s another JSON:</p>
+<p>When it comes to mobile app development, most actions run asynchronously, which means we need some way to represent <strong>callbacks</strong> if we want to execute one action after another.</p>
+
+<p>Let&#39;s take another example:</p>
 <div class="highlight"><pre><code class="language-" data-lang=""><span class="p">{</span><span class="w">
   </span><span class="nt">"fetch"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$network.request"</span><span class="p">,</span><span class="w">
@@ -227,6 +363,8 @@
 </span></code></pre></div>
 <p>This chain of actions makes a network request to the jsonplaceholder server and renders the result using whichever template you define (also in JSON).</p>
 
+<p>Here, the <code>success</code> object is the callback. It waits until the <code>$network.request</code> completes successfully and then runs.</p>
+
 <p>If we were to express this in Javascript it would look something like this</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">fetch</span><span class="p">(){</span>
   <span class="nx">$network</span><span class="p">.</span><span class="nx">request</span><span class="p">({</span><span class="na">url</span><span class="p">:</span> <span class="s2">"https://jsonplaceholder.typicode.com/posts"</span><span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">){</span>
@@ -235,10 +373,10 @@
 <span class="p">}</span>
 </code></pre></div>
 <ul>
-<li>NOTE: Again, this is not how it&#39;s implemented, I&#39;m using this as an analogy to make a point</li>
+<li>NOTE: Again, I&#39;m using this as an analogy to make a point. This is not how Jasonette is implemented internally.</li>
 </ul>
 
-<h2>inline javascript</h2>
+<h2>Inline javascript</h2>
 
 <p>We must go deeper. Let&#39;s try some crazy stuff using Jasonette&#39;s inline Javascript feature.</p>
 <div class="highlight"><pre><code class="language-" data-lang=""><span class="p">{</span><span class="w">
@@ -267,14 +405,16 @@
 
 <h1>Problem with Procedural Programming.</h1>
 
-<p>A lot of functional programming related arguments tend to be too theoretical so I will use this concrete example to explain why we need functional programming in this case.</p>
+<p>Above code works just fine, so why do we need to worry about &quot;functional programming&quot; at all?</p>
+
+<p>Well here are some problems with the <code>fetch</code> action:</p>
 
 <ol>
-<li>The <code>fetch</code> action produces different result depending on what value is stored on the cache at the point of execution (because it uses <code>$cache.guid</code>) therefore not reusable.</li>
-<li>The <code>fetch</code> action does a lot of different things, from a network call to hash generation to rendering. This means this code is not reusable in other contexts.</li>
+<li>It uses <code>$cache.guid</code>, which means it will produce different results depending on what value is stored on the cache at the point of execution.</li>
+<li>It does a lot of different things, from a network call to hash generation to rendering. This means this code is not reusable in other contexts.</li>
 </ol>
 
-<p>For example, we have this nifty <code>guid</code> function which generates a hash value, but it&#39;s not exactly reusable since it&#39;s built into this particular action call chain.</p>
+<p>For example, we have this nifty <code>guid</code> function which generates a hash value, but we can&#39;t reuse it since it&#39;s built into this particular action call chain.</p>
 
 <p>How can we extract this out as a standalone function somehow so we can reuse it without any side-effects?</p>
 
@@ -282,7 +422,7 @@
 
 <p>This is where <code>$lambda</code> comes in.</p>
 
-<p><code>$lambda</code> is the latest new addition to Jasonette. It&#39;s a special purpose action whose sole purpose is to trigger another action. Unlike other actions which actually do something on their own, $lambda only functions as a mediator that</p>
+<p><code>$lambda</code> is the latest new addition to Jasonette. It&#39;s an action whose sole purpose is to trigger another action. Unlike other actions which actually do something on their own, $lambda only functions as a mediator that</p>
 
 <ol>
 <li>Executes another action</li>
@@ -307,8 +447,8 @@
 <p>Notice that:</p>
 
 <ol>
+<li>We have a new action type called <code>$return.success</code>. This is a special purpose action designed for returning the control back to the action that triggered the current action via <code>$lambda</code>.</li>
 <li>the function uses <code>var str=$jason.guid;</code> instead of <code>var str=$cache.guid;</code>. <code>$jason</code> is a special variable reserved for accessing the parameters passed in from the triggering action.</li>
-<li>the action type is <code>$return.success</code>. This is a special purpose action designed for returning the control back to the action that triggered the current action, which means this action can ONLY be used by being triggered by another action.</li>
 </ol>
 
 <p>For example, when you trigger a function called <code>fun</code> with the following JSON: </p>
@@ -319,7 +459,7 @@
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>you can access the <code>{&quot;key&quot;: &quot;abc&quot;}</code> from inside the <code>fun</code> action using:</p>
+<p>you can access the <code>{&quot;key&quot;: &quot;abc&quot;}</code> from inside the <code>fun</code> action using <code>$jason.key</code>:</p>
 <div class="highlight"><pre><code class="language-" data-lang=""><span class="p">{</span><span class="w">
   </span><span class="nt">"fun"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$util.banner"</span><span class="p">,</span><span class="w">
@@ -367,8 +507,8 @@
 <p>Notice that:</p>
 
 <ol>
-<li>We trigger the <code>btoa</code> function we created above and pass arguments using the <code>options</code> attribute. The <code>$cache.guid</code> stays outside of the btoa function this time.</li>
-<li>We also have a <code>success</code> callback for <code>trigger: btoa</code>. Which means <code>fetch</code> will wait until <code>btoa</code> returns, and then use its return value to move forward when it returns. You can see how the <code>$network.request</code> call now uses the <code>$jason.hashed</code> value</li>
+<li>We trigger the <code>btoa</code> function we created above and pass arguments using the <code>options</code> attribute. The <code>$cache.guid</code> stays outside of the <strong>btoa</strong> function this time.</li>
+<li>Notice how the <code>$lambda</code> has a <code>success</code> callback. Which means it will wait until <code>btoa</code> returns, and then use its return value to move forward. You can see how the <code>$network.request</code> call now uses the <code>$jason.hashed</code> value.</li>
 </ol>
 
 <h2>Simplifying $lambda with &#39;trigger&#39;</h2>
@@ -869,252 +1009,11 @@
 
   </div>
   
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2016/01/12/Jasonette-2016-in-review/">
-        How Jasonette Went from an Esoteric App to a Radical New Way to Build Native Apps
-      </a>
-    </h1>
-
-    <span class="post-date">12 Jan 2016</span>
-
-    <p>How are apps built?</p>
-
-<p>You write a program and put it on the phone!</p>
-
-<p>But what if you could represent an entire native app as JSON and <strong>load it on demand from the cloud over HTTP</strong>, just like a web page?</p>
-
-<p><img src="http://jasonette.com/images/j.png" alt="image"></p>
-
-<p><br></p>
-
-<p>This little idea consumed the entirety of my life in 2016.</p>
-
-<p>And the result is <a href="https://www.jasonette.com">Jasonette</a>.</p>
-
-<p>Jasonette lets you <strong>build 100% native apps on Android and iOS simply by writing a single JSON markup.</strong> Watch the video below if you haven&#39;t yet. Your life will never be the same.</p>
-
-<p><br></p>
-
-<p><style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'>    <iframe title="YouTube video player" width="640" height="390" src="//www.youtube.com/embed/hfevBAAfCMQ" frameborder="0" allowfullscreen></iframe></div></p>
-
-<p><br></p>
-
-<p>When I look back at 2016, it really feels like ages because so many things happened.</p>
-
-<p>But it&#39;s crazy to think that it&#39;s only been 2 months since I open sourced Jasonette!</p>
-
-<p>Let me share my 2016 with you today.</p>
-
-<p><br></p>
-
-<h2>Season 1 Pilot: Jason</h2>
-
-<p>Exactly 8 months ago from today, <a href="https://www.producthunt.com/posts/jason">I released an app called Jason</a>. This was a standalone app that was a precursor to Jasonette. You would enter a JSON URL into Jason app&#39;s address bar, and it would instantly turn into your own custom app.</p>
-
-<p><img class='center' src='https://s3-us-west-2.amazonaws.com/www.jasonclient.org/intro.gif'></p>
-
-<p><br></p>
-
-<p>A lot of minds were blown:</p>
-
-<p><img src="https://pbs.twimg.com/media/CirgXxKXAAEoOXt.jpg:large" alt="twitter"></p>
-
-<p>But at the same time, this was one of the most esoteric apps one could build—an app within an app, <a href="https://en.wikipedia.org/wiki/Matryoshka_doll">a russian doll</a> of sorts—as pointed out below:</p>
-
-<p><img src="/assets/ph.png" alt="ph"></p>
-
-<p><br></p>
-
-<p>I didn&#39;t even have a specific set of target users in mind when I built this. I just built it because I could.™</p>
-
-<p>But I looked at all these reactions and thought about it:</p>
-
-<ol>
-<li>Other people were amazed that an app can be built this way, and wanted to build their own apps this way too.</li>
-<li>I wasn&#39;t interested in just another way of building apps. I was more interested in lowering the barrier so significantly that it changes the meaning of the term &quot;app&quot;.</li>
-<li>Charging for usage would beat the purpose since that would fail at lowering the barrier.</li>
-</ol>
-
-<p>I knew exactly what I had to do: Jason needed to be open sourced and completely set free.</p>
-
-<p>Well it shouldn&#39;t be that hard to open source. After all, I already have a functional code base, right?</p>
-
-<p>Hahaha. </p>
-
-<p>It took me 6 months.</p>
-
-<p><br></p>
-
-<h2>Intermission: Lessons learned from documentation</h2>
-
-<p>Once I dived in, I soon realized open sourcing is not just about putting the code out there, but making sure people can understand it easily.</p>
-
-<p>This was especially the case for Jasonette, because without a documented API, no one would be able to know what they can do with it. It would be like releasing a web browser without an HTML spec. Basically, the documentation itself was the product.</p>
-
-<p>And turns out, documentation is not easy. </p>
-
-<div class='jekyll-twitter-plugin'><blockquote class="twitter-tweet"><p lang="en" dir="ltr">Open source project is 1 percent inspiration, 99 percent documentation.</p>&mdash; ethan (@gliechtenstein) <a href="https://twitter.com/gliechtenstein/status/786284865733877764">October 12, 2016</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></div>
-
-<p><br></p>
-
-<p>For the next 6 months, I did nothing but documentation and code cleanup.</p>
-
-<p>These were my darkest days. I did nothing but work on the documentation, I wasn&#39;t creating something new, I was simply documenting something that already existed and I hated it. But what other options did I have? So I kept at it.</p>
-
-<p><strong>However, I soon realized that</strong> while frustrating, the process of documenting the project was extremely helpful:</p>
-
-<ol>
-<li>I got to understand my own code better.</li>
-<li>I found a lot of inconsistencies in the API while documenting, which needed to be refactored.</li>
-<li>I gained a birds-eye point of view of the project, which was crucial when I started working on the Android version later.</li>
-</ol>
-
-<p>But the thing is, the more I documented, the more I had to refactor, and the more I refactored, the more I had to document to reflect the update. By working more, I was creating even more work. At some point I started feeling like a <a href="https://en.wikipedia.org/wiki/Zeno&#x27;s_paradoxes#Achilles_and_the_tortoise">tortoise chasing after achilles</a>. Would I ever finish this?</p>
-
-<p>In the meantime, I had set up a landing page and kept adding new materials as soon as they were ready, even though I hadn&#39;t launched it yet. And somehow people were discovering it and sharing it.</p>
-
-<p>One day when I was begrudgingly working on documenting an <a href="https://github.com/Jasonette/s3-upload-example">express.js demo app</a> for Jasonette, I saw this tweet.</p>
-
-<div class='jekyll-twitter-plugin'><blockquote class="twitter-tweet"><p lang="en" dir="ltr">kind of interesting, 100% declarative apps with JSON <a href="https://t.co/hzjyhZKsmU">https://t.co/hzjyhZKsmU</a>, probably hella leaky abstraction in some cases but neat</p>&mdash; TJ Holowaychuk (@tjholowaychuk) <a href="https://twitter.com/tjholowaychuk/status/779092360487546880">September 22, 2016</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></div>
-
-<p>What a nice timing! I was very excited, and this encouraging tweet gave me all the strength I needed to finish up the docs and prepare for the launch... which wouldn&#39;t happen for another month and a half.</p>
-
-<hr>
-
-<h2>Season 1 Episode 01. Jasonette-iOS</h2>
-
-<p>On the morning of 11/4 <a href="https://news.ycombinator.com/item?id=12879179">I posted on Hacker News</a>. It shot up to #1 and stayed #1 the entire day.</p>
-
-<p>Then it went on to become the <strong>#1 Github trending project</strong>. Not too bad for my first ever open source contribution!</p>
-
-<p><img src="/assets/github_trending.png" alt="github"></p>
-
-<hr>
-
-<h2>Season 1 Episode 02. Jasonette-Android</h2>
-
-<p>Upon releasing the iOS version, the most frequently asked question was &quot;Android?&quot;. I wasn&#39;t surprised, since I knew that was the most obvious next step.</p>
-
-<p>However what I didn&#39;t know was how long it would take me to come up with one.</p>
-
-<p><strong>Or if it would be even possible at all.</strong></p>
-
-<p>I only knew that Android had a layout system called <code>LinearLayout</code> which works similar to <code>UIStackView</code> which I used for the iOS version. So I just assumed that it would be possible, but it was really not straightforward.</p>
-
-<p>This time, I decided not to torture myself with 6 months of agony. Instead of trying to make a perfect release, I decided to pick only the most crucial features and commit to releasing version 0 as soon as possible, and go from there.</p>
-
-<p>I set the goal: <strong>Implement the core engine and get it out there, in 1 month.</strong></p>
-
-<p>And surprisingly, I managed to succeed.</p>
-
-<p>Watch the android version and the ios version side by side. These are loading from exactly the same JSON you can find <a href="https://github.com/Jasonette/Instagram-UI-example/blob/master/home.json">here</a></p>
-
-<p><span class='col-6'><img src='https://cdn-images-1.medium.com/max/1200/1*yHXxTeQFdyWjxPSP2f7ZkA.gif'></span><span class='col-6'><img src='https://cdn-images-1.medium.com/max/1200/1*v9RxUZ-8XzLfDTfI3gmx6A.gif'></span></p>
-
-<hr>
-
-<h2>Season 1 Finale: Current state of Jasonette community</h2>
-
-<p>What excites me the most is that the project has managed to find a great community of people who share the same vision and all contributing to the project in many different ways.</p>
-
-<h3>Open source is magic</h3>
-
-<p>I&#39;ve never worked on open source before so all these contributions from people I&#39;ve never met still feel surreal to me.</p>
-
-<p>It&#39;s really amazing how people from all around the world can come together and collaborate to build something together this easily.</p>
-
-<h3>New features and projects</h3>
-
-<p>I went back and took a look at what our community has accomplished during the two months Jasonette has been out, and looks like we did a lot.</p>
-
-<p>Here are some of the <strong>new major features and projects</strong> we&#39;ve added since the launch (Not including bugfixes or iOS-to-Android feature port because that would make the list huuuge):</p>
-
-<ul>
-<li><a href="https://github.com/Jasonette/JASONETTE-Android"> 🔥 Jasonette-Android</a> - The name says it all. The Android implementation of Jasonette, which makes Jasonette fully cross platform.</li>
-<li><a href="https://github.com/Jasonette/JASONETTE-Android/issues/13">Android binary size reduction</a> - Initially the Android binary size was huge, at over 40MB. We&#39;ve made some optimizations which dropped it down to around 9MB, all the while supporting 100% of the parsers (json, csv, rss, xml, html), thanks for the contribution <a href="https://github.com/brad">@brad</a>!</li>
-<li><a href="https://github.com/Jasonette/JASONETTE-iOS/issues/7">Push notifications</a> - Push notifications on iOS purely powered by JSON. We will soon release this officially once we document the API and implement the Android version.</li>
-<li><a href="https://github.com/Jasonette/JASONETTE-iOS/pull/42">Local JSON</a> - This was one of the <a href="https://github.com/Jasonette/JASONETTE-iOS/issues/48">most higly requested</a> features. Some people wanted to embed a JSON file in their project locally instead of fetching from a remote server. I initially was hesitant but soon became convinced that it can be useful in many cases. Thanks to <a href="https://github.com/copongcopong">@copongcopong</a> for the implementation!</li>
-<li><a href="https://github.com/Jasonette/JASONETTE-iOS/issues/34">CocoaPods based extension management</a> - We had a long discussion thread about this on Github, and in the end, <a href="https://github.com/seletz">@seletz</a> implemented a solution which worked beautifully. We are currently working on the second iteration of extension management based on the insights we gained from this.</li>
-<li><a href="https://github.com/Jasonette/JASONETTE-iOS/pull/92">Ad integration</a> - This was also one of the <a href="https://github.com/Jasonette/JASONETTE-iOS/issues/79">most highly requested</a> features as well. Thanks to <a href="https://github.com/wajahatch888">@wajahatch888</a>, now we have AdMob support on iOS. <a href="https://github.com/Jasonette/JASONETTE-Android/issues/22">Android support</a> to come soon :)</li>
-<li><a href="https://github.com/Jasonette/JASONETTE-iOS/commit/b359ab6d44f88d54ca9a5240f0e62e4ec0ca6852">Deep linking</a> - Ability to open Jasonette apps using URL scheme (Example: <code>jasonette://href?url=https://www.jasonbase.com/things/dh3.json</code>)</li>
-<li><a href="https://github.com/Jasonette/JASONETTE-iOS/pull/20">Log action</a> - An action that lets you log anything during execution. Built by <a href="https://github.com/seletz">@seletz</a>.</li>
-<li><a href="https://github.com/Jasonette/JASONETTE-iOS/pull/27">$background event</a> - An event to detect when the app goes into background mode. Thanks <a href="https://github.com/fretn">@fretz</a>!</li>
-<li><a href="https://github.com/Jasonette/JASONETTE-iOS/pull/30">components border</a> - Add &quot;border&quot; attribute to component styles. Now, any component can have a border surrounding them, thanks to <a href="https://github.com/WenchaoD">@WenchaoD</a>!</li>
-<li><a href="https://github.com/Jasonette/JASONETTE-iOS/pull/87">Loading indicator</a> - Another great feature addition by <a href="https://github.com/wajahatch888">@wajahatch888</a>. Displays a loading indicator when the content is loading.</li>
-<li><a href="https://github.com/Jasonette/JASONETTE-Android/issues/30">HTML component for Android</a> - I had actually left out this feature on Android initially because I wasn&#39;t sure how performant it would be to have WebViews as components. <a href="https://github.com/brad">@brad</a> went on and just built it himself, and turns out that it works super smooth! Now works cross-platform both on iOS and Android.</li>
-<li><a href="https://github.com/Jasonette/JASONETTE-iOS/pull/94">Image button</a> - Initially the buttons could only display text. Now it&#39;s possible to use image buttons. Both on iOS and Android.</li>
-</ul>
-
-<h3>Other Important Contributions</h3>
-
-<p>New features are exciting, but I think what&#39;s really important are things that we do to make the project itself much more maintainable and comprehensible so it&#39;s easier to work with. This includes:</p>
-
-<ol>
-<li>Documentation</li>
-<li>Adding automation to reduce repetitive tasks</li>
-<li>Making it easier to work with Jasonette itself</li>
-</ol>
-
-<p>It&#39;s still very early days for Jasonette so we lack a lot of these things. And the community is coming up with various solutions. <strong>I especially welcome these contributions with open arms</strong>. Here are some of the highlights we&#39;ve achieved:</p>
-
-<ul>
-<li><a href="https://github.com/Jasonette/documentation/commit/eb5734484d07b49ec81a70c5eb8c017eaa342412">Auto-generate documentation using Travis CI</a> - As an open source newbie I had no idea you could just automatically generate a documentation, so have been manually doing it. Now it&#39;s all automated via <a href="https://travis-ci.org/">Travis CI</a>, thanks to <a href="https://github.com/gtramontina">@gtramontina</a>!</li>
-<li><a href="https://github.com/Jasonette/JASONETTE-iOS/commit/0962d3bd2a7ccec7c091cb42a643055be7a03c6a">Integration with Code Climate</a> - I am learning about all kinds of great tools for maintaining and visualizing open source projects from contributions. <a href="https://codeclimate.com">Code Climate</a> is really nifty and lets you see problems with the code at a glance. Thanks to <a href="https://github.com/lukeramsden">@lukeramsden</a> for the integration!</li>
-<li><a href="https://github.com/Jasonette/JASONETTE-iOS/commit/81cf25c9b26fad1e066027e28daa9f13cdaabe3a">Make it easy to use multiple targets in XCode</a> - I honestly had never thought about this idea. <a href="https://github.com/golopupinsky">@golopupinsky</a> found that it becomes tedious to use one Jasonette project to build multiple apps, and just came up with a solution, and I think it will be super useful for people who want to juggle between building multiple apps using a single Jasonette project file.</li>
-</ul>
-
-<hr>
-
-<h2>What next in 2017? - Season 2 Preview</h2>
-
-<p>2016 was just the beginning. Our community is working on a lot of exciting things, and we plan to release tons of mind-blowing things in 2017. Here are some examples:</p>
-
-<h3>Oauth</h3>
-
-<p>This will be amazing once we roll out officially. It will be one of the most powerful features of Jasonette. Stay tuned :)</p>
-
-<h3>Package Manager</h3>
-
-<p>Jasonette was <a href="http://docs.jasonette.com/advanced/#extension">designed to be extensible</a>. However, while writing an extension for personal usage has been easy, it has always been difficult to share and distribute because of all the dependency management we had to deal with.</p>
-
-<p>After having tried multiple approaches to managing extensions, we&#39;ve finally found the best way to make writing extensions dead simple. We are still working on it and plan to release it soon.</p>
-
-<p>Expect to see a lot of cool additional features powered by JSON in 2017. </p>
-
-<h3>Lambda</h3>
-
-<p>I&#39;ll leave this up to your imagination :)</p>
-
-<p>All I have to say is that this will take jasonette to the next level.</p>
-
-<h3>Much more</h3>
-
-<p>Of course, there are a lot of other cool projects which are still work in progress but I won&#39;t mention them here just to keep the mystery 😁 </p>
-
-<p>Follow our project to stay updated!</p>
-
-<hr>
-
-<h2>Join us.</h2>
-
-<p>Sound exciting? join us on <a href="https://jasonette.now.sh/">slack</a>, <a href="https://forum.jasonette.com/">forum</a>, <a href="https://twitter.com/jasonclient">twitter</a>!</p>
-
-<p>Also, follow and contribute to the project on Github: <a href="https://github.com/Jasonette/JASONETTE-Android">Jasonette-Android</a>, <a href="https://github.com/Jasonette/JASONETTE-iOS">Jasonette-iOS</a></p>
-
-<p><strong>And most importantly, <a href="https://www.jasonette.com">Go build awesome things with it!</a></strong></p>
-
-<p><img src="/assets/join.png" alt="Join us"></p>
-
-  </div>
-  
 </div>
 
 <div class="pagination">
   
-    <span class="pagination-item older">Older</span>
+    <a class="pagination-item older" href="/page2">Older</a>
   
   
     <span class="pagination-item newer">Newer</span>
