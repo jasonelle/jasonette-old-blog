@@ -10,7 +10,7 @@ permalink:        pretty
 title:            jasonette
 description:          '⚡️ Native App over HTTP'
 url:              https://www.jasonette.com
-baseurl:         "/"
+#baseurl:         "/"
 
 #author:
 #  name:           JASON
