@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Supercharged tab bar!
-image: assets/tab_action.gif
+image: /assets/tab_action.gif
 ---
 
 With the latest version, Jasonette now supports [href](https://docs.jasonette.com/href) and [action](https://docs.jasonette.com/action) attributes for the bottom tab bar, which lets you do cool things like open a view in a modal, or execute any actions when you tap a tab item.
