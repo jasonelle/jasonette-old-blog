@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
  <title>jasonette</title>
- <link href="https://www.jasonette.com/atom.xml" rel="self"/>
- <link href="https://www.jasonette.com/"/>
- <updated>2017-02-07T14:05:31-05:00</updated>
- <id>https://www.jasonette.com</id>
+ <link href="http://localhost:4000/atom.xml" rel="self"/>
+ <link href="http://localhost:4000/"/>
+ <updated>2017-02-07T14:11:43-05:00</updated>
+ <id>http://localhost:4000</id>
  <author>
    <name></name>
    <email></email>
@@ -14,9 +14,9 @@
  
  <entry>
    <title>Supercharged tab bar!</title>
-   <link href="https://www.jasonette.com/2017/02/07/supercharged-tabbar/"/>
+   <link href="http://localhost:4000/2017/02/07/supercharged-tabbar/"/>
    <updated>2017-02-07T00:00:00-05:00</updated>
-   <id>https://www.jasonette.com/2017/02/07/supercharged-tabbar</id>
+   <id>http://localhost:4000/2017/02/07/supercharged-tabbar</id>
    <content type="html">&lt;p&gt;With the latest version, Jasonette now supports &lt;a href=&quot;https://docs.jasonette.com/href&quot;&gt;href&lt;/a&gt; and &lt;a href=&quot;https://docs.jasonette.com/action&quot;&gt;action&lt;/a&gt; attributes for the bottom tab bar, which lets you do cool things like open a view in a modal, or execute any actions when you tap a tab item.&lt;/p&gt;
 
 &lt;p&gt;Let me explain what this means.&lt;/p&gt;
@@ -156,9 +156,9 @@
  
  <entry>
    <title>Remote-control your Slack bots with JSON</title>
-   <link href="https://www.jasonette.com/2017/01/17/build-a-slackbot-with-jasonette/"/>
+   <link href="http://localhost:4000/2017/01/17/build-a-slackbot-with-jasonette/"/>
    <updated>2017-01-17T00:00:00-05:00</updated>
-   <id>https://www.jasonette.com/2017/01/17/build-a-slackbot-with-jasonette</id>
+   <id>http://localhost:4000/2017/01/17/build-a-slackbot-with-jasonette</id>
    <content type="html">&lt;p&gt;A couple of days ago, &lt;a href=&quot;https://github.com/shaunymca&quot;&gt;@shaunymca&lt;/a&gt; shared a really cool project on &lt;a href=&quot;https://jasonette.now.sh/&quot;&gt;our slack channel&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src='/assets/coffeebot.png' class='bordered'&gt;&lt;/p&gt;
@@ -249,9 +249,9 @@
  
  <entry>
    <title>Jasonette, 2016 in Review</title>
-   <link href="https://www.jasonette.com/2017/01/12/Jasonette-2016-in-review/"/>
+   <link href="http://localhost:4000/2017/01/12/Jasonette-2016-in-review/"/>
    <updated>2017-01-12T00:00:00-05:00</updated>
-   <id>https://www.jasonette.com/2017/01/12/Jasonette-2016-in-review</id>
+   <id>http://localhost:4000/2017/01/12/Jasonette-2016-in-review</id>
    <content type="html">&lt;p&gt;How are apps built?&lt;/p&gt;
 
 &lt;p&gt;You write a program and put it on the phone!&lt;/p&gt;
@@ -486,9 +486,9 @@
  
  <entry>
    <title>Remote-control your Slack bots with JSON</title>
-   <link href="https://www.jasonette.com/2016/01/17/build-a-slackbot-with-jasonette/"/>
+   <link href="http://localhost:4000/2016/01/17/build-a-slackbot-with-jasonette/"/>
    <updated>2016-01-17T00:00:00-05:00</updated>
-   <id>https://www.jasonette.com/2016/01/17/build-a-slackbot-with-jasonette</id>
+   <id>http://localhost:4000/2016/01/17/build-a-slackbot-with-jasonette</id>
    <content type="html">&lt;p&gt;&lt;strong&gt;Update:&lt;/strong&gt; As a mistake I timestamped this as 2016, but this post was just freshly published on January 17th of 2017. Sorry for the confusion! :D &lt;/p&gt;
 
 &lt;p&gt;A couple of days ago, &lt;a href=&quot;https://github.com/shaunymca&quot;&gt;@shaunymca&lt;/a&gt; shared a really cool project on &lt;a href=&quot;https://jasonette.now.sh/&quot;&gt;our slack channel&lt;/a&gt;.&lt;/p&gt;
@@ -581,9 +581,9 @@
  
  <entry>
    <title>Jasonette, 2016 in Review</title>
-   <link href="https://www.jasonette.com/2016/01/12/Jasonette-2016-in-review/"/>
+   <link href="http://localhost:4000/2016/01/12/Jasonette-2016-in-review/"/>
    <updated>2016-01-12T00:00:00-05:00</updated>
-   <id>https://www.jasonette.com/2016/01/12/Jasonette-2016-in-review</id>
+   <id>http://localhost:4000/2016/01/12/Jasonette-2016-in-review</id>
    <content type="html">&lt;p&gt;How are apps built?&lt;/p&gt;
 
 &lt;p&gt;You write a program and put it on the phone!&lt;/p&gt;
