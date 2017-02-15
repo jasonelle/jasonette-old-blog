@@ -4,7 +4,7 @@
  <title>jasonette</title>
  <link href="https://blog.jasonette.com/atom.xml" rel="self"/>
  <link href="https://blog.jasonette.com/"/>
- <updated>2017-02-15T08:47:21-05:00</updated>
+ <updated>2017-02-15T08:58:25-05:00</updated>
  <id>https://blog.jasonette.com</id>
  <author>
    <name></name>
@@ -14,9 +14,9 @@
  
  <entry>
    <title>How to do functional programming in JSON</title>
-   <link href="https://blog.jasonette.com/2017/02/08/functional-programming-in-json/"/>
-   <updated>2017-02-08T00:00:00-05:00</updated>
-   <id>https://blog.jasonette.com/2017/02/08/functional-programming-in-json</id>
+   <link href="https://blog.jasonette.com/2017/02/15/functional-programming-in-json/"/>
+   <updated>2017-02-15T00:00:00-05:00</updated>
+   <id>https://blog.jasonette.com/2017/02/15/functional-programming-in-json</id>
    <content type="html">&lt;p&gt;Today, let me show you something you have never seen--&lt;strong&gt;a programming language written in JSON&lt;/strong&gt;.&lt;/p&gt;
 
 &lt;p&gt;And not just any programming, but &lt;strong&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Functional_programming&quot;&gt;functional programming&lt;/a&gt;&lt;/strong&gt;.&lt;/p&gt;

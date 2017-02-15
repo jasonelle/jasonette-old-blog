@@ -1,6 +1,6 @@
 ---
 layout: post
-title: How to do functional programming in JSON
+title: Adventures in functional programming with JSON
 image: assets/halflife.jpg
 ---
 
