@@ -141,7 +141,7 @@ a.sidebar-nav-item{
 a.sidebar-nav-item.icon img{
 	margin-top: 5px;
 	width: 30px;
-  vertical-align: bottom;
+  vertical-align: middle;
 }
 a.sidebar-nav-item:hover,
 a.sidebar-nav-item:focus {
