@@ -7,7 +7,7 @@
 		<atom:link href="https://blog.jasonette.com/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
-				<title>Adventures in Programming in JSON</title>
+				<title>Designing a Programming Language in JSON</title>
 				        
 				
 					<description>&lt;p&gt;Today, let me show you something you have never seen--&lt;strong&gt;a programming language written in JSON&lt;/strong&gt;.&lt;/p&gt;

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Designing a Programming Language in JSON
+title: Designing a Functional Programming Language in JSON
 image: assets/halflife.jpg
 ---
 
