@@ -38,7 +38,7 @@ Let me share my 2016 with you today.
 
 Exactly 8 months ago from today, [I released an app called Jason](https://www.producthunt.com/posts/jason). This was a standalone app that was a precursor to Jasonette. You would enter a JSON URL into Jason app's address bar, and it would instantly turn into your own custom app.
 
-<img class='center' src='https://s3-us-west-2.amazonaws.com/www.jasonclient.org/intro.gif'>
+<img class='center medium' src='https://s3-us-west-2.amazonaws.com/www.jasonclient.org/intro.gif'>
 
 <br>
 
