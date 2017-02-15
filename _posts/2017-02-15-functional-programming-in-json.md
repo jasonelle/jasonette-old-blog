@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Adventures in Programming in JSON
+title: Designing a Programming Language in JSON
 image: assets/halflife.jpg
 ---
 
