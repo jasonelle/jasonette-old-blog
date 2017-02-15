@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Adventures in functional programming with JSON
+title: Adventures in Pogramming in JSON
 image: assets/halflife.jpg
 ---
 
