@@ -7,6 +7,18 @@
 		<atom:link href="https://blog.jasonette.com/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
+				<title>Designing a Programming Language in JSON</title>
+				        
+				
+					<description>&lt;p&gt;Today, let me show you something you have never seen--&lt;strong&gt;a programming language written in JSON&lt;/strong&gt;.&lt;/p&gt;
+</description>
+				
+				<pubDate>Wed, 15 Feb 2017 00:00:00 -0500</pubDate>
+				<link>https://blog.jasonette.com/2017/02/15/functional-programming-in-json/</link>
+				<guid isPermaLink="true">https://blog.jasonette.com/2017/02/15/functional-programming-in-json/</guid>
+			</item>
+		
+			<item>
 				<title>Supercharged tab bar!</title>
 				        
 				
