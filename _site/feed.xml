@@ -3,19 +3,41 @@
 	<channel>
 		<title></title>
 		<description>⚡️ Native App over HTTP</description>		
-		<link>https://blog.jasonette.com</link>
-		<atom:link href="https://blog.jasonette.com/feed.xml" rel="self" type="application/rss+xml" />
+		<link>http://localhost:4000</link>
+		<atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
-				<title>Designing a Programming Language in JSON</title>
+				<title>require JSON;</title>
+				        
+				
+					<description>Dynamic Multithreaded JSON fetch</description>
+				
+				<pubDate>Fri, 17 Feb 2017 00:00:00 -0500</pubDate>
+				<link>http://localhost:4000/2017/02/17/require/</link>
+				<guid isPermaLink="true">http://localhost:4000/2017/02/17/require/</guid>
+			</item>
+		
+			<item>
+				<title>require JSON;</title>
+				        
+				
+					<description>Dynamic Multithreaded JSON fetch</description>
+				
+				<pubDate>Wed, 15 Feb 2017 00:00:00 -0500</pubDate>
+				<link>http://localhost:4000/2017/02/15/requirejson/</link>
+				<guid isPermaLink="true">http://localhost:4000/2017/02/15/requirejson/</guid>
+			</item>
+		
+			<item>
+				<title>Designing a Functional Programming Language in JSON</title>
 				        
 				
 					<description>&lt;p&gt;Today, let me show you something you have never seen--&lt;strong&gt;a programming language written in JSON&lt;/strong&gt;.&lt;/p&gt;
 </description>
 				
 				<pubDate>Wed, 15 Feb 2017 00:00:00 -0500</pubDate>
-				<link>https://blog.jasonette.com/2017/02/15/functional-programming-in-json/</link>
-				<guid isPermaLink="true">https://blog.jasonette.com/2017/02/15/functional-programming-in-json/</guid>
+				<link>http://localhost:4000/2017/02/15/functional-programming-in-json/</link>
+				<guid isPermaLink="true">http://localhost:4000/2017/02/15/functional-programming-in-json/</guid>
 			</item>
 		
 			<item>
@@ -26,8 +48,8 @@
 </description>
 				
 				<pubDate>Tue, 07 Feb 2017 00:00:00 -0500</pubDate>
-				<link>https://blog.jasonette.com/2017/02/07/supercharged-tabbar/</link>
-				<guid isPermaLink="true">https://blog.jasonette.com/2017/02/07/supercharged-tabbar/</guid>
+				<link>http://localhost:4000/2017/02/07/supercharged-tabbar/</link>
+				<guid isPermaLink="true">http://localhost:4000/2017/02/07/supercharged-tabbar/</guid>
 			</item>
 		
 			<item>
@@ -38,8 +60,8 @@
 </description>
 				
 				<pubDate>Tue, 17 Jan 2017 00:00:00 -0500</pubDate>
-				<link>https://blog.jasonette.com/2017/01/17/build-a-slackbot-with-jasonette/</link>
-				<guid isPermaLink="true">https://blog.jasonette.com/2017/01/17/build-a-slackbot-with-jasonette/</guid>
+				<link>http://localhost:4000/2017/01/17/build-a-slackbot-with-jasonette/</link>
+				<guid isPermaLink="true">http://localhost:4000/2017/01/17/build-a-slackbot-with-jasonette/</guid>
 			</item>
 		
 			<item>
@@ -50,8 +72,8 @@
 </description>
 				
 				<pubDate>Thu, 12 Jan 2017 00:00:00 -0500</pubDate>
-				<link>https://blog.jasonette.com/2017/01/12/Jasonette-2016-in-review/</link>
-				<guid isPermaLink="true">https://blog.jasonette.com/2017/01/12/Jasonette-2016-in-review/</guid>
+				<link>http://localhost:4000/2017/01/12/Jasonette-2016-in-review/</link>
+				<guid isPermaLink="true">http://localhost:4000/2017/01/12/Jasonette-2016-in-review/</guid>
 			</item>
 		
 			<item>
@@ -62,8 +84,8 @@
 </description>
 				
 				<pubDate>Sun, 17 Jan 2016 00:00:00 -0500</pubDate>
-				<link>https://blog.jasonette.com/2016/01/17/build-a-slackbot-with-jasonette/</link>
-				<guid isPermaLink="true">https://blog.jasonette.com/2016/01/17/build-a-slackbot-with-jasonette/</guid>
+				<link>http://localhost:4000/2016/01/17/build-a-slackbot-with-jasonette/</link>
+				<guid isPermaLink="true">http://localhost:4000/2016/01/17/build-a-slackbot-with-jasonette/</guid>
 			</item>
 		
 			<item>
@@ -74,8 +96,8 @@
 </description>
 				
 				<pubDate>Tue, 12 Jan 2016 00:00:00 -0500</pubDate>
-				<link>https://blog.jasonette.com/2016/01/12/Jasonette-2016-in-review/</link>
-				<guid isPermaLink="true">https://blog.jasonette.com/2016/01/12/Jasonette-2016-in-review/</guid>
+				<link>http://localhost:4000/2016/01/12/Jasonette-2016-in-review/</link>
+				<guid isPermaLink="true">http://localhost:4000/2016/01/12/Jasonette-2016-in-review/</guid>
 			</item>
 		
 	</channel>
