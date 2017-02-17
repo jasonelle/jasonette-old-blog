@@ -10,7 +10,8 @@
 				<title>require JSON;</title>
 				        
 				
-					<description>Dynamic Multithreaded JSON fetch</description>
+					<description>&lt;p&gt;The &lt;a href=&quot;http://docs.jasonette.com/actions/#networkrequest&quot;&gt;$network.request&lt;/a&gt; action is used to dynamically fetch a &lt;strong&gt;single&lt;/strong&gt; remote JSON file.&lt;/p&gt;
+</description>
 				
 				<pubDate>Fri, 17 Feb 2017 00:00:00 -0500</pubDate>
 				<link>https://blog.jasonette.com/2017/02/17/require/</link>
