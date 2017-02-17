@@ -18,7 +18,7 @@
   <!-- CSS -->
   <link rel="stylesheet" href="/public/css/poole.css">
   <link rel="stylesheet" href="/public/css/syntax.css">
-  <link rel="stylesheet" href="/public/css/hyde.css?1487332454610731000">
+  <link rel="stylesheet" href="/public/css/hyde.css?1487332852018869000">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Crimson+Text:400,400italic,700,700italic" rel='stylesheet' type='text/css' />
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel='stylesheet' type='text/css'>
@@ -37,10 +37,10 @@
 <meta property="og:title" content="Home" />
 <meta name="description" content="⚡️ Native App over HTTP" />
 <meta property="og:description" content="⚡️ Native App over HTTP" />
-<link rel="canonical" href="http://localhost:4000/" />
-<meta property="og:url" content="http://localhost:4000/" />
+<link rel="canonical" href="https://blog.jasonette.com/" />
+<meta property="og:url" content="https://blog.jasonette.com/" />
 <meta property="og:site_name" content="jasonette" />
-<link rel="next" href="http://localhost:4000/page2">
+<link rel="next" href="https://blog.jasonette.com/page2">
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:site" content="@jasonclient" />
 <script type="application/ld+json">
@@ -49,7 +49,7 @@
 "name": "jasonette",
 "headline": "Home",
 "description": "⚡️ Native App over HTTP",
-"url": "http://localhost:4000/"}</script>
+"url": "https://blog.jasonette.com/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -396,299 +396,9 @@
 
 <h2>2. Only JSON type</h2>
 
-<p><a href="">$require</a> is strictly for fetching JSON. </p>
+<p><a href="http://docs.jasonette.com/actions/#require">$require</a> is strictly for fetching JSON. </p>
 
-<p>If you want to fetch HTML, RSS, or any raw content, these are not meant to be done in parallel and you need to use <a href="">$network.request</a>.</p>
-
-<p><br></p>
-
-<h1>Conclusion</h1>
-
-<p>Parallel network requests can be extremely powerful, especially considering how literally <strong>EVERYTHING on Jasonette is expressed in JSON.</strong></p>
-
-<p>This includes all of model, view, controller logic.</p>
-
-<p>All you need to do is:</p>
-
-<ol>
-<li><strong>Require some JSON object</strong></li>
-<li><strong>Assign them to a local variable</strong></li>
-<li><strong>Use it anywhere!</strong></li>
-</ol>
-
-<p>What&#39;s possible is only bound by your imagination.</p>
-
-<p>I&#39;ve been personally experimenting with $require and can see there&#39;s all kinds of potentially interesting use cases. If you find a clever use case, <a href="https://www.twitter.com/jasonclient">please share</a>!</p>
-
-<hr>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2017/02/15/requirejson/">
-        require JSON;
-      </a>
-    </h1>
-
-    <span class="post-date">15 Feb 2017</span>
-
-    <p>The <a href="http://docs.jasonette.com/actions/#networkrequest">$network.request</a> action is used to dynamically fetch a <strong>single</strong> remote JSON file.</p>
-
-<p>But what if you want to fetch <strong>as many JSON files as you want, simultaneously?</strong></p>
-
-<p>Welcome to the world of <a href="http://docs.jasonette.com/actions/#require">$require</a>.</p>
-
-<p><br></p>
-
-<p><img src="/assets/octopus.jpg" alt="parallel"></p>
-
-<p><br></p>
-
-<h1>Why would I want to do that?</h1>
-
-<p>Maybe you need to compose <strong>multiple sets of data</strong> to display to the view.</p>
-
-<p>Maybe you need to fetch JSON objects from multiple different servers, <strong>each for a different purpose</strong>.</p>
-
-<p>Or just maybe, you&#39;re building a completely <strong>decentralized networking app</strong> which needs to hit up every node individually!</p>
-
-<p>Just remember that <strong>EVERYTHING on Jasonette (models, actions, views, templates, styles, or whatever) is expressed in JSON</strong>, which means you can dynamically <strong>require</strong> any part of your app.</p>
-
-<hr>
-
-<p>In any case, this requires a powerful <strong>parallel networking</strong> feature.</p>
-
-<p><br></p>
-
-<h1>Problem</h1>
-
-<p>Let&#39;s say we wanted to fetch a remote JSON object and assign it to a local variable:</p>
-<div class="highlight"><pre><code class="language-" data-lang=""><span class="p">{</span><span class="w">
-  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$network.request"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://jsonplaceholder.typicode.com/posts"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$set"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"posts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{$jason}}"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<ol>
-<li>We use <a href="http://docs.jasonette.com/actions/#networkrequest">$network.request</a> to fetch some posts as JSON.</li>
-<li>Then we assign the result to a local variable <code>posts</code>, using the <a href="http://docs.jasonette.com/actions/#set">$set</a> action.</li>
-</ol>
-
-<p><br></p>
-
-<p><strong>Now, what if we wanted to fetch from 6 different resources and do the same thing? Here&#39;s the code:</strong></p>
-<div class="highlight"><pre><code class="language-" data-lang=""><span class="p">{</span><span class="w">
-  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$network.request"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://jsonplaceholder.typicode.com/posts"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$set"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"posts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{$jason}}"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$network.request"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://jsonplaceholder.typicode.com/comments"</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$set"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"comments"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{$jason}}"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$network.request"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://jsonplaceholder.typicode.com/albums"</span><span class="w">
-          </span><span class="p">},</span><span class="w">
-          </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$set"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-              </span><span class="nt">"albums"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{$jason}}"</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-              </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$network.request"</span><span class="p">,</span><span class="w">
-              </span><span class="nt">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://jsonplaceholder.typicode.com/photos"</span><span class="w">
-              </span><span class="p">},</span><span class="w">
-              </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$set"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                  </span><span class="nt">"photos"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{$jason}}"</span><span class="w">
-                </span><span class="p">},</span><span class="w">
-                </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$network.request"</span><span class="p">,</span><span class="w">
-                  </span><span class="nt">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                    </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://jsonplaceholder.typicode.com/todos"</span><span class="w">
-                  </span><span class="p">},</span><span class="w">
-                  </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$set"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                      </span><span class="nt">"todos"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{$jason}}"</span><span class="w">
-                    </span><span class="p">},</span><span class="w">
-                    </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$network.request"</span><span class="p">,</span><span class="w">
-                      </span><span class="nt">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                        </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://jsonplaceholder.typicode.com/users"</span><span class="w">
-                      </span><span class="p">},</span><span class="w">
-                      </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$set"</span><span class="p">,</span><span class="w">
-                        </span><span class="nt">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                          </span><span class="nt">"users"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{$jason}}"</span><span class="w">
-                        </span><span class="p">}</span><span class="w">
-                      </span><span class="p">}</span><span class="w">
-                    </span><span class="p">}</span><span class="w">
-                  </span><span class="p">}</span><span class="w">
-                </span><span class="p">}</span><span class="w">
-              </span><span class="p">}</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-          </span><span class="p">}</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<p>There are two problems:</p>
-
-<ol>
-<li>The code is too long</li>
-<li>It will be 6 times slow because it runs these network requests one after one, serially.</li>
-</ol>
-
-<p><br></p>
-
-<h1>Meet $require.</h1>
-
-<p>Now comes <a href="http://docs.jasonette.com/actions/#require">$require</a> to the rescue:</p>
-<div class="highlight"><pre><code class="language-" data-lang=""><span class="p">{</span><span class="w">
-  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$require"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"posts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://jsonplaceholder.typicode.com/posts"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"comments"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://jsonplaceholder.typicode.com/comments"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"albums"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://jsonplaceholder.typicode.com/albums"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"photos"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://jsonplaceholder.typicode.com/photos"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"todos"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://jsonplaceholder.typicode.com/todos"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"users"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://jsonplaceholder.typicode.com/users"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$set"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"posts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{$jason.posts}}"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"comments"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{$jason.comments}}"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"albums"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{$jason.albums}}"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"photos"</span><span class="p">:</span><span class="w">  </span><span class="s2">"{{$jason.photos}}"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"todos"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{$jason.todos}}"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"users"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{$jason.users}}"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<p>No kidding, this is it! This code does exactly the same thing as above!</p>
-
-<p>Furthermore it&#39;s 6 times faster since the requests are made concurrently.</p>
-
-<p>Basically, <code>$require</code> waits until all of the requests have returned (either success or failure), and then calls its <code>success</code> callback with the returned JSON objects.</p>
-
-<p>To reiterate:</p>
-
-<ol>
-<li>The code is much shorter</li>
-<li>Will be 6 times faster since the network requests are run in parallel</li>
-</ol>
-
-<p><br></p>
-
-<h1>Syntax</h1>
-
-<p>Let&#39;s get into the actual syntax.</p>
-
-<p>Just like any other actions, the <code>$require</code> action takes an <code>options</code> object. There are two patterns:</p>
-
-<ol>
-<li>Key: URL String</li>
-<li>Key: URL Array</li>
-</ol>
-
-<p><br></p>
-
-<h2>1. Key: URL String</h2>
-
-<p>The same syntax we saw above. Basically, the <code>$require</code> action looks at all <code>key: value</code> pairs in the <code>options</code> object, fetches all the URL strings, and then assigns each result to its corresponding key of the return value.</p>
-<div class="highlight"><pre><code class="language-" data-lang=""><span class="p">{</span><span class="w">
-  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$require"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"posts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://jsonplaceholder.typicode.com/posts"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"comments"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://jsonplaceholder.typicode.com/comments"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$set"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"jasonplaceholder_posts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{$jason.posts}}"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"jasonplaceholder_comments"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{$jason.comments}}"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<p>In this example, the keys are <code>posts</code> and <code>comments</code>, so you can access the results in the succeeding action (<code>$set</code>) using <code>{{$jason.posts}}</code> and <code>{{$jason.comments}}</code>.</p>
-
-<p><br></p>
-
-<h2>2. Key: URL Array</h2>
-
-<p>You can also have an array of URLs (instead of a single URL string) as the value.</p>
-<div class="highlight"><pre><code class="language-" data-lang=""><span class="p">{</span><span class="w">
-  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$require"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"https://jsonplaceholder.typicode.com/posts"</span><span class="p">,</span><span class="w"> </span><span class="s2">"https://jsonplaceholder.typicode.com/comments"</span><span class="p">]</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$set"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"jasonplaceholder_posts"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{$jason.result[0]}}"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"jasonplaceholder_comments"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{$jason.result[1]}}"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<p>In this example, we only have a single key (<code>result</code>) and the value is an array of URLs. So when we fetch these remote JSON content, we push them into the <code>result</code> array. Once all JSON responses have returned, we go on to the next action <code>$set</code>, where we can access them using <code>{{$jason.result[0]}}</code> and <code>{{$jason.result[1]}}</code>.</p>
-
-<p><br></p>
-
-<h1>Performance</h1>
-
-<p>The biggest concern I had when first working on this feature was performance. For some reason I had this idea that on mobile, only a single network request should be made at a time.</p>
-
-<p>Turns out, <strong>this was absolutely a non-issue!</strong> Upon actually trying it out on my iPhone and Android, I found that there is <strong>no noticeable difference</strong>!</p>
-
-<p>I thought about why this is so, and in retrospect it kind of makes sense. Here&#39;s the reasoning:</p>
-
-<p>Think about a typical app where the view displays multiple items, each with an image and some text. When you load this view, it&#39;s going out there and concurrently fetching EVERY image and displaying it on the screen. Which means, this type of concurrent requests have existed on a low level, and have already been working fine without me realizing. And in most cases JSON files are significantly smaller than images. If concurrent image downloads work fine, concurrent JSON downloads should have no problem!</p>
-
-<p><br></p>
-
-<h1>Note</h1>
-
-<p><code>$require</code> has one job--fetch multiple JSON files in parallel--and it doesn&#39;t try to be more than that. </p>
-
-<h2>1. Only GET request</h2>
-
-<p>Since <code>$require</code> is more about requiring multiple JSON files and not about actually making requests that will update things on the server, every <code>$require</code> is actually a <code>GET</code> request under the hood. </p>
-
-<h2>2. Only JSON type</h2>
-
-<p><a href="">$require</a> is strictly for fetching JSON. </p>
-
-<p>If you want to fetch HTML, RSS, or any raw content, these are not meant to be done in parallel and you need to use <a href="">$network.request</a>.</p>
+<p>If you want to fetch HTML, RSS, or any raw content, these are not meant to be done in parallel and you need to use <a href="http://docs.jasonette.com/actions/#networkrequest">$network.request</a>.</p>
 
 <p><br></p>
 
@@ -1385,6 +1095,247 @@
 <p><strong>Lastly, make sure to try out <a href="https://github.com/shaunymca">@shaunymca</a>&#39;s coffeebot app for your own slack channel! It&#39;s so cool! <a href="https://github.com/shaunymca/coffeeapp">https://github.com/shaunymca/coffeeapp</a>.</strong></p>
 
 <hr>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/2017/01/12/Jasonette-2016-in-review/">
+        Jasonette, 2016 in Review
+      </a>
+    </h1>
+
+    <span class="post-date">12 Jan 2017</span>
+
+    <p>How are apps built?</p>
+
+<p>You write a program and put it on the phone!</p>
+
+<p>But what if you could represent an entire native app as JSON and <strong>load it on demand from the cloud over HTTP</strong>, just like a web page?</p>
+
+<p><img src="http://jasonette.com/images/j.png" alt="image"></p>
+
+<p><br></p>
+
+<p>This little idea consumed the entirety of my life in 2016.</p>
+
+<p>And the result is <a href="https://www.jasonette.com">Jasonette</a>.</p>
+
+<p>Jasonette lets you <strong>build 100% native apps on Android and iOS simply by writing a single JSON markup.</strong> Watch the video below if you haven&#39;t yet. Your life will never be the same.</p>
+
+<p><br></p>
+
+<p><style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'>    <iframe title="YouTube video player" width="640" height="390" src="//www.youtube.com/embed/hfevBAAfCMQ" frameborder="0" allowfullscreen></iframe></div></p>
+
+<p><br></p>
+
+<p>When I look back at 2016, it really feels like ages because so many things happened.</p>
+
+<p>But it&#39;s crazy to think that it&#39;s only been 2 months since I open sourced Jasonette!</p>
+
+<p>Let me share my 2016 with you today.</p>
+
+<p><br></p>
+
+<h2>Season 1 Pilot: Jason</h2>
+
+<p>Exactly 8 months ago from today, <a href="https://www.producthunt.com/posts/jason">I released an app called Jason</a>. This was a standalone app that was a precursor to Jasonette. You would enter a JSON URL into Jason app&#39;s address bar, and it would instantly turn into your own custom app.</p>
+
+<p><img class='center medium' src='https://s3-us-west-2.amazonaws.com/www.jasonclient.org/intro.gif'></p>
+
+<p><br></p>
+
+<p>A lot of minds were blown:</p>
+
+<p><img src="https://pbs.twimg.com/media/CirgXxKXAAEoOXt.jpg:large" alt="twitter"></p>
+
+<p>But at the same time, this was one of the most esoteric apps one could build—an app within an app, <a href="https://en.wikipedia.org/wiki/Matryoshka_doll">a russian doll</a> of sorts—as pointed out below:</p>
+
+<p><img src="/assets/ph.png" alt="ph"></p>
+
+<p><br></p>
+
+<p>I didn&#39;t even have a specific set of target users in mind when I built this. I just built it because I could.™</p>
+
+<p>But I looked at all these reactions and thought about it:</p>
+
+<ol>
+<li>Other people were amazed that an app can be built this way, and wanted to build their own apps this way too.</li>
+<li>I wasn&#39;t interested in just another way of building apps. I was more interested in lowering the barrier so significantly that it changes the meaning of the term &quot;app&quot;.</li>
+<li>Charging for usage would beat the purpose since that would fail at lowering the barrier.</li>
+</ol>
+
+<p>I knew exactly what I had to do: Jason needed to be open sourced and completely set free.</p>
+
+<p>Well it shouldn&#39;t be that hard to open source. After all, I already have a functional code base, right?</p>
+
+<p>Hahaha. </p>
+
+<p>It took me 6 months.</p>
+
+<p><br></p>
+
+<h2>Intermission: Lessons learned from documentation</h2>
+
+<p>Once I dived in, I soon realized open sourcing is not just about putting the code out there, but making sure people can understand it easily.</p>
+
+<p>This was especially the case for Jasonette, because without a documented API, no one would be able to know what they can do with it. It would be like releasing a web browser without an HTML spec. Basically, the documentation itself was the product.</p>
+
+<p>And turns out, documentation is not easy. </p>
+
+<div class='jekyll-twitter-plugin'><blockquote class="twitter-tweet"><p lang="en" dir="ltr">Open source project is 1 percent inspiration, 99 percent documentation.</p>&mdash; ethan (@gliechtenstein) <a href="https://twitter.com/gliechtenstein/status/786284865733877764">October 12, 2016</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></div>
+
+<p><br></p>
+
+<p>For the next 6 months, I did nothing but documentation and code cleanup.</p>
+
+<p>These were my darkest days. I did nothing but work on the documentation, I wasn&#39;t creating something new, I was simply documenting something that already existed and I hated it. But what other options did I have? So I kept at it.</p>
+
+<p><strong>However, I soon realized that</strong> while frustrating, the process of documenting the project was extremely helpful:</p>
+
+<ol>
+<li>I got to understand my own code better.</li>
+<li>I found a lot of inconsistencies in the API while documenting, which needed to be refactored.</li>
+<li>I gained a birds-eye point of view of the project, which was crucial when I started working on the Android version later.</li>
+</ol>
+
+<p>But the thing is, the more I documented, the more I had to refactor, and the more I refactored, the more I had to document to reflect the update. By working more, I was creating even more work. At some point I started feeling like a <a href="https://en.wikipedia.org/wiki/Zeno&#x27;s_paradoxes#Achilles_and_the_tortoise">tortoise chasing after achilles</a>. Would I ever finish this?</p>
+
+<p>In the meantime, I had set up a landing page and kept adding new materials as soon as they were ready, even though I hadn&#39;t launched it yet. And somehow people were discovering it and sharing it.</p>
+
+<p>One day when I was begrudgingly working on documenting an <a href="https://github.com/Jasonette/s3-upload-example">express.js demo app</a> for Jasonette, I saw this tweet.</p>
+
+<div class='jekyll-twitter-plugin'><blockquote class="twitter-tweet"><p lang="en" dir="ltr">kind of interesting, 100% declarative apps with JSON <a href="https://t.co/hzjyhZKsmU">https://t.co/hzjyhZKsmU</a>, probably hella leaky abstraction in some cases but neat</p>&mdash; TJ Holowaychuk (@tjholowaychuk) <a href="https://twitter.com/tjholowaychuk/status/779092360487546880">September 22, 2016</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></div>
+
+<p>What a nice timing! I was very excited, and this encouraging tweet gave me all the strength I needed to finish up the docs and prepare for the launch... which wouldn&#39;t happen for another month and a half.</p>
+
+<hr>
+
+<h2>Season 1 Episode 01. Jasonette-iOS</h2>
+
+<p>On the morning of 11/4 <a href="https://news.ycombinator.com/item?id=12879179">I posted on Hacker News</a>. It shot up to #1 and stayed #1 the entire day.</p>
+
+<p>Then it went on to become the <strong>#1 Github trending project</strong>. Not too bad for my first ever open source contribution!</p>
+
+<p><img src="/assets/github_trending.png" alt="github"></p>
+
+<hr>
+
+<h2>Season 1 Episode 02. Jasonette-Android</h2>
+
+<p>Upon releasing the iOS version, the most frequently asked question was &quot;Android?&quot;. I wasn&#39;t surprised, since I knew that was the most obvious next step.</p>
+
+<p>However what I didn&#39;t know was how long it would take me to come up with one.</p>
+
+<p><strong>Or if it would be even possible at all.</strong></p>
+
+<p>I only knew that Android had a layout system called <code>LinearLayout</code> which works similar to <code>UIStackView</code> which I used for the iOS version. So I just assumed that it would be possible, but it was really not straightforward.</p>
+
+<p>This time, I decided not to torture myself with 6 months of agony. Instead of trying to make a perfect release, I decided to pick only the most crucial features and commit to releasing version 0 as soon as possible, and go from there.</p>
+
+<p>I set the goal: <strong>Implement the core engine and get it out there, in 1 month.</strong></p>
+
+<p>And surprisingly, I managed to succeed.</p>
+
+<p>Watch the android version and the ios version side by side. These are loading from exactly the same JSON you can find <a href="https://github.com/Jasonette/Instagram-UI-example/blob/master/home.json">here</a></p>
+
+<p><span class='col-6'><img src='https://cdn-images-1.medium.com/max/1200/1*yHXxTeQFdyWjxPSP2f7ZkA.gif'></span><span class='col-6'><img src='https://cdn-images-1.medium.com/max/1200/1*v9RxUZ-8XzLfDTfI3gmx6A.gif'></span></p>
+
+<hr>
+
+<h2>Season 1 Finale: Current state of Jasonette community</h2>
+
+<p>What excites me the most is that the project has managed to find a great community of people who share the same vision and all contributing to the project in many different ways.</p>
+
+<h3>Open source is magic</h3>
+
+<p>I&#39;ve never worked on open source before so all these contributions from people I&#39;ve never met still feel surreal to me.</p>
+
+<p>It&#39;s really amazing how people from all around the world can come together and collaborate to build something together this easily.</p>
+
+<h3>New features and projects</h3>
+
+<p>I went back and took a look at what our community has accomplished during the two months Jasonette has been out, and looks like we did a lot.</p>
+
+<p>Here are some of the <strong>new major features and projects</strong> we&#39;ve added since the launch (Not including bugfixes or iOS-to-Android feature port because that would make the list huuuge):</p>
+
+<ul>
+<li><a href="https://github.com/Jasonette/JASONETTE-Android"> 🔥 Jasonette-Android</a> - The name says it all. The Android implementation of Jasonette, which makes Jasonette fully cross platform.</li>
+<li><a href="https://github.com/Jasonette/JASONETTE-Android/issues/13">Android binary size reduction</a> - Initially the Android binary size was huge, at over 40MB. We&#39;ve made some optimizations which dropped it down to around 9MB, all the while supporting 100% of the parsers (json, csv, rss, xml, html), thanks for the contribution <a href="https://github.com/brad">@brad</a>!</li>
+<li><a href="https://github.com/Jasonette/JASONETTE-iOS/issues/7">Push notifications</a> - Push notifications on iOS purely powered by JSON. We will soon release this officially once we document the API and implement the Android version.</li>
+<li><a href="https://github.com/Jasonette/JASONETTE-iOS/pull/42">Local JSON</a> - This was one of the <a href="https://github.com/Jasonette/JASONETTE-iOS/issues/48">most higly requested</a> features. Some people wanted to embed a JSON file in their project locally instead of fetching from a remote server. I initially was hesitant but soon became convinced that it can be useful in many cases. Thanks to <a href="https://github.com/copongcopong">@copongcopong</a> for the implementation!</li>
+<li><a href="https://github.com/Jasonette/JASONETTE-iOS/issues/34">CocoaPods based extension management</a> - We had a long discussion thread about this on Github, and in the end, <a href="https://github.com/seletz">@seletz</a> implemented a solution which worked beautifully. We are currently working on the second iteration of extension management based on the insights we gained from this.</li>
+<li><a href="https://github.com/Jasonette/JASONETTE-iOS/pull/92">Ad integration</a> - This was also one of the <a href="https://github.com/Jasonette/JASONETTE-iOS/issues/79">most highly requested</a> features as well. Thanks to <a href="https://github.com/wajahatch888">@wajahatch888</a>, now we have AdMob support on iOS. <a href="https://github.com/Jasonette/JASONETTE-Android/issues/22">Android support</a> to come soon :)</li>
+<li><a href="https://github.com/Jasonette/JASONETTE-iOS/commit/b359ab6d44f88d54ca9a5240f0e62e4ec0ca6852">Deep linking</a> - Ability to open Jasonette apps using URL scheme (Example: <code>jasonette://href?url=https://www.jasonbase.com/things/dh3.json</code>)</li>
+<li><a href="https://github.com/Jasonette/JASONETTE-iOS/pull/20">Log action</a> - An action that lets you log anything during execution. Built by <a href="https://github.com/seletz">@seletz</a>.</li>
+<li><a href="https://github.com/Jasonette/JASONETTE-iOS/pull/27">$background event</a> - An event to detect when the app goes into background mode. Thanks <a href="https://github.com/fretn">@fretz</a>!</li>
+<li><a href="https://github.com/Jasonette/JASONETTE-iOS/pull/30">components border</a> - Add &quot;border&quot; attribute to component styles. Now, any component can have a border surrounding them, thanks to <a href="https://github.com/WenchaoD">@WenchaoD</a>!</li>
+<li><a href="https://github.com/Jasonette/JASONETTE-iOS/pull/87">Loading indicator</a> - Another great feature addition by <a href="https://github.com/wajahatch888">@wajahatch888</a>. Displays a loading indicator when the content is loading.</li>
+<li><a href="https://github.com/Jasonette/JASONETTE-Android/issues/30">HTML component for Android</a> - I had actually left out this feature on Android initially because I wasn&#39;t sure how performant it would be to have WebViews as components. <a href="https://github.com/brad">@brad</a> went on and just built it himself, and turns out that it works super smooth! Now works cross-platform both on iOS and Android.</li>
+<li><a href="https://github.com/Jasonette/JASONETTE-iOS/pull/94">Image button</a> - Initially the buttons could only display text. Now it&#39;s possible to use image buttons. Both on iOS and Android.</li>
+</ul>
+
+<h3>Other Important Contributions</h3>
+
+<p>New features are exciting, but I think what&#39;s really important are things that we do to make the project itself much more maintainable and comprehensible so it&#39;s easier to work with. This includes:</p>
+
+<ol>
+<li>Documentation</li>
+<li>Adding automation to reduce repetitive tasks</li>
+<li>Making it easier to work with Jasonette itself</li>
+</ol>
+
+<p>It&#39;s still very early days for Jasonette so we lack a lot of these things. And the community is coming up with various solutions. <strong>I especially welcome these contributions with open arms</strong>. Here are some of the highlights we&#39;ve achieved:</p>
+
+<ul>
+<li><a href="https://github.com/Jasonette/documentation/commit/eb5734484d07b49ec81a70c5eb8c017eaa342412">Auto-generate documentation using Travis CI</a> - As an open source newbie I had no idea you could just automatically generate a documentation, so have been manually doing it. Now it&#39;s all automated via <a href="https://travis-ci.org/">Travis CI</a>, thanks to <a href="https://github.com/gtramontina">@gtramontina</a>!</li>
+<li><a href="https://github.com/Jasonette/JASONETTE-iOS/commit/0962d3bd2a7ccec7c091cb42a643055be7a03c6a">Integration with Code Climate</a> - I am learning about all kinds of great tools for maintaining and visualizing open source projects from contributions. <a href="https://codeclimate.com">Code Climate</a> is really nifty and lets you see problems with the code at a glance. Thanks to <a href="https://github.com/lukeramsden">@lukeramsden</a> for the integration!</li>
+<li><a href="https://github.com/Jasonette/JASONETTE-iOS/commit/81cf25c9b26fad1e066027e28daa9f13cdaabe3a">Make it easy to use multiple targets in XCode</a> - I honestly had never thought about this idea. <a href="https://github.com/golopupinsky">@golopupinsky</a> found that it becomes tedious to use one Jasonette project to build multiple apps, and just came up with a solution, and I think it will be super useful for people who want to juggle between building multiple apps using a single Jasonette project file.</li>
+</ul>
+
+<hr>
+
+<h2>What next in 2017? - Season 2 Preview</h2>
+
+<p>2016 was just the beginning. Our community is working on a lot of exciting things, and we plan to release tons of mind-blowing things in 2017. Here are some examples:</p>
+
+<h3>Oauth</h3>
+
+<p>This will be amazing once we roll out officially. It will be one of the most powerful features of Jasonette. Stay tuned :)</p>
+
+<h3>Package Manager</h3>
+
+<p>Jasonette was <a href="http://docs.jasonette.com/advanced/#extension">designed to be extensible</a>. However, while writing an extension for personal usage has been easy, it has always been difficult to share and distribute because of all the dependency management we had to deal with.</p>
+
+<p>After having tried multiple approaches to managing extensions, we&#39;ve finally found the best way to make writing extensions dead simple. We are still working on it and plan to release it soon.</p>
+
+<p>Expect to see a lot of cool additional features powered by JSON in 2017. </p>
+
+<h3>Lambda</h3>
+
+<p>I&#39;ll leave this up to your imagination :)</p>
+
+<p>All I have to say is that this will take jasonette to the next level.</p>
+
+<h3>Much more</h3>
+
+<p>Of course, there are a lot of other cool projects which are still work in progress but I won&#39;t mention them here just to keep the mystery 😁 </p>
+
+<p>Follow our project to stay updated!</p>
+
+<hr>
+
+<h2>Join us.</h2>
+
+<p>Sound exciting? join us on <a href="https://jasonette.now.sh/">slack</a>, <a href="https://forum.jasonette.com/">forum</a>, <a href="https://twitter.com/jasonclient">twitter</a>!</p>
+
+<p>Also, follow and contribute to the project on Github: <a href="https://github.com/Jasonette/JASONETTE-Android">Jasonette-Android</a>, <a href="https://github.com/Jasonette/JASONETTE-iOS">Jasonette-iOS</a></p>
+
+<p><strong>And most importantly, <a href="https://www.jasonette.com">Go build awesome things with it!</a></strong></p>
+
+<p><img src="/assets/join.png" alt="Join us"></p>
 
   </div>
   
