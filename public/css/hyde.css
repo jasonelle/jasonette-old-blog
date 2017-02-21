@@ -413,3 +413,6 @@ li code{
 .highlight pre{
   font-size: 12px;
 }
+.align-top{
+  vertical-align: top;
+}
