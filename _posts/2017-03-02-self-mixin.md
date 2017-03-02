@@ -1,16 +1,16 @@
 ---
 layout: post
 title: Self Mix-in
-image: assets/mixins.jpg
+image: assets/wide_snake.png
 ---
 
-In the last post, I've talked about [mix-ins](), which lets you mix in remote JSON objects to generate a new JSON object.
+In the last post, I've talked about [mix-ins](/2017/02/27/mixins/) for [Jasonette](https://jasonette.com), which lets you mix in remote JSON objects to generate a new JSON object. (If you haven't read that one yet, [please read it first and come back](/2017/02/27/mixins/), you'll need to understand the basics first)
 
 Well, today I have a powerful piece of dark magic which takes this to a whole new level.
 
 **Meet Self-Mixin -- A mix-in that mixes a JSON object into itself**.
 
-![self mixin](/assets/snake.png)
+![self mixin](/assets/wide_snake.png)
 
 # Syntax
 
@@ -164,7 +164,7 @@ Here's what will happen:
 
 **Step 1.** Jasonette loads `parent.json` and discovers that there's a mixin to resolve.
 
-**Step 2.** So it mixes in the contents of `https://blah.blah/child.json`. To refresh memory, `child.json` looks like this:
+**Step 2.** So it mixes in the contents of `https://blah.blah/child.json`. To refresh your memory, `child.json` looks like this:
 
 ```
 {
@@ -624,32 +624,26 @@ Here's the result:
 
 # Finale
 
-## Apps as toys
-During the span of time it took me writing this single article, I could have literally made 100 apps with Jasonette. Jasonette makes it THAT easy to make apps.
+## Lambda 
 
-With mix-ins we go further. Soon you should be able to **make apps like putting together toy parts.**
+This concludes the series on the `lambda` branch rollout. To summarize, here's the list:
+
+- [$labmda](https://localhost:4000/2017/02/15/functional-programming-in-json/): Full functional programming in JSON. Including arguments, call stacks, return values, etc.
+- [$require](https://localhost:4000/2017/02/17/require/): Parallel JSON requests
+- [mixins](https://localhost:4000/2017/02/27/mixins/): Powerful JSON manipulation
+
+## Apps as toys
+During the span of time it took me writing this single article, I could have probably made 100 apps with Jasonette. Jasonette makes it THAT easy to make apps.
+
+With `lambda`, `require`, and `mix-in` we take a huge step forward.
+
+But we're still not there yet. More to come!
 
 <br>
 
-## Share your mixins!
-
-I have created a github repository where we can share mixins.
-
-Feel free to send pull requests to share your mixins. Also be sure to subscribe to the newsletter to stay up to date!
-
-
-<form action="//textethan.us8.list-manage.com/subscribe/post?u=54e23b3fe61843c19c384fc05&amp;id=76d5746d7b" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate="novalidate">
-  <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL" placeholder="enter email" aria-required="true">
-  <button type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button">Subscribe</button>
-  <div id="mce-responses" class="clear">
-      <div class="response" id="mce-error-response" style="display:none"></div>
-      <div class="response" id="mce-success-response" style="display:none"></div>
-  </div>
-  <div style="position: absolute; left: -5000px;" aria-hidden="true">
-      <input type="text" name="b_54e23b3fe61843c19c384fc05_76d5746d7b" tabindex="-1" value="">
-  </div>
-</form>
+**Making an app should be like putting together toy parts** 
 
 <br>
 
 <img src='/assets/voltron.png' class='bordered'>
+
