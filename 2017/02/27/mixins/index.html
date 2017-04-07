@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Mix~in! &middot; jasonette
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css?1491595318605540000">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Crimson+Text:400,400italic,700,700italic" rel='stylesheet' type='text/css' />
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://jekyll.gtat.me/assets/css/entypo.css" media="all">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+	<!-- Begin Jekyll SEO tag v2.1.0 -->
+<title>Mix~in! - jasonette</title>
+<meta property="og:title" content="Mix~in!" />
+<meta name="description" content="Have you met Frank, the ice cream truck guy? He takes a cone, adds a scoop of ice cream, maybe one more, adds some syrup, adds some sprinkles, and there you go, you have an ice cream cone!" />
+<meta property="og:description" content="Have you met Frank, the ice cream truck guy? He takes a cone, adds a scoop of ice cream, maybe one more, adds some syrup, adds some sprinkles, and there you go, you have an ice cream cone!" />
+<link rel="canonical" href="https://blog.jasonette.com/2017/02/27/mixins/" />
+<meta property="og:url" content="https://blog.jasonette.com/2017/02/27/mixins/" />
+<meta property="og:site_name" content="jasonette" />
+<meta property="og:image" content="https://blog.jasonette.com/assets/explosion.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-02-27T00:00:00-05:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@jasonclient" />
+<script type="application/ld+json">
+{"@context": "http://schema.org",
+"@type": "BlogPosting",
+"headline": "Mix~in!",
+"image": "https://blog.jasonette.com/assets/explosion.png",
+"datePublished": "2017-02-27T00:00:00-05:00",
+"description": "Have you met Frank, the ice cream truck guy? He takes a cone, adds a scoop of ice cream, maybe one more, adds some syrup, adds some sprinkles, and there you go, you have an ice cream cone!",
+"url": "https://blog.jasonette.com/2017/02/27/mixins/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <body class="layout-reverse">
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          <img class='logo' src='/assets/jasonette.png'>
+          <br>
+          jasonette
+        </a>
+      </h1>
+      <p class="lead">⚡️ Native App over HTTP</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <!--
+      
+
+      
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/about/">About</a>
+          
+        
+      
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+      -->
+      <a class="sidebar-nav-item inline nopadding" href="https://jasonette.com">About</a>
+      <a class="sidebar-nav-item inline nopadding" href="https://blog.jasonette.com">Blog</a>
+      <a class="sidebar-nav-item inline nopadding" href="https://docs.jasonette.com">Docs</a>
+      <div class='sidebar-nav-item bold'>Subscribe to Newsletter</div>
+			<div class='sidebar-nav-item nopadding'>
+				<form action="//textethan.us8.list-manage.com/subscribe/post?u=54e23b3fe61843c19c384fc05&amp;id=76d5746d7b" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate="novalidate">
+					<p>Important updates, milestones, new projects, and useful tips from the community.</p>
+					<input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL" placeholder="enter email" aria-required="true">
+					<button type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button">Subscribe</button>
+					<div id="mce-responses" class="clear">
+							<div class="response" id="mce-error-response" style="display:none"></div>
+							<div class="response" id="mce-success-response" style="display:none"></div>
+					</div>
+					<div style="position: absolute; left: -5000px;" aria-hidden="true">
+							<input type="text" name="b_54e23b3fe61843c19c384fc05_76d5746d7b" tabindex="-1" value="">
+					</div>
+				</form>
+			</div>
+      <div class='sidebar-nav-item bold'>Community</div>
+      <a class="sidebar-nav-item inline" href="https://jasonette.now.sh/">Slack</a>
+			<a class="sidebar-nav-item inline" href="https://forum.jasonette.com/">Forum</a>
+			<a class="sidebar-nav-item inline" href="https://www.twitter.com/jasonclient">Twitter</a>
+      <div class='sidebar-nav-item bold'>Github</div>
+			<a class="sidebar-nav-item icon" href="https://github.com/Jasonette/JASONETTE-Android">Android <img src='/assets/android.png'></a>
+			<a class="sidebar-nav-item icon" href="https://github.com/Jasonette/JASONETTE-iOS">iOS <img src='/assets/apple.png'></a>
+      <!--
+      <div class='sidebar-nav-item bold'>RSS</div>
+			<a class="sidebar-nav-item icon" href='/atom.xml'><img src='/assets/feed.png'></a>
+      -->
+    </nav>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">Mix~in!</h1>
+  <span class="post-date">27 Feb 2017</span>
+  <p>Have you met Frank, the ice cream truck guy? He takes a cone, adds a scoop of ice cream, maybe one more, adds some syrup, adds some sprinkles, and there you go, you have an ice cream cone!</p>
+
+<p><img src='/assets/mixins.png'></p>
+
+<p>He probably didn&#39;t make the sprinkles himself, he probably didn&#39;t make the syrup, and he probably didn&#39;t make the cone, but <strong>he sure can magically put them all together and make a really good ice cream cone, all in just ten seconds</strong>, and that&#39;s why we love him!</p>
+
+<p>Same with Jasonette: You should not have to waste time reinventing the ice cream cone.</p>
+
+<p><strong>Ideally, you shouldn&#39;t even have to write a single line of JSON logic, but simply put together what already exist, and still perform your magic!</strong></p>
+
+<p><br></p>
+
+<h1>What is a Mix-in?</h1>
+
+<p><a href="https://docs.jasonette.com/mixin/">Jasonette Mix-ins</a> let you compose multiple JSON objects into one. Since everything on Jasonette is written in JSON, this means you can mix in anything from actions to styles to templates!</p>
+
+<p>You can use it to:</p>
+
+<ol>
+<li>Separate your JSON markup into <strong>multiple manageable modules</strong></li>
+<li>Write <strong>reusable JSON modules</strong> to use in different projects</li>
+<li>Make your JSON module reusable and <strong>share</strong> it with the world!</li>
+</ol>
+
+<p><br></p>
+
+<h1>Usage</h1>
+
+<p>You can implement a mixin simply by adding a key named <code>&quot;@&quot;</code> and setting a URL as its value. Every time a Jasonette view loads, it:</p>
+
+<ol>
+<li>Looks at all occurrences of <code>&quot;@&quot;: URL</code> pairs.</li>
+<li>Fetches all the URL content, in parallel.</li>
+<li>Lastly, replaces each mixin expression with returned objects.</li>
+</ol>
+
+<p><br></p>
+
+<h2>1. Basic</h2>
+
+<p>Here&#39;s a mix-in expression:</p>
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+    </span><span class="nt">"item"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"@"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://jasonbase.com/things/h3f.json"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Let&#39;s say <code>https://jasonbase.com/things/h3f.json</code> contains a JSON object that looks like this:</p>
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"label"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hello"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"style"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"font"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HelveticaNeue"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#ff0000"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>When the mix-in is resolved, it fetches and merges this object into the original, becoming:</p>
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+    </span><span class="nt">"item"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"label"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hello"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"style"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"font"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HelveticaNeue"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#ff0000"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p><br></p>
+
+<h2>2. Array</h2>
+
+<p>You can also mix-in an array of URLs (example: <code>&quot;@&quot;: [URL, URL,.., URL]</code>).</p>
+
+<p>Here&#39;s an example where we mix-in the same JSON object 3 times:</p>
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+    </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"@"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="s2">"https://jasonbase.com/things/h3f.json"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"https://jasonbase.com/things/h3f.json"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"https://jasonbase.com/things/h3f.json"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>When resolved, this becomes:</p>
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+    </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"label"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hello"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"style"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"font"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HelveticaNeue"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#ff0000"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"label"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hello"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"style"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"font"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HelveticaNeue"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#ff0000"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"label"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hello"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"style"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"font"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HelveticaNeue"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#ff0000"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p><br></p>
+
+<h1>How is Mix-in different from $require?</h1>
+
+<p>We&#39;ve talked about the <a href="/2017/02/17/require/">$require action</a> in the last post. Let me explain how mixins are different before you get confused.</p>
+
+<p><br></p>
+
+<h2>1. Mix-ins modify the JSON markup itself.</h2>
+
+<p><a href="/2017/02/17/require/">$require</a> is an action, which means all JSON objects you fetch using <a href="/2017/02/17/require/">$require</a> stay on memory only while you&#39;re executing the next action. If you don&#39;t save it or use it in the succeeding action, the required JSON objects immediately go away. This is because <a href="/2017/02/17/require/">$require</a> fetches JSON objects straight to memory, independent from the main JSON markup tree.</p>
+
+<p>However, Mix-ins are designed for <strong>modifying the very JSON markup itself.</strong></p>
+
+<p>When I say JSON markup, I mean the main JSON that Jasonette loads for the current view, with a format that looks like this:</p>
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+  </span><span class="nt">"$jason"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"head"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"body"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>In fact, with mix-ins, your initial markup doesn&#39;t even have to contain the <code>$jason</code> key initially--<strong>You can use mix-ins to dynamically construct the final markup.</strong></p>
+
+<p>Which means something like the following is possible with mix-ins:</p>
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+  </span><span class="nt">"$jason"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"head"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"@"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://jasonbase.com/things/333.json"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"body"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"@"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://jasonbase.com/things/enf.json"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>as well as </p>
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+  </span><span class="nt">"@"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://jasonbase.com/things/111.json"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p><br></p>
+
+<h2>2. Mix-ins get resolved before interpretation</h2>
+
+<p>You already know <a href="https://docs.jasonette.com">how Jasonette works</a>:</p>
+
+<ol>
+<li>Fetches a JSON markup from a URL</li>
+<li>Interprets the fetched JSON to construct a view</li>
+<li>Bootstraps an <code>actions</code> controller which takes care of handling actions</li>
+</ol>
+
+<p><a href="/2017/02/17/require/">$require</a> starts its lifecycle after step 3, since it&#39;s an <a href="http://docs.jasonette.com/actions/">action</a>.</p>
+
+<p>On the other hand, mix-ins get resolved on <strong>step 1</strong> even before any interpretation is made. Here&#39;s the complete sequence:</p>
+
+<ol>
+<li>Fetches a JSON markup from a URL</li>
+<li><strong>The mix-in engine looks for any <code>&quot;@&quot;</code> references</strong></li>
+<li><strong>If any exist, the mix-in engine fetches all the referenced JSON objects and mixes them in to construct the final JSON markup.</strong></li>
+<li>Interprets the fetched JSON to construct a view</li>
+<li>Bootstraps an <code>actions</code> controller which takes care of handling actions</li>
+</ol>
+
+<p><br></p>
+
+<h1>Features</h1>
+
+<p>Due to the recursive/composable nature of JSON, Mix-ins are infinitely flexible.</p>
+
+<p>Let&#39;s take a look at some basic things you can do:</p>
+
+<h2>Multiple Mix-ins</h2>
+
+<p>There is NO limit to the number of times you can mix-in a remote JSON object into your main JSON. They all get fetched and mixed into the main JSON object, in parallel.</p>
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+    </span><span class="nt">"model"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"@"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://jasonbase.com/things/3nf.json"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"view"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"@"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://jasonbase.com/things/13f.json"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"controller"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"@"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://jasonbase.com/things/ina.json"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p><br></p>
+
+<h2>Mix-ins Everywhere</h2>
+
+<p>You can use mix-ins <strong>anywhere in the JSON tree</strong>, as many times as you want.</p>
+
+<p>Just remember that the mix-in resolution happens before any interpretation. The bootstrapping/rendering of the view comes after all this has completed.</p>
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+    </span><span class="nt">"$jason"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"head"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"styles"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"@"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://jasonbase.com/things/3nf.json"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"templates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"@"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://jasonbase.com/things/a33.json"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"actions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"oauth"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"@"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://jasonbase.com/things/4nf.json"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="nt">"$load"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"trigger"</span><span class="p">:</span><span class="w"> </span><span class="s2">"oauth"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$render"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p><br></p>
+
+<h2>Inheritance</h2>
+
+<p>Going extreme, you can even mix-in an entire JSON object to inherit from it.</p>
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+    </span><span class="nt">"@"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://jasonbase.com/things/3nf.json"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>You may be asking &quot;Why would I do that?&quot;. Which brings us to....</p>
+
+<p><br></p>
+
+<h2>Overriding</h2>
+
+<p>In many cases you probably want to:</p>
+
+<ol>
+<li>Mix-in some generic JSON module</li>
+<li>Then override some of the JSON attributes with your own custom values.</li>
+</ol>
+
+<p>Above example of mixing in an entire JSON is such a case. It becomes really powerful when you can mix in a JSON object AND override on top of that--it effectively becomes <a href="https://en.wikipedia.org/wiki/Inheritance_(object-oriented_programming)">inheritance</a>.</p>
+
+<p>Let&#39;s say <code>https://jasonbase.com/things/3nf.json</code> contained the following JSON:</p>
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+    </span><span class="nt">"lastname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Simpson"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"742 Evergreen Terrace"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Springfield"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Here&#39;s a mix-in expression that references this:</p>
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">[{</span><span class="w">
+    </span><span class="nt">"firstname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bart"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"@"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://jasonbase.com/things/3nf.json"</span><span class="w">
+</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"firstname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Homer"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"@"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://jasonbase.com/things/3nf.json"</span><span class="w">
+</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"firstname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lisa"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"@"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://jasonbase.com/things/3nf.json"</span><span class="w">
+</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"firstname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Maggie"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"@"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://jasonbase.com/things/3nf.json"</span><span class="w">
+</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"firstname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Marge"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"@"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://jasonbase.com/things/3nf.json"</span><span class="w">
+</span><span class="p">}]</span><span class="w">
+</span></code></pre></div>
+<p>When resolved, it merges in the remote JSON object for each, and also sets the local custom attribute <code>&quot;firstname&quot;</code> on top of that, becoming:</p>
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">[{</span><span class="w">
+    </span><span class="nt">"firstname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bart"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"lastname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Simpson"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"742 Evergreen Terrace"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Springfield"</span><span class="w">
+</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"firstname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Homer"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"lastname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Simpson"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"742 Evergreen Terrace"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Springfield"</span><span class="w">
+</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"firstname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lisa"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"lastname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Simpson"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"742 Evergreen Terrace"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Springfield"</span><span class="w">
+</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"firstname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Maggie"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"lastname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Simpson"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"742 Evergreen Terrace"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Springfield"</span><span class="w">
+</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"firstname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Marge"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"lastname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Simpson"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"742 Evergreen Terrace"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Springfield"</span><span class="w">
+</span><span class="p">}]</span><span class="w">
+</span></code></pre></div>
+<p><br></p>
+
+<h2>Partial Mix-in</h2>
+
+<p>Sometimes you only want to import ONLY a part of a remote JSON object. Let&#39;s look at an example:</p>
+<div class="highlight"><pre><code class="language-" data-lang=""><span class="p">{</span><span class="w">
+  </span><span class="nt">"posts"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+    </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hello World"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lorem Ipsum blah blah"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"comments"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+      </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kat"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Great job!"</span><span class="w">
+    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sophie"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"You suck!"</span><span class="w">
+    </span><span class="p">}]</span><span class="w">
+  </span><span class="p">}]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>We can mix-in the entire object with:</p>
+<div class="highlight"><pre><code class="language-" data-lang=""><span class="p">{</span><span class="w">
+  </span><span class="nt">"@"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://jasonbase.com/things/n3f.json"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>But what if we <strong>only wanted</strong> the <code>comments</code> array from the first post? Simple! Just prepend the URL with the path:</p>
+<div class="highlight"><pre><code class="language-" data-lang=""><span class="p">{</span><span class="w">
+  </span><span class="nt">"@"</span><span class="p">:</span><span class="w"> </span><span class="s2">"posts[0].comments@https://jasonbase.com/things/n3f.json"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p><br></p>
+
+<h1>Performance? No Problem!</h1>
+
+<p>As mentioned in the <a href="/2017/02/17/require/">$require article</a>, the performance for parallel loading is not much different from loading a single JSON object, you will fail to notice any difference!</p>
+
+<blockquote>
+<p>The biggest concern I had when first working on this feature was performance. For some reason I had this idea that on mobile, only a single network request should be made at a time.</p>
+
+<p>Turns out, this was absolutely a non-issue! Upon actually trying it out on my iPhone and Android, I found that there is no noticeable difference!</p>
+
+<p>I thought about why this is so, and in retrospect it kind of makes sense. Here&#39;s the reasoning:</p>
+
+<p>Think about a typical app where the view displays multiple items, each with an image and some text. When you load this view, it&#39;s going out there and concurrently fetching EVERY image and displaying it on the screen. Which means, this type of concurrent requests have existed on a low level, and have already been working fine without me realizing. And in most cases JSON files are significantly smaller than images. If concurrent image downloads work fine, concurrent JSON downloads should have no problem!</p>
+
+<p>(from <a href="/2017/02/17/require/">the $require.json article</a>)</p>
+</blockquote>
+
+<p><br></p>
+
+<h1>One more thing...</h1>
+
+<p>My original goal was to make this the final post of the series.</p>
+
+<p>But there&#39;s one more type of Mix-in which takes all I&#39;ve explained here to a whole new level.</p>
+
+<p>This requires its own post, so I am going to write another article on this soon. Stay tuned!</p>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/2017/04/07/JSON-web-container/">
+            JSON web container
+            <small>07 Apr 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2017/03/02/self-mixin/">
+            Self Mix-in
+            <small>02 Mar 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2017/02/17/require/">
+            require JSON;
+            <small>17 Feb 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+</html>

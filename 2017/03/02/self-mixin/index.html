@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Self Mix-in &middot; jasonette
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css?1491595318605540000">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Crimson+Text:400,400italic,700,700italic" rel='stylesheet' type='text/css' />
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://jekyll.gtat.me/assets/css/entypo.css" media="all">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+	<!-- Begin Jekyll SEO tag v2.1.0 -->
+<title>Self Mix-in - jasonette</title>
+<meta property="og:title" content="Self Mix-in" />
+<meta name="description" content="In the last post, I&#39;ve talked about mix-ins for Jasonette, which lets you mix in remote JSON objects to generate a new JSON object. (If you haven&#39;t read that one yet, please read it first and come back, you&#39;ll need to understand the basics first)" />
+<meta property="og:description" content="In the last post, I&#39;ve talked about mix-ins for Jasonette, which lets you mix in remote JSON objects to generate a new JSON object. (If you haven&#39;t read that one yet, please read it first and come back, you&#39;ll need to understand the basics first)" />
+<link rel="canonical" href="https://blog.jasonette.com/2017/03/02/self-mixin/" />
+<meta property="og:url" content="https://blog.jasonette.com/2017/03/02/self-mixin/" />
+<meta property="og:site_name" content="jasonette" />
+<meta property="og:image" content="https://blog.jasonette.com/assets/wide_snake.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-03-02T00:00:00-05:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@jasonclient" />
+<script type="application/ld+json">
+{"@context": "http://schema.org",
+"@type": "BlogPosting",
+"headline": "Self Mix-in",
+"image": "https://blog.jasonette.com/assets/wide_snake.png",
+"datePublished": "2017-03-02T00:00:00-05:00",
+"description": "In the last post, I&#39;ve talked about mix-ins for Jasonette, which lets you mix in remote JSON objects to generate a new JSON object. (If you haven&#39;t read that one yet, please read it first and come back, you&#39;ll need to understand the basics first)",
+"url": "https://blog.jasonette.com/2017/03/02/self-mixin/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <body class="layout-reverse">
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          <img class='logo' src='/assets/jasonette.png'>
+          <br>
+          jasonette
+        </a>
+      </h1>
+      <p class="lead">⚡️ Native App over HTTP</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <!--
+      
+
+      
+      
+        
+          
+        
+      
+        
+          
+            <a class="sidebar-nav-item" href="/about/">About</a>
+          
+        
+      
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+      -->
+      <a class="sidebar-nav-item inline nopadding" href="https://jasonette.com">About</a>
+      <a class="sidebar-nav-item inline nopadding" href="https://blog.jasonette.com">Blog</a>
+      <a class="sidebar-nav-item inline nopadding" href="https://docs.jasonette.com">Docs</a>
+      <div class='sidebar-nav-item bold'>Subscribe to Newsletter</div>
+			<div class='sidebar-nav-item nopadding'>
+				<form action="//textethan.us8.list-manage.com/subscribe/post?u=54e23b3fe61843c19c384fc05&amp;id=76d5746d7b" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate="novalidate">
+					<p>Important updates, milestones, new projects, and useful tips from the community.</p>
+					<input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL" placeholder="enter email" aria-required="true">
+					<button type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button">Subscribe</button>
+					<div id="mce-responses" class="clear">
+							<div class="response" id="mce-error-response" style="display:none"></div>
+							<div class="response" id="mce-success-response" style="display:none"></div>
+					</div>
+					<div style="position: absolute; left: -5000px;" aria-hidden="true">
+							<input type="text" name="b_54e23b3fe61843c19c384fc05_76d5746d7b" tabindex="-1" value="">
+					</div>
+				</form>
+			</div>
+      <div class='sidebar-nav-item bold'>Community</div>
+      <a class="sidebar-nav-item inline" href="https://jasonette.now.sh/">Slack</a>
+			<a class="sidebar-nav-item inline" href="https://forum.jasonette.com/">Forum</a>
+			<a class="sidebar-nav-item inline" href="https://www.twitter.com/jasonclient">Twitter</a>
+      <div class='sidebar-nav-item bold'>Github</div>
+			<a class="sidebar-nav-item icon" href="https://github.com/Jasonette/JASONETTE-Android">Android <img src='/assets/android.png'></a>
+			<a class="sidebar-nav-item icon" href="https://github.com/Jasonette/JASONETTE-iOS">iOS <img src='/assets/apple.png'></a>
+      <!--
+      <div class='sidebar-nav-item bold'>RSS</div>
+			<a class="sidebar-nav-item icon" href='/atom.xml'><img src='/assets/feed.png'></a>
+      -->
+    </nav>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">Self Mix-in</h1>
+  <span class="post-date">02 Mar 2017</span>
+  <p>In the last post, I&#39;ve talked about <a href="/2017/02/27/mixins/">mix-ins</a> for <a href="https://jasonette.com">Jasonette</a>, which lets you mix in remote JSON objects to generate a new JSON object. (If you haven&#39;t read that one yet, <a href="/2017/02/27/mixins/">please read it first and come back</a>, you&#39;ll need to understand the basics first)</p>
+
+<p>Well, today I have a powerful piece of dark magic which takes this to a whole new level.</p>
+
+<p><strong>Meet Self-Mixin -- A mix-in that mixes a JSON object into itself</strong>.</p>
+
+<p><img src="/assets/wide_snake.png" alt="self mixin"></p>
+
+<h1>Syntax</h1>
+
+<p>There&#39;s only one thing you need to know: <code>$document</code>.</p>
+
+<p><code>$document</code> refers to the <strong>the currently loaded JSON tree</strong>.</p>
+
+<p>For example, let&#39;s imagine we&#39;ve loaded the following JSON on Jasonette.</p>
+<div class="highlight"><pre><code class="language-" data-lang=""><span class="p">{</span><span class="w">
+  </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"label"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Label 1"</span><span class="w">
+  </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"label"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Label 2"</span><span class="w">
+  </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"label"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Label 3"</span><span class="w">
+  </span><span class="p">}],</span><span class="w">
+  </span><span class="nt">"$jason"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"body"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"sections"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+        </span><span class="nt">"@"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$document.items"</span><span class="w">
+      </span><span class="p">}]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Notice the <code>$document.items</code> part. This is a self mixin in action.</p>
+
+<p>When resolving, Jasonette looks at the loaded JSON tree itself (<code>$document</code>) and searches for an attribute called <code>items</code>, then it replaces the mixin expression with the object, which results in:</p>
+<div class="highlight"><pre><code class="language-" data-lang=""><span class="p">{</span><span class="w">
+  </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"label"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Label 1"</span><span class="w">
+  </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"label"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Label 2"</span><span class="w">
+  </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"label"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Label 3"</span><span class="w">
+  </span><span class="p">}],</span><span class="w">
+  </span><span class="nt">"$jason"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"body"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"sections"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+        </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+          </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"label"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Label 1"</span><span class="w">
+        </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"label"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Label 2"</span><span class="w">
+        </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"label"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Label 3"</span><span class="w">
+        </span><span class="p">}]</span><span class="w">
+      </span><span class="p">}]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p><br></p>
+
+<h1>$document is contextual</h1>
+
+<p><code>$document</code> is a contextual concept. The same <code>$document</code> reference can point to a different object depending on how the JSON object was loaded (<strong>Was it loaded as the main JSON markup?</strong> vs. <strong>Was it loaded from the main markup as a mix-in?</strong>)</p>
+
+<p>Let&#39;s take a look at some examples:</p>
+
+<h2>1. Loaded as the main JSON markup</h2>
+
+<p>Here&#39;s a basic case:</p>
+
+<p><strong>https://blah.blah/child.json</strong></p>
+<div class="highlight"><pre><code class="language-" data-lang=""><span class="p">{</span><span class="w">
+  </span><span class="nt">"$jason"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"head"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"templates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"body"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"sections"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+            </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+              </span><span class="nt">"@"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$document.model"</span><span class="w">
+            </span><span class="p">}]</span><span class="w">
+          </span><span class="p">}]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"model"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"label"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bye World"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>When Jasonette loads and resolves the <code>&quot;@&quot;: &quot;$document.model&quot;</code>, it takes the current JSON tree&#39;s <code>model</code> attribute and replaces it into the mixin expression, and we end up with:</p>
+<div class="highlight"><pre><code class="language-" data-lang=""><span class="p">{</span><span class="w">
+  </span><span class="nt">"$jason"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"head"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"templates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"body"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"sections"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+            </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+              </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"label"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bye World"</span><span class="w">
+            </span><span class="p">}]</span><span class="w">
+          </span><span class="p">}]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"model"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"label"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bye World"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>But we already knew that. Nothing special here.</p>
+
+<p><br></p>
+
+<h2>2. Loaded as a mix-in</h2>
+
+<p>This time, let&#39;s try taking the same <code>child.json</code> and mix it into another JSON called <code>parent.json</code> like this:</p>
+
+<p><strong>https://blah.blah/parent.json</strong></p>
+<div class="highlight"><pre><code class="language-" data-lang=""><span class="p">{</span><span class="w">
+  </span><span class="nt">"@"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://blah.blah/child.json"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"model"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"label"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hello World"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Here&#39;s what will happen:</p>
+
+<p><strong>Step 1.</strong> Jasonette loads <code>parent.json</code> and discovers that there&#39;s a mixin to resolve.</p>
+
+<p><strong>Step 2.</strong> So it mixes in the contents of <code>https://blah.blah/child.json</code>. To refresh your memory, <code>child.json</code> looks like this:</p>
+<div class="highlight"><pre><code class="language-" data-lang=""><span class="p">{</span><span class="w">
+  </span><span class="nt">"$jason"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"head"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"templates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"body"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"sections"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+            </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+              </span><span class="nt">"@"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$document.model"</span><span class="w">
+            </span><span class="p">}]</span><span class="w">
+          </span><span class="p">}]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"model"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"label"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bye World"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p><strong>Step 3.</strong> Notice how <code>parent.json</code> and <code>child.json</code> both have the <code>model</code> attribute, but with different values. Whenever there&#39;s a conflict, the remotely mixed-in attribute (<code>model</code> from <code>child.json</code>) gets overridden by the main one (<code>model</code> attribute from <code>parent.json</code>) like this:</p>
+<div class="highlight"><pre><code class="language-" data-lang=""><span class="p">{</span><span class="w">
+  </span><span class="nt">"$jason"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"head"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"templates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"body"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"sections"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+            </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+              </span><span class="nt">"@"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$document.model"</span><span class="w">
+            </span><span class="p">}]</span><span class="w">
+          </span><span class="p">}]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"model"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"label"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hello World"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p><strong>Step 4.</strong> Now Jasonette finds that there&#39;s still another mixin to resolve: <code>$document.model</code>. So it mixes in the <code>model</code> attribute.</p>
+
+<p>The final result is:</p>
+<div class="highlight"><pre><code class="language-" data-lang=""><span class="p">{</span><span class="w">
+  </span><span class="nt">"$jason"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"head"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"templates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"body"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"sections"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+            </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+              </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"label"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hello World"</span><span class="w">
+            </span><span class="p">}]</span><span class="w">
+          </span><span class="p">}]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"model"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"label"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hello World"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p><strong>Important distinction:</strong> In the previous example the <code>$document.model</code> inside <code>child.json</code> was interpreted as <code>child.json</code> itself, but this time the same <code>$document.model</code> was interpreted as <code>parent.json</code>, since its interpretation was carried out <strong>after</strong> it was mixed into <code>parent.json</code>.</p>
+</blockquote>
+
+<p><br></p>
+
+<h1>Impossible is Nothing</h1>
+
+<p>Let&#39;s step back and think about what all this means.</p>
+
+<p>This means now you can practically <strong>manipulate ANY part of a JSON tree</strong> at your will.</p>
+
+<h2>1. Organize the JSON any way you want</h2>
+
+<p>Previously Jasonette had some conventions you needed to follow. For example, you place templates under <code>$jason.head.templates</code>, data under <code>$jason.head.data</code>, actions under <code>$jason.head.actions</code>, and so forth.</p>
+<div class="highlight"><pre><code class="language-" data-lang=""><span class="p">{</span><span class="w">
+  </span><span class="nt">"$jason"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"head"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"dwarfs"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+          </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doc"</span><span class="w">
+        </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dopey"</span><span class="w">
+        </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bashful"</span><span class="w">
+        </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Grumpy"</span><span class="w">
+        </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sneezy"</span><span class="w">
+        </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sleepy"</span><span class="w">
+        </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Happy"</span><span class="w">
+        </span><span class="p">}]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"templates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"body"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"sections"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+            </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="nt">"{{#each model.dwarfs}}"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"label"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{username}}"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">}]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>This still applies, but you are no longer locked into writing your markup strictly this way since you now have access to ANY part of the entire JSON tree.</p>
+
+<p>Here&#39;s an example that does the same thing as above:</p>
+<div class="highlight"><pre><code class="language-" data-lang=""><span class="p">{</span><span class="w">
+  </span><span class="nt">"$jason"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"head"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"@"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$document.model"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"templates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"@"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$document.view.body"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"view"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"body"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"sections"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+        </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"{{#each model.dwarfs}}"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"label"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{username}}"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"model"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"dwarfs"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+      </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doc"</span><span class="w">
+    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dopey"</span><span class="w">
+    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bashful"</span><span class="w">
+    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Grumpy"</span><span class="w">
+    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sneezy"</span><span class="w">
+    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sleepy"</span><span class="w">
+    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Happy"</span><span class="w">
+    </span><span class="p">}]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Combine this with remote mix-ins and you have something like:</p>
+<div class="highlight"><pre><code class="language-" data-lang=""><span class="p">{</span><span class="w">
+  </span><span class="nt">"$jason"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"head"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"@"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$document.model"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"templates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"@"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$document.view.body"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"view"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"@"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://blah.blah/body.json"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"model"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"@"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://blah.blah/dwarfs.json"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>You can even mix-in the <code>$jason</code> object from remote:</p>
+<div class="highlight"><pre><code class="language-" data-lang=""><span class="p">{</span><span class="w">
+  </span><span class="nt">"@"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://blah.blah/jason_skeleton.json"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"view"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"@"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://blah.blah/body.json"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"model"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"@"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://blah.blah/dwarfs.json"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>where <code>jason_skeleton.json</code> looks like this:</p>
+
+<p><strong>https://blah.blah/jason_skeleton.json</strong></p>
+<div class="highlight"><pre><code class="language-" data-lang=""><span class="p">{</span><span class="w">
+  </span><span class="nt">"$jason"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"head"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"@"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$document.model"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"templates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"@"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$document.view.body"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p><br></p>
+
+<h2>2. Modularize and reuse</h2>
+
+<p>Once you get the hang of it, you&#39;ll come up with all kinds of creative ways of utilizing this feature. Let me explain one.</p>
+
+<p>Let&#39;s go back to the dwarfs app example. What if we wanted to take the same app and just switch out the data to build a new app? Here&#39;s the original view:</p>
+
+<p><strong>https://blah.blah/view.json</strong></p>
+<div class="highlight"><pre><code class="language-" data-lang=""><span class="p">{</span><span class="w">
+  </span><span class="nt">"body"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"sections"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+      </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"{{#each model.dwarfs}}"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"label"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{username}}"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>As you can see, the template makes two assumptions:</p>
+
+<ol>
+<li><code>$jason.head.data.model</code> has an array called <code>dwarfs</code></li>
+<li>The <code>dwarfs</code> array contains objects with the attribute <code>username</code>. </li>
+</ol>
+
+<p>So we immediately run into a problem. This view is not really reusable outside of this dwarfs app context. For example we may have an API that returns the following:</p>
+<div class="highlight"><pre><code class="language-" data-lang=""><span class="p">{</span><span class="w">
+  </span><span class="nt">"response"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"movies"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+      </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"American Psycho"</span><span class="w">
+    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fight Club"</span><span class="w">
+    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Matrix"</span><span class="w">
+    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The Shining"</span><span class="w">
+    </span><span class="p">}]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>First, let&#39;s fix the <code>model.dwarfs</code> part. Let&#39;s switch it out with something that&#39;s more generic: <code>model.items</code></p>
+<div class="highlight"><pre><code class="language-" data-lang=""><span class="p">{</span><span class="w">
+  </span><span class="nt">"body"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"sections"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+      </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"{{#each model.items}}"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"label"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{username}}"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Now let&#39;s go back to the main JSON. Currently it looks like this:</p>
+<div class="highlight"><pre><code class="language-" data-lang=""><span class="p">{</span><span class="w">
+  </span><span class="nt">"@"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://blah.blah/jason_skeleton.json"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"view"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"@"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://blah.blah/body.json"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"model"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"@"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://blah.blah/dwarfs.json"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Let&#39;s change this since it wouldn&#39;t work anymore now that the view is expecting <code>model.items</code>. We need to create a mapping that transforms <code>model.dwarfs</code> into <code>model.items</code>, like this:</p>
+<div class="highlight"><pre><code class="language-" data-lang=""><span class="p">{</span><span class="w">
+  </span><span class="nt">"@"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://blah.blah/jason_skeleton.json"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"view"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"@"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://blah.blah/body.json"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"model"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"@"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dwarfs@https://blah.blah/dwarfs.json"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Here we have used partial mixin (introduced in <a href="">the last article on mixins</a>) to select <code>dwarfs</code> and assign it to <code>$document.model.items</code>.</p>
+
+<p>This solves the first problem.</p>
+
+<p><br></p>
+
+<p>Now, we still have one more problem to solve. We want to make the <code>&quot;text&quot;: &quot;{{username}}&quot;</code> part generic as well so it can be reused for any other cases. How can we create a mapping for this?</p>
+
+<p>Let&#39;s go back to <code>view.json</code>:</p>
+<div class="highlight"><pre><code class="language-" data-lang=""><span class="p">{</span><span class="w">
+  </span><span class="nt">"body"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"sections"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+      </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"{{#each model.items}}"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"label"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{username}}"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Instead of <code>&quot;text&quot;: &quot;{{username}}&quot;</code> we will use a self-mixin.</p>
+<div class="highlight"><pre><code class="language-" data-lang=""><span class="p">{</span><span class="w">
+  </span><span class="nt">"body"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"sections"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+      </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"{{#each model.items}}"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"label"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"@"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$document.adapter.label"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Of course, this assumes that we have an <code>adapter.label</code> object at root level, so let&#39;s go back and create it in the main JSON:</p>
+<div class="highlight"><pre><code class="language-" data-lang=""><span class="p">{</span><span class="w">
+  </span><span class="nt">"@"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://blah.blah/jason_skeleton.json"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"view"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"@"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://blah.blah/body.json"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"model"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"@"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dwarfs@https://blah.blah/dwarfs.json"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"adapter"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{username}}"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Finally we have everything we need!</p>
+
+<hr>
+
+<p>Now we can easily turn this into a Movies app which consumes the following API:</p>
+<div class="highlight"><pre><code class="language-" data-lang=""><span class="p">{</span><span class="w">
+  </span><span class="nt">"response"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"movies"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+      </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"American Psycho"</span><span class="w">
+    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fight Club"</span><span class="w">
+    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Matrix"</span><span class="w">
+    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The Shining"</span><span class="w">
+    </span><span class="p">}]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>To do this we:</p>
+
+<ol>
+<li>Switch out <code>model.items</code>.</li>
+<li>Update the <code>adapter.label</code> to <code>&quot;text&quot;: &quot;{{title}}&quot;</code>.</li>
+</ol>
+
+<p>Here&#39;s the result:</p>
+<div class="highlight"><pre><code class="language-" data-lang=""><span class="p">{</span><span class="w">
+  </span><span class="nt">"@"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://blah.blah/jason_skeleton.json"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"view"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"@"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://blah.blah/body.json"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"model"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"@"</span><span class="p">:</span><span class="w"> </span><span class="s2">"response.movies@https://blah.blah/movies.json"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"adapter"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{title}}"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<hr>
+
+<h1>Finale</h1>
+
+<h2>Lambda</h2>
+
+<p>This concludes the series on the <code>lambda</code> branch rollout. To summarize, here&#39;s the list:</p>
+
+<ul>
+<li><a href="https://localhost:4000/2017/02/15/functional-programming-in-json/">$labmda</a>: Full functional programming in JSON. Including arguments, call stacks, return values, etc.</li>
+<li><a href="https://localhost:4000/2017/02/17/require/">$require</a>: Parallel JSON requests</li>
+<li><a href="https://localhost:4000/2017/02/27/mixins/">mixins</a>: Powerful JSON manipulation</li>
+</ul>
+
+<h2>Apps as toys</h2>
+
+<p>During the span of time it took me writing this single article, I could have probably made 100 apps with Jasonette. Jasonette makes it THAT easy to make apps.</p>
+
+<p>With <code>lambda</code>, <code>require</code>, and <code>mix-in</code> we take a huge step forward.</p>
+
+<p>But we&#39;re still not there yet. More to come!</p>
+
+<p><br></p>
+
+<p><strong>Making an app should be like putting together toy parts</strong> </p>
+
+<p><br></p>
+
+<p><img src='/assets/voltron.png' class='bordered'></p>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/2017/04/07/JSON-web-container/">
+            JSON web container
+            <small>07 Apr 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2017/02/27/mixins/">
+            Mix~in!
+            <small>27 Feb 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2017/02/17/require/">
+            require JSON;
+            <small>17 Feb 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+</html>
