@@ -109,3 +109,4 @@ TODO:
 
 - [Check out the feature landing page](http://jasonette.com/webcontainer)
 - [Check out the documentation here](http://docs.jasonette.com/web/)
+- [Try the web container demo on Jasonpedia](https://raw.githubusercontent.com/Jasonette/Jasonpedia/gh-pages/webcontainer/index.json)
