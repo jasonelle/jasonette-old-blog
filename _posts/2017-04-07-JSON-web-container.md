@@ -1,7 +1,7 @@
 ---
 layout: post
 title: JSON web container
-image: assets/c.png
+image: assets/c.jpg
 ---
 
 What if you could take the web, turn it into a native app component, and plug it into native layout/scrollview along with other native components? Like magic!
