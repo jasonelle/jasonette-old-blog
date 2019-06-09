@@ -3,8 +3,8 @@
 	<channel>
 		<title></title>
 		<description>⚡️ Native App over HTTP</description>		
-		<link>https://blog.jasonette.com</link>
-		<atom:link href="https://blog.jasonette.com/feed.xml" rel="self" type="application/rss+xml" />
+		<link>http://jasonelle.com/blog</link>
+		<atom:link href="http://jasonelle.com/jasonette-old-blog/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
 				<title>JSON web container</title>
@@ -14,20 +14,20 @@
 </description>
 				
 				<pubDate>Fri, 07 Apr 2017 00:00:00 -0400</pubDate>
-				<link>https://blog.jasonette.com/2017/04/07/JSON-web-container/</link>
-				<guid isPermaLink="true">https://blog.jasonette.com/2017/04/07/JSON-web-container/</guid>
+				<link>http://jasonelle.com/jasonette-old-blog/2017/04/07/JSON-web-container/</link>
+				<guid isPermaLink="true">http://jasonelle.com/jasonette-old-blog/2017/04/07/JSON-web-container/</guid>
 			</item>
 		
 			<item>
 				<title>Self Mix-in</title>
 				        
 				
-					<description>&lt;p&gt;In the last post, I&amp;#39;ve talked about &lt;a href=&quot;/2017/02/27/mixins/&quot;&gt;mix-ins&lt;/a&gt; for &lt;a href=&quot;https://jasonette.com&quot;&gt;Jasonette&lt;/a&gt;, which lets you mix in remote JSON objects to generate a new JSON object. (If you haven&amp;#39;t read that one yet, &lt;a href=&quot;/2017/02/27/mixins/&quot;&gt;please read it first and come back&lt;/a&gt;, you&amp;#39;ll need to understand the basics first)&lt;/p&gt;
+					<description>&lt;p&gt;In the last post, I&amp;#39;ve talked about &lt;a href=&quot;/2017/02/27/mixins/&quot;&gt;mix-ins&lt;/a&gt; for &lt;a href=&quot;http://jasonelle.com/&quot;&gt;Jasonette&lt;/a&gt;, which lets you mix in remote JSON objects to generate a new JSON object. (If you haven&amp;#39;t read that one yet, &lt;a href=&quot;/2017/02/27/mixins/&quot;&gt;please read it first and come back&lt;/a&gt;, you&amp;#39;ll need to understand the basics first)&lt;/p&gt;
 </description>
 				
 				<pubDate>Thu, 02 Mar 2017 00:00:00 -0500</pubDate>
-				<link>https://blog.jasonette.com/2017/03/02/self-mixin/</link>
-				<guid isPermaLink="true">https://blog.jasonette.com/2017/03/02/self-mixin/</guid>
+				<link>http://jasonelle.com/jasonette-old-blog/2017/03/02/self-mixin/</link>
+				<guid isPermaLink="true">http://jasonelle.com/jasonette-old-blog/2017/03/02/self-mixin/</guid>
 			</item>
 		
 			<item>
@@ -38,8 +38,8 @@
 </description>
 				
 				<pubDate>Mon, 27 Feb 2017 00:00:00 -0500</pubDate>
-				<link>https://blog.jasonette.com/2017/02/27/mixins/</link>
-				<guid isPermaLink="true">https://blog.jasonette.com/2017/02/27/mixins/</guid>
+				<link>http://jasonelle.com/jasonette-old-blog/2017/02/27/mixins/</link>
+				<guid isPermaLink="true">http://jasonelle.com/jasonette-old-blog/2017/02/27/mixins/</guid>
 			</item>
 		
 			<item>
@@ -50,8 +50,8 @@
 </description>
 				
 				<pubDate>Fri, 17 Feb 2017 00:00:00 -0500</pubDate>
-				<link>https://blog.jasonette.com/2017/02/17/require/</link>
-				<guid isPermaLink="true">https://blog.jasonette.com/2017/02/17/require/</guid>
+				<link>http://jasonelle.com/jasonette-old-blog/2017/02/17/require/</link>
+				<guid isPermaLink="true">http://jasonelle.com/jasonette-old-blog/2017/02/17/require/</guid>
 			</item>
 		
 			<item>
@@ -62,8 +62,8 @@
 </description>
 				
 				<pubDate>Wed, 15 Feb 2017 00:00:00 -0500</pubDate>
-				<link>https://blog.jasonette.com/2017/02/15/functional-programming-in-json/</link>
-				<guid isPermaLink="true">https://blog.jasonette.com/2017/02/15/functional-programming-in-json/</guid>
+				<link>http://jasonelle.com/jasonette-old-blog/2017/02/15/functional-programming-in-json/</link>
+				<guid isPermaLink="true">http://jasonelle.com/jasonette-old-blog/2017/02/15/functional-programming-in-json/</guid>
 			</item>
 		
 			<item>
@@ -74,8 +74,8 @@
 </description>
 				
 				<pubDate>Tue, 07 Feb 2017 00:00:00 -0500</pubDate>
-				<link>https://blog.jasonette.com/2017/02/07/supercharged-tabbar/</link>
-				<guid isPermaLink="true">https://blog.jasonette.com/2017/02/07/supercharged-tabbar/</guid>
+				<link>http://jasonelle.com/jasonette-old-blog/2017/02/07/supercharged-tabbar/</link>
+				<guid isPermaLink="true">http://jasonelle.com/jasonette-old-blog/2017/02/07/supercharged-tabbar/</guid>
 			</item>
 		
 			<item>
@@ -86,8 +86,8 @@
 </description>
 				
 				<pubDate>Tue, 17 Jan 2017 00:00:00 -0500</pubDate>
-				<link>https://blog.jasonette.com/2017/01/17/build-a-slackbot-with-jasonette/</link>
-				<guid isPermaLink="true">https://blog.jasonette.com/2017/01/17/build-a-slackbot-with-jasonette/</guid>
+				<link>http://jasonelle.com/jasonette-old-blog/2017/01/17/build-a-slackbot-with-jasonette/</link>
+				<guid isPermaLink="true">http://jasonelle.com/jasonette-old-blog/2017/01/17/build-a-slackbot-with-jasonette/</guid>
 			</item>
 		
 			<item>
@@ -98,8 +98,8 @@
 </description>
 				
 				<pubDate>Thu, 12 Jan 2017 00:00:00 -0500</pubDate>
-				<link>https://blog.jasonette.com/2017/01/12/Jasonette-2016-in-review/</link>
-				<guid isPermaLink="true">https://blog.jasonette.com/2017/01/12/Jasonette-2016-in-review/</guid>
+				<link>http://jasonelle.com/jasonette-old-blog/2017/01/12/Jasonette-2016-in-review/</link>
+				<guid isPermaLink="true">http://jasonelle.com/jasonette-old-blog/2017/01/12/Jasonette-2016-in-review/</guid>
 			</item>
 		
 			<item>
@@ -110,8 +110,8 @@
 </description>
 				
 				<pubDate>Sun, 17 Jan 2016 00:00:00 -0500</pubDate>
-				<link>https://blog.jasonette.com/2016/01/17/build-a-slackbot-with-jasonette/</link>
-				<guid isPermaLink="true">https://blog.jasonette.com/2016/01/17/build-a-slackbot-with-jasonette/</guid>
+				<link>http://jasonelle.com/jasonette-old-blog/2016/01/17/build-a-slackbot-with-jasonette/</link>
+				<guid isPermaLink="true">http://jasonelle.com/jasonette-old-blog/2016/01/17/build-a-slackbot-with-jasonette/</guid>
 			</item>
 		
 			<item>
@@ -122,8 +122,8 @@
 </description>
 				
 				<pubDate>Tue, 12 Jan 2016 00:00:00 -0500</pubDate>
-				<link>https://blog.jasonette.com/2016/01/12/Jasonette-2016-in-review/</link>
-				<guid isPermaLink="true">https://blog.jasonette.com/2016/01/12/Jasonette-2016-in-review/</guid>
+				<link>http://jasonelle.com/jasonette-old-blog/2016/01/12/Jasonette-2016-in-review/</link>
+				<guid isPermaLink="true">http://jasonelle.com/jasonette-old-blog/2016/01/12/Jasonette-2016-in-review/</guid>
 			</item>
 		
 	</channel>
