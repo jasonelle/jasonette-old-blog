@@ -46,7 +46,7 @@
 				<title>require JSON;</title>
 				        
 				
-					<description>&lt;p&gt;The &lt;a href=&quot;http://docs.jasonette.com/actions/#networkrequest&quot;&gt;$network.request&lt;/a&gt; action is used to dynamically fetch a &lt;strong&gt;single&lt;/strong&gt; remote JSON file. But what if you want to fetch &lt;strong&gt;as many JSON files as you want, simultaneously?&lt;/strong&gt;&lt;/p&gt;
+					<description>&lt;p&gt;The &lt;a href=&quot;http://jasonelle.com/jasonette-old-docs/actions/#networkrequest&quot;&gt;$network.request&lt;/a&gt; action is used to dynamically fetch a &lt;strong&gt;single&lt;/strong&gt; remote JSON file. But what if you want to fetch &lt;strong&gt;as many JSON files as you want, simultaneously?&lt;/strong&gt;&lt;/p&gt;
 </description>
 				
 				<pubDate>Fri, 17 Feb 2017 00:00:00 -0500</pubDate>
@@ -70,7 +70,7 @@
 				<title>Supercharged tab bar!</title>
 				        
 				
-					<description>&lt;p&gt;With the latest version, Jasonette now supports &lt;a href=&quot;https://docs.jasonette.com/href&quot;&gt;href&lt;/a&gt; and &lt;a href=&quot;https://docs.jasonette.com/action&quot;&gt;action&lt;/a&gt; attributes for the bottom tab bar, which lets you do cool things like open a view in a modal, or execute any actions when you tap a tab item.&lt;/p&gt;
+					<description>&lt;p&gt;With the latest version, Jasonette now supports &lt;a href=&quot;https://jasonelle.com/jasonette-old-docs/href&quot;&gt;href&lt;/a&gt; and &lt;a href=&quot;https://jasonelle.com/jasonette-old-docs/action&quot;&gt;action&lt;/a&gt; attributes for the bottom tab bar, which lets you do cool things like open a view in a modal, or execute any actions when you tap a tab item.&lt;/p&gt;
 </description>
 				
 				<pubDate>Tue, 07 Feb 2017 00:00:00 -0500</pubDate>

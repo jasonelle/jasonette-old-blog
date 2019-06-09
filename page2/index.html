@@ -98,7 +98,7 @@
       -->
       <a class="sidebar-nav-item inline nopadding" href="http://jasonelle.com/">About</a>
       <a class="sidebar-nav-item inline nopadding" href="http://jasonelle.com/blog">Blog</a>
-      <a class="sidebar-nav-item inline nopadding" href="https://docs.jasonette.com">Docs</a>
+      <a class="sidebar-nav-item inline nopadding" href="https://jasonelle.com/jasonette-old-docs">Docs</a>
       <!--<div class='sidebar-nav-item bold'>Subscribe to Newsletter</div>
 			<div class='sidebar-nav-item nopadding'>
 				<form action="//textethan.us8.list-manage.com/subscribe/post?u=54e23b3fe61843c19c384fc05&amp;id=76d5746d7b" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate="novalidate">
@@ -142,15 +142,15 @@
 
     <span class="post-date">07 Feb 2017</span>
 
-    <p>With the latest version, Jasonette now supports <a href="https://docs.jasonette.com/href">href</a> and <a href="https://docs.jasonette.com/action">action</a> attributes for the bottom tab bar, which lets you do cool things like open a view in a modal, or execute any actions when you tap a tab item.</p>
+    <p>With the latest version, Jasonette now supports <a href="https://jasonelle.com/jasonette-old-docs/href">href</a> and <a href="https://jasonelle.com/jasonette-old-docs/action">action</a> attributes for the bottom tab bar, which lets you do cool things like open a view in a modal, or execute any actions when you tap a tab item.</p>
 
 <p>Let me explain what this means.</p>
 
 <h2>How it currently works</h2>
 
-<p>The <a href="https://docs.jasonette.com/document/#tabs">bottom tab bar</a> is useful for switching between multiple views.</p>
+<p>The <a href="https://jasonelle.com/jasonette-old-docs/document/#tabs">bottom tab bar</a> is useful for switching between multiple views.</p>
 
-<p><img class='bordered medium' src='http://docs.jasonette.com/images/footer_tabs.jpeg'></p>
+<p><img class='bordered medium' src='http://jasonelle.com/jasonette-old-docs/images/footer_tabs.jpeg'></p>
 
 <p>Normally to make sure the each tab loads a separate view when tapped, you would simply specify the <code>url</code> attribute like this:</p>
 <div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
@@ -184,13 +184,13 @@
 
 <p>These things weren&#39;t possible since the only supported attribute was <code>url</code>.</p>
 
-<p>However, this changes today. You can attach not only <code>url</code> but also <a href="https://docs.jasonette.com/href/">href</a> as well as <a href="https://docs.jasonette.com/actions/">action</a>.</p>
+<p>However, this changes today. You can attach not only <code>url</code> but also <a href="https://jasonelle.com/jasonette-old-docs/href/">href</a> as well as <a href="https://jasonelle.com/jasonette-old-docs/actions/">action</a>.</p>
 
 <p>Go download the <code>develop</code> branch (<a href="https://github.com/jasonelle/JASONETTE-iOS">iOS</a> and <a href="https://github.com/jasonelle/JASONETTE-Android">Android</a>) and try it out. Here&#39;s what has changed:</p>
 
 <h2>href</h2>
 
-<p>You can now set <code>href</code> as well as <code>url</code>. <a href="https://docs.jasonette.com/href/">href</a> is obviously more powerful since you can specify not just the url but also the <code>view</code> or the type of <code>transition</code>.</p>
+<p>You can now set <code>href</code> as well as <code>url</code>. <a href="https://jasonelle.com/jasonette-old-docs/href/">href</a> is obviously more powerful since you can specify not just the url but also the <code>view</code> or the type of <code>transition</code>.</p>
 
 <p><img class='bordered medium' src='http://jasonelle.com/jasonette-old-blog/assets/tab_href.gif'></p>
 
@@ -261,7 +261,7 @@
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p><code>Tab 2</code> now runs the <a href="https://docs.jasonette.com/actions/#mediacamera">$media.camera action</a> when you tap.</p>
+<p><code>Tab 2</code> now runs the <a href="https://jasonelle.com/jasonette-old-docs/actions/#mediacamera">$media.camera action</a> when you tap.</p>
 
 <p>Note that you can attach <strong>any</strong> kind of actions here, not just camera.</p>
 
@@ -356,7 +356,7 @@
 
 <ol>
 <li>The express server returns a <a href="https://github.com/shaunymca/coffeeapp/blob/master/modules/jsonette.js#L61">JSON markup</a>, which becomes a native app when you connect it with Jasonette.</li>
-<li>When you tap an item from the app, it triggers a <a href="http://docs.jasonette.com/actions/#networkrequest">POST request</a> to the server.</li>
+<li>When you tap an item from the app, it triggers a <a href="http://jasonelle.com/jasonette-old-docs/actions/#networkrequest">POST request</a> to the server.</li>
 <li>The server waits 12 minutes, and then triggers the Slack API with credentials to post to the Slack channel.</li>
 </ol>
 
@@ -585,7 +585,7 @@
 
 <h3>Package Manager</h3>
 
-<p>Jasonette was <a href="http://docs.jasonette.com/advanced/#extension">designed to be extensible</a>. However, while writing an extension for personal usage has been easy, it has always been difficult to share and distribute because of all the dependency management we had to deal with.</p>
+<p>Jasonette was <a href="http://jasonelle.com/jasonette-old-docs/advanced/#extension">designed to be extensible</a>. However, while writing an extension for personal usage has been easy, it has always been difficult to share and distribute because of all the dependency management we had to deal with.</p>
 
 <p>After having tried multiple approaches to managing extensions, we&#39;ve finally found the best way to make writing extensions dead simple. We are still working on it and plan to release it soon.</p>
 
@@ -696,7 +696,7 @@
 
 <ol>
 <li>The express server returns a <a href="https://github.com/shaunymca/coffeeapp/blob/master/modules/jsonette.js#L61">JSON markup</a>, which becomes a native app when you connect it with Jasonette.</li>
-<li>When you tap an item from the app, it triggers a <a href="http://docs.jasonette.com/actions/#networkrequest">POST request</a> to the server.</li>
+<li>When you tap an item from the app, it triggers a <a href="http://jasonelle.com/jasonette-old-docs/actions/#networkrequest">POST request</a> to the server.</li>
 <li>The server waits 12 minutes, and then triggers the Slack API with credentials to post to the Slack channel.</li>
 </ol>
 
@@ -925,7 +925,7 @@
 
 <h3>Package Manager</h3>
 
-<p>Jasonette was <a href="http://docs.jasonette.com/advanced/#extension">designed to be extensible</a>. However, while writing an extension for personal usage has been easy, it has always been difficult to share and distribute because of all the dependency management we had to deal with.</p>
+<p>Jasonette was <a href="http://jasonelle.com/jasonette-old-docs/advanced/#extension">designed to be extensible</a>. However, while writing an extension for personal usage has been easy, it has always been difficult to share and distribute because of all the dependency management we had to deal with.</p>
 
 <p>After having tried multiple approaches to managing extensions, we&#39;ve finally found the best way to make writing extensions dead simple. We are still working on it and plan to release it soon.</p>
 
