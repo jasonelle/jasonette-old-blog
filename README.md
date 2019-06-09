@@ -1,3 +1,3 @@
 # Jasonette Blog
 
-[Visit the blog](https://jasonette.com/blog)
+[Visit the blog](https://jasonelle.com/blog)
