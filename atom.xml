@@ -678,9 +678,9 @@ Write JSON to describe how it blends into native app layout. You can even style 
 &lt;p&gt;This concludes the series on the &lt;code&gt;lambda&lt;/code&gt; branch rollout. To summarize, here&amp;#39;s the list:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://localhost:4000/2017/02/15/functional-programming-in-json/&quot;&gt;$labmda&lt;/a&gt;: Full functional programming in JSON. Including arguments, call stacks, return values, etc.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://localhost:4000/2017/02/17/require/&quot;&gt;$require&lt;/a&gt;: Parallel JSON requests&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://localhost:4000/2017/02/27/mixins/&quot;&gt;mixins&lt;/a&gt;: Powerful JSON manipulation&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://jasonelle.com/jasonette-old-docs/2017/02/15/functional-programming-in-json/&quot;&gt;$labmda&lt;/a&gt;: Full functional programming in JSON. Including arguments, call stacks, return values, etc.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://jasonelle.com/jasonette-old-docs/2017/02/17/require/&quot;&gt;$require&lt;/a&gt;: Parallel JSON requests&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://jasonelle.com/jasonette-old-docs/2017/02/27/mixins/&quot;&gt;mixins&lt;/a&gt;: Powerful JSON manipulation&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2&gt;Apps as toys&lt;/h2&gt;
