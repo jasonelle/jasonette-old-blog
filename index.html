@@ -136,7 +136,7 @@
   
   <div class="post">
     <h1 class="post-title">
-      <a href="/2017/04/07/JSON-web-container/">
+      <a href="http://jasonelle.com/jasonette-old-blog/2017/04/07/JSON-web-container/">
         JSON web container
       </a>
     </h1>
@@ -255,14 +255,14 @@ Write JSON to describe how it blends into native app layout. You can even style 
   
   <div class="post">
     <h1 class="post-title">
-      <a href="/2017/03/02/self-mixin/">
+      <a href="http://jasonelle.com/jasonette-old-blog/2017/03/02/self-mixin/">
         Self Mix-in
       </a>
     </h1>
 
     <span class="post-date">02 Mar 2017</span>
 
-    <p>In the last post, I&#39;ve talked about <a href="/2017/02/27/mixins/">mix-ins</a> for <a href="http://jasonelle.com/">Jasonette</a>, which lets you mix in remote JSON objects to generate a new JSON object. (If you haven&#39;t read that one yet, <a href="/2017/02/27/mixins/">please read it first and come back</a>, you&#39;ll need to understand the basics first)</p>
+    <p>In the last post, I&#39;ve talked about <a href="http://jasonelle.com/jasonette-old-blog/2017/02/27/mixins/">mix-ins</a> for <a href="http://jasonelle.com/">Jasonette</a>, which lets you mix in remote JSON objects to generate a new JSON object. (If you haven&#39;t read that one yet, <a href="http://jasonelle.com/jasonette-old-blog/2017/02/27/mixins/">please read it first and come back</a>, you&#39;ll need to understand the basics first)</p>
 
 <p>Well, today I have a powerful piece of dark magic which takes this to a whole new level.</p>
 
@@ -833,7 +833,7 @@ Write JSON to describe how it blends into native app layout. You can even style 
   
   <div class="post">
     <h1 class="post-title">
-      <a href="/2017/02/27/mixins/">
+      <a href="http://jasonelle.com/jasonette-old-blog/2017/02/27/mixins/">
         Mix~in!
       </a>
     </h1>
@@ -960,13 +960,13 @@ Write JSON to describe how it blends into native app layout. You can even style 
 
 <h1>How is Mix-in different from $require?</h1>
 
-<p>We&#39;ve talked about the <a href="/2017/02/17/require/">$require action</a> in the last post. Let me explain how mixins are different before you get confused.</p>
+<p>We&#39;ve talked about the <a href="http://jasonelle.com/jasonette-old-blog/2017/02/17/require/">$require action</a> in the last post. Let me explain how mixins are different before you get confused.</p>
 
 <p><br></p>
 
 <h2>1. Mix-ins modify the JSON markup itself.</h2>
 
-<p><a href="/2017/02/17/require/">$require</a> is an action, which means all JSON objects you fetch using <a href="/2017/02/17/require/">$require</a> stay on memory only while you&#39;re executing the next action. If you don&#39;t save it or use it in the succeeding action, the required JSON objects immediately go away. This is because <a href="/2017/02/17/require/">$require</a> fetches JSON objects straight to memory, independent from the main JSON markup tree.</p>
+<p><a href="http://jasonelle.com/jasonette-old-blog/2017/02/17/require/">$require</a> is an action, which means all JSON objects you fetch using <a href="http://jasonelle.com/jasonette-old-blog/2017/02/17/require/">$require</a> stay on memory only while you&#39;re executing the next action. If you don&#39;t save it or use it in the succeeding action, the required JSON objects immediately go away. This is because <a href="http://jasonelle.com/jasonette-old-blog/2017/02/17/require/">$require</a> fetches JSON objects straight to memory, independent from the main JSON markup tree.</p>
 
 <p>However, Mix-ins are designed for <strong>modifying the very JSON markup itself.</strong></p>
 
@@ -1009,7 +1009,7 @@ Write JSON to describe how it blends into native app layout. You can even style 
 <li>Bootstraps an <code>actions</code> controller which takes care of handling actions</li>
 </ol>
 
-<p><a href="/2017/02/17/require/">$require</a> starts its lifecycle after step 3, since it&#39;s an <a href="http://docs.jasonette.com/actions/">action</a>.</p>
+<p><a href="http://jasonelle.com/jasonette-old-blog/2017/02/17/require/">$require</a> starts its lifecycle after step 3, since it&#39;s an <a href="http://docs.jasonette.com/actions/">action</a>.</p>
 
 <p>On the other hand, mix-ins get resolved on <strong>step 1</strong> even before any interpretation is made. Here&#39;s the complete sequence:</p>
 
@@ -1185,7 +1185,7 @@ Write JSON to describe how it blends into native app layout. You can even style 
 
 <h1>Performance? No Problem!</h1>
 
-<p>As mentioned in the <a href="/2017/02/17/require/">$require article</a>, the performance for parallel loading is not much different from loading a single JSON object, you will fail to notice any difference!</p>
+<p>As mentioned in the <a href="http://jasonelle.com/jasonette-old-blog/2017/02/17/require/">$require article</a>, the performance for parallel loading is not much different from loading a single JSON object, you will fail to notice any difference!</p>
 
 <blockquote>
 <p>The biggest concern I had when first working on this feature was performance. For some reason I had this idea that on mobile, only a single network request should be made at a time.</p>
@@ -1196,7 +1196,7 @@ Write JSON to describe how it blends into native app layout. You can even style 
 
 <p>Think about a typical app where the view displays multiple items, each with an image and some text. When you load this view, it&#39;s going out there and concurrently fetching EVERY image and displaying it on the screen. Which means, this type of concurrent requests have existed on a low level, and have already been working fine without me realizing. And in most cases JSON files are significantly smaller than images. If concurrent image downloads work fine, concurrent JSON downloads should have no problem!</p>
 
-<p>(from <a href="/2017/02/17/require/">the $require.json article</a>)</p>
+<p>(from <a href="http://jasonelle.com/jasonette-old-blog/2017/02/17/require/">the $require.json article</a>)</p>
 </blockquote>
 
 <p><br></p>
@@ -1213,7 +1213,7 @@ Write JSON to describe how it blends into native app layout. You can even style 
   
   <div class="post">
     <h1 class="post-title">
-      <a href="/2017/02/17/require/">
+      <a href="http://jasonelle.com/jasonette-old-blog/2017/02/17/require/">
         require JSON;
       </a>
     </h1>
@@ -1501,7 +1501,7 @@ Write JSON to describe how it blends into native app layout. You can even style 
   
   <div class="post">
     <h1 class="post-title">
-      <a href="/2017/02/15/functional-programming-in-json/">
+      <a href="http://jasonelle.com/jasonette-old-blog/2017/02/15/functional-programming-in-json/">
         Designing a Functional Programming Language in JSON
       </a>
     </h1>

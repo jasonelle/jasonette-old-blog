@@ -258,13 +258,13 @@
 
 <h1>How is Mix-in different from $require?</h1>
 
-<p>We&#39;ve talked about the <a href="/2017/02/17/require/">$require action</a> in the last post. Let me explain how mixins are different before you get confused.</p>
+<p>We&#39;ve talked about the <a href="http://jasonelle.com/jasonette-old-blog/2017/02/17/require/">$require action</a> in the last post. Let me explain how mixins are different before you get confused.</p>
 
 <p><br></p>
 
 <h2>1. Mix-ins modify the JSON markup itself.</h2>
 
-<p><a href="/2017/02/17/require/">$require</a> is an action, which means all JSON objects you fetch using <a href="/2017/02/17/require/">$require</a> stay on memory only while you&#39;re executing the next action. If you don&#39;t save it or use it in the succeeding action, the required JSON objects immediately go away. This is because <a href="/2017/02/17/require/">$require</a> fetches JSON objects straight to memory, independent from the main JSON markup tree.</p>
+<p><a href="http://jasonelle.com/jasonette-old-blog/2017/02/17/require/">$require</a> is an action, which means all JSON objects you fetch using <a href="http://jasonelle.com/jasonette-old-blog/2017/02/17/require/">$require</a> stay on memory only while you&#39;re executing the next action. If you don&#39;t save it or use it in the succeeding action, the required JSON objects immediately go away. This is because <a href="http://jasonelle.com/jasonette-old-blog/2017/02/17/require/">$require</a> fetches JSON objects straight to memory, independent from the main JSON markup tree.</p>
 
 <p>However, Mix-ins are designed for <strong>modifying the very JSON markup itself.</strong></p>
 
@@ -307,7 +307,7 @@
 <li>Bootstraps an <code>actions</code> controller which takes care of handling actions</li>
 </ol>
 
-<p><a href="/2017/02/17/require/">$require</a> starts its lifecycle after step 3, since it&#39;s an <a href="http://docs.jasonette.com/actions/">action</a>.</p>
+<p><a href="http://jasonelle.com/jasonette-old-blog/2017/02/17/require/">$require</a> starts its lifecycle after step 3, since it&#39;s an <a href="http://docs.jasonette.com/actions/">action</a>.</p>
 
 <p>On the other hand, mix-ins get resolved on <strong>step 1</strong> even before any interpretation is made. Here&#39;s the complete sequence:</p>
 
@@ -483,7 +483,7 @@
 
 <h1>Performance? No Problem!</h1>
 
-<p>As mentioned in the <a href="/2017/02/17/require/">$require article</a>, the performance for parallel loading is not much different from loading a single JSON object, you will fail to notice any difference!</p>
+<p>As mentioned in the <a href="http://jasonelle.com/jasonette-old-blog/2017/02/17/require/">$require article</a>, the performance for parallel loading is not much different from loading a single JSON object, you will fail to notice any difference!</p>
 
 <blockquote>
 <p>The biggest concern I had when first working on this feature was performance. For some reason I had this idea that on mobile, only a single network request should be made at a time.</p>
@@ -494,7 +494,7 @@
 
 <p>Think about a typical app where the view displays multiple items, each with an image and some text. When you load this view, it&#39;s going out there and concurrently fetching EVERY image and displaying it on the screen. Which means, this type of concurrent requests have existed on a low level, and have already been working fine without me realizing. And in most cases JSON files are significantly smaller than images. If concurrent image downloads work fine, concurrent JSON downloads should have no problem!</p>
 
-<p>(from <a href="/2017/02/17/require/">the $require.json article</a>)</p>
+<p>(from <a href="http://jasonelle.com/jasonette-old-blog/2017/02/17/require/">the $require.json article</a>)</p>
 </blockquote>
 
 <p><br></p>
@@ -515,7 +515,7 @@
     
       <li>
         <h3>
-          <a href="/2017/04/07/JSON-web-container/">
+          <a href="http://jasonelle.com/jasonette-old-blog/2017/04/07/JSON-web-container/">
             JSON web container
             <small>07 Apr 2017</small>
           </a>
@@ -524,7 +524,7 @@
     
       <li>
         <h3>
-          <a href="/2017/03/02/self-mixin/">
+          <a href="http://jasonelle.com/jasonette-old-blog/2017/03/02/self-mixin/">
             Self Mix-in
             <small>02 Mar 2017</small>
           </a>
@@ -533,7 +533,7 @@
     
       <li>
         <h3>
-          <a href="/2017/02/17/require/">
+          <a href="http://jasonelle.com/jasonette-old-blog/2017/02/17/require/">
             require JSON;
             <small>17 Feb 2017</small>
           </a>
